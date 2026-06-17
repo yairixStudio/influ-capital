@@ -1,0 +1,16 @@
+{
+  "name": "influ-capital-tests",
+  "version": "1.0.0",
+  "private": true,
+  "description": "תוכנית בדיקות לאתר Influ Capital — E2E (Playwright), Unit, Lighthouse",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:unit": "node --test tests/unit",
+    "report": "playwright show-report",
+    "lighthouse": "echo 'ראה lighthouse-runbook.md — הרם שרת והרץ npx lighthouse per-page'"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "lighthouse": "^12.0.0"
+  }
+}

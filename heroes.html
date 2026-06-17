@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>הירו — דוגמאות · Influ Capital</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="brand.css">
+<style>
+  /* תצוגה בלבד — מסגרת שמדמה דפדפן סביב כל הירו */
+  .frame{border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md);background:var(--surface);margin-bottom:8px}
+  .frame-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--gray-100);border-bottom:1px solid var(--line)}
+  .frame-bar i{width:11px;height:11px;border-radius:50%;background:var(--gray-300);display:inline-block}
+  .frame-bar .url{margin-inline-start:10px;font-size:12px;color:var(--muted);font-family:var(--font-head)}
+  .frame .wrap{padding-inline:clamp(20px,4vw,40px)}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="side-nav">
+    <div class="brandmark">Influ<b>Capital</b></div>
+    <span class="tag">הירו — דוגמאות</span>
+    <a href="brand-book.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> ספר המותג</a>
+    <a href="design-verticals.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> ורטיקלים עיצוביים</a>
+    <div style="height:1px;background:var(--line);margin:14px 0"></div>
+    <a href="#header">⓪ ההידר (Navbar)</a>
+    <a href="#home">① עמוד הבית — עם תמונה</a>
+    <a href="#home-center">② עמוד הבית — ממורכז</a>
+    <a href="#inner-dark">③ עמוד פנימי — כהה</a>
+    <a href="#inner-light">④ עמוד פנימי — בהיר</a>
+  </aside>
+
+  <main class="content">
+    <!-- ⓪ HEADER — navbar standalone -->
+    <section class="doc" id="header">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⓪ Header</span><h2>ההידר (Navbar)</h2>
+          <p>ההידר הראשי של האתר — לוגו, ניווט ראשי ו‑CTA. navbar שקוף שמעוצב לשבת מעל רקע כהה (ההירו או באנר עמוד פנימי).</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il</span></div>
+        <div style="background:#0a0e1d">
+          <div class="wrap">
+            <nav class="site-nav">
+              <a class="logo" href="#" aria-label="Influ Capital — דף הבית"><img src="media/brand%20logos/logo/lockup-horizontal/influ-capital-logo-horizontal-white.png" alt="Influ Capital"></a>
+              <ul class="nav-links">
+                <li><a href="#">בית</a></li>
+                <li><a href="#">ליווי אישי</a></li>
+                <li><a href="#">קורס 1:1</a></li>
+                <li><a href="#">הרצאות</a></li>
+                <li><a href="#">אודות</a></li>
+              </ul>
+              <div class="nav-actions"><a class="btn btn-primary btn-sm">תיאום שיחה</a></div>
+            </nav>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- ① HOME — with portrait -->
+    <section class="doc" id="home">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">① Home</span><h2>עמוד הבית — עם תמונה ואותות אמון</h2>
+          <p>ההירו הראשי המלא: כותרת, וו רגשי, תת-שורה, שני CTA, פורטרט של אדם ואותות אמון. הכי "מוביל".</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il</span></div>
+        <section class="hero-main">
+          <div class="wrap">
+            <div class="hero-grid">
+              <div class="hero-copy">
+                <span class="hero-pill"><i data-lucide="badge-check" class="icon"></i> בעל רישיון שיווק השקעות · רשות ני״ע</span>
+                <h1>השקעות בשוק ההון הן <span class="accent">מקצוע</span>. אין סיבה לעשות אותן לבד.</h1>
+                <p class="hook">ליווי אישי, אנושי ושוטף — ישירות בוואטסאפ, בלי התחייבות.</p>
+                <div class="hero-cta">
+                  <a class="btn btn-primary btn-lg">תיאום שיחת היכרות</a>
+                  <a class="btn btn-wa btn-lg">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.43-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.43 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2zm0 18.04c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+                    דברו איתי בוואטסאפ
+                  </a>
+                </div>
+                <div class="hero-trust">
+                  <span class="ts"><i data-lucide="youtube" class="icon"></i><b>32K+</b> עוקבים</span>
+                  <span class="ts"><i data-lucide="shield-check" class="icon"></i> בעל רישיון שיווק השקעות</span>
+                  <span class="ts"><i data-lucide="user-round" class="icon"></i> ליווי 1:1 אישי</span>
+                </div>
+              </div>
+              <div class="hero-portrait">
+                <img src="media/adam%20and%20more/web/cutouts/adam-navy-suit-smiling-800.webp" alt="אדם ויינשטיין — משווק השקעות">
+              </div>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ② HOME — centered editorial -->
+    <section class="doc" id="home-center">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">② Home · Alt</span><h2>עמוד הבית — ממורכז (אדיטוריאלי)</h2>
+          <p>וריאציה נקייה בלי תמונה: כותרת ממורכזת, וו קצר, CTA כפול. אוורירי ומינימליסטי.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il</span></div>
+        <section class="hero-main center">
+          <div class="wrap">
+            <p class="hero-pill"><i data-lucide="badge-check" class="icon"></i> בעל רישיון שיווק השקעות · רשות ני״ע</p>
+            <h1>קודם <span class="accent">אתה</span>. אחר כך התיק.</h1>
+            <p class="hook">להשקיע עם שיטה, לא עם תחושת בטן — בליווי אישי, אנושי ושוטף.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary btn-lg">תיאום שיחת היכרות</a>
+              <a class="btn btn-ghost btn-lg" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">איך זה עובד</a>
+            </div>
+            <div class="hero-trust">
+              <span class="ts"><i data-lucide="youtube" class="icon"></i><b>32K+</b> עוקבים</span>
+              <span class="ts"><i data-lucide="message-circle" class="icon"></i> ליווי ישיר בוואטסאפ</span>
+              <span class="ts"><i data-lucide="calendar-check" class="icon"></i> מפגש חודשי שוטף</span>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ③ INNER — dark slim -->
+    <section class="doc" id="inner-dark">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">③ Inner</span><h2>עמוד פנימי — רצועה כהה</h2>
+          <p>לעמודי השירות: פירורי לחם, תווית, כותרת ממוקדת, lead ו‑CTA יחיד. תואם את ההירו הראשי אך דק יותר.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/ליווי-אישי</span></div>
+        <section class="hero-page">
+          <div class="wrap">
+            <nav class="breadcrumb"><a href="#">בית</a><span class="sep">/</span><a href="#">שירותים</a><span class="sep">/</span><span class="cur">ליווי השקעות אישי</span></nav>
+            <span class="hero-pill"><i data-lucide="line-chart" class="icon"></i> השירות המוביל</span>
+            <h1>ליווי השקעות אישי, בגובה העיניים.</h1>
+            <p class="lead">קו פתוח, תיק מסודר, ומפגש חודשי שמחזיק את התהליך. בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת — יש שיטה, יש מעקב, ויש עם מי לדבר.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary btn-lg">לתיאום שיחת היכרות</a>
+              <a class="btn btn-ghost btn-lg" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">איך זה עובד</a>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ④ INNER — light -->
+    <section class="doc" id="inner-light" style="border-bottom:none">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">④ Inner · Light</span><h2>עמוד פנימי — גרסה בהירה</h2>
+          <p>לעמודי תוכן קלילים (קורס, אודות, הרצאות). אותו מבנה, אווירה בהירה ונקייה.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/קורס</span></div>
+        <section class="hero-page light">
+          <div class="wrap">
+            <nav class="breadcrumb"><a href="#">בית</a><span class="sep">/</span><a href="#">שירותים</a><span class="sep">/</span><span class="cur">קורס 1:1</span></nav>
+            <span class="hero-pill"><i data-lucide="graduation-cap" class="icon"></i> מסלול אישי</span>
+            <h1>קורס השקעות ערך — לומדים לחשוב, לא לשנן.</h1>
+            <p class="lead">לא עוד קורס דיגיטלי. לומדים בלייב, שואלים בזמן אמת ומבינים איך לחשוב — להבין דוחות, חברות והחלטות השקעה בגובה העיניים.</p>
+            <div class="hero-cta">
+              <a class="btn btn-primary btn-lg">לפרטים והרשמה</a>
+              <a class="btn btn-secondary btn-lg">דברו איתי</a>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <footer style="padding:40px 0 70px;text-align:center;color:var(--muted);font-size:14px">
+      <div class="wrap">
+        <p style="font-family:var(--font-head);color:var(--ink);font-weight:600">Influ Capital · דוגמאות הירו</p>
+        <p style="margin-top:6px">בחר וריאציה מועדפת לכל סוג עמוד ונטמיע ב‑<span class="codeline">index.html</span>. כל הרכיבים כבר ב‑<span class="codeline">brand.css</span>.</p>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<script>lucide.createIcons();</script>
+</body>
+</html>

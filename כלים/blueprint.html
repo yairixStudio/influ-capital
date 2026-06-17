@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>בלופרינט · עץ האתר</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{
+  --bg:#ececee; --card:#fff; --line:#dcdce0; --line-2:#e6e6ea;
+  --ink:#1a1b1f; --muted:#8a8b92; --faint:#b5b6bd;
+  --accent:#1a1b1f;
+  --font-head:'Rubik', sans-serif;
+  --font-body:'IBM Plex Sans Hebrew', sans-serif;
+}
+*{box-sizing:border-box; margin:0; padding:0}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:var(--font-body); font-size:13px; line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+button{font:inherit; cursor:pointer; border:none; background:none; color:inherit}
+
+/* ===== Toolbar ===== */
+.bar{
+  position:sticky; top:0; z-index:30;
+  display:flex; align-items:center; gap:6px;
+  padding:8px 16px; background:var(--bg); border-bottom:1px solid var(--line);
+}
+.bar .t{font-family:var(--font-head); font-weight:600; font-size:13px; letter-spacing:.01em; margin-inline-end:auto}
+.bar .t span{color:var(--muted); font-weight:400}
+.btn{
+  border:1px solid var(--line); background:var(--card); color:var(--ink);
+  padding:5px 11px; font-size:12px; font-weight:500;
+  transition:border-color .12s,color .12s; white-space:nowrap;
+}
+.btn:hover{border-color:var(--accent)}
+.btn.x{border-color:transparent; background:transparent; color:var(--muted)}
+.btn.x:hover{color:var(--ink)}
+.saved{font-size:11px; color:var(--faint); width:46px; text-align:center}
+
+/* ===== Legend (טמפלטים) ===== */
+.legend{
+  position:sticky; top:42px; z-index:29;
+  display:flex; flex-wrap:wrap; align-items:center; gap:5px 12px;
+  padding:6px 16px; background:var(--bg); border-bottom:1px solid var(--line);
+  font-size:11px; color:var(--muted);
+}
+.legend:empty{display:none}
+.legend .lg-t{font-family:var(--font-head); font-weight:500; color:var(--faint)}
+.legend .lg{display:inline-flex; align-items:center; gap:5px}
+.legend .dot{width:9px; height:9px; flex:none}
+
+/* ===== Board ===== */
+.board{
+  display:flex; align-items:flex-start; gap:10px;
+  padding:16px 14px 70px; overflow-x:auto; min-height:calc(100vh - 80px);
+}
+.page{flex:0 0 188px; width:188px; display:flex; flex-direction:column; gap:6px}
+
+/* כותרת עמוד = טקסט על הקנבס, לא קונטיינר */
+.phead{background:transparent; border:none; padding:2px 2px 4px; position:relative; cursor:grab}
+.phead:active{cursor:grabbing}
+.phead .idx{font-family:var(--font-head); font-size:10px; font-weight:500; color:var(--faint); letter-spacing:.04em; display:block; margin-bottom:0}
+.ptitle{font-family:var(--font-head); font-weight:700; font-size:15px; letter-spacing:-.01em; outline:none; min-height:1.3em}
+.pnote{font-size:10.5px; color:var(--muted); outline:none; margin-top:1px; min-height:1em}
+
+.secs{display:flex; flex-direction:column; gap:0; min-height:8px}
+
+.sblock{display:flex; flex-direction:column}
+.goal{
+  align-self:center; max-width:92%;
+  font-family:var(--font-head); font-size:10px; font-weight:500; letter-spacing:.02em;
+  color:var(--muted); text-align:center; outline:none; padding:6px 8px 5px; min-height:1em; line-height:1.3;
+}
+.goal:empty:before{content:"+ מטרה"; color:transparent; transition:color .12s}
+.sblock:hover .goal:empty:before{color:var(--faint)}
+.goal:not(:empty){border-top:1px solid var(--line-2); margin-top:6px}
+.goal:not(:empty):before{content:"↓ "; color:var(--faint)}
+
+.sec{
+  background:var(--card); border:1px solid var(--line);
+  border-inline-start:3px solid transparent;       /* פס צבע טמפלט */
+  padding:7px 9px; position:relative; cursor:grab;
+}
+.sec:active{cursor:grabbing}
+.sec .top{display:flex; align-items:center; justify-content:space-between; gap:6px; margin-bottom:1px}
+.sec .sidx{font-size:9.5px; color:var(--faint); font-weight:500}
+.tpl{
+  font-family:var(--font-head); font-size:9.5px; font-weight:600; letter-spacing:.02em;
+  color:var(--faint); outline:none; min-width:8px; text-align:end; cursor:text;
+}
+.tpl:empty:before{content:"טמפלט"; color:transparent}
+.sec:hover .tpl:empty:before{color:var(--faint)}
+.stitle{font-weight:500; font-size:12.5px; outline:none; min-height:1.2em}
+.snote{font-size:11px; color:var(--muted); outline:none; margin-top:1px; min-height:1em}
+
+[contenteditable]:empty:before{content:attr(data-ph); color:var(--faint); pointer-events:none}
+.goal[contenteditable]:empty:before,.tpl[contenteditable]:empty:before{content:""}
+
+.ctl{position:absolute; inset-inline-start:6px; top:22px; display:flex; gap:2px; opacity:0; transition:opacity .12s}
+.phead .ctl{top:6px}
+.phead:hover .ctl, .sec:hover .ctl{opacity:1}
+.ib{width:19px; height:19px; border:1px solid var(--line); background:var(--card); color:var(--muted); font-size:11px; line-height:1; display:grid; place-items:center}
+.ib:hover{color:var(--ink); border-color:var(--accent)}
+.ib.del:hover{color:#c0392b; border-color:#e0a0a0}
+
+.add{border:1px dashed var(--faint); background:transparent; color:var(--muted); padding:5px; font-size:11.5px; font-weight:500; transition:border-color .12s,color .12s; margin-top:6px}
+.add:hover{border-color:var(--accent); color:var(--ink)}
+.addpage{
+  flex:0 0 74px; width:74px; align-self:stretch; min-height:90px;
+  border:1px dashed var(--faint); color:var(--muted);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  font-size:11.5px; font-weight:500; transition:border-color .12s,color .12s;
+}
+.addpage:hover{border-color:var(--accent); color:var(--ink)}
+.addpage .pl{font-family:var(--font-head); font-size:22px; line-height:1; font-weight:300}
+
+.dragging{opacity:.35}
+.dropline{height:2px; background:var(--accent); border:none; margin:2px 0}
+.page.drop-target>.phead{outline:1px solid var(--accent); outline-offset:-1px}
+
+/* ===== read overlay ===== */
+.ov{position:fixed; inset:0; z-index:50; background:rgba(20,20,24,.4); display:none; padding:28px; overflow:auto}
+.ov.open{display:block}
+.sheet{max-width:680px; margin:0 auto; background:#fff; border:1px solid var(--line); padding:30px 34px}
+.sheet h2{font-family:var(--font-head); font-size:18px; font-weight:600; margin-bottom:14px}
+.sheet .close{position:sticky; float:left; font-size:20px; color:var(--muted); margin-top:-6px}
+.o-page{margin-bottom:14px}
+.o-h{font-family:var(--font-head); font-weight:600; font-size:14px}
+.o-h .n{color:var(--faint)}
+.o-note{color:var(--muted); font-size:11.5px; margin:1px 0 3px}
+.o-page ul{list-style:none; margin-top:4px}
+.o-page li{font-size:12.5px; padding:2px 0; border-inline-start:3px solid var(--line-2); padding-inline-start:9px; margin-inline-start:2px}
+.o-page li .ln{color:var(--muted)}
+.o-page li .tpl-r{font-family:var(--font-head); font-size:10px; font-weight:600}
+.o-page li .goal-r{display:block; font-size:10px; color:var(--faint); font-family:var(--font-head)}
+@media print{.bar,.legend{display:none}.ov .close{display:none}}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <div class="t">בלופרינט <span>· עץ האתר</span></div>
+  <span class="saved" id="saved"></span>
+  <button class="btn x" id="bRead">קריאה</button>
+  <button class="btn x" id="bMd">MD</button>
+  <button class="btn x" id="bJson">JSON</button>
+  <button class="btn x" id="bImp">ייבוא</button>
+  <button class="btn x" id="bReset">איפוס לברירת מחדל</button>
+  <input type="file" id="file" accept="application/json" hidden>
+</div>
+<div class="legend" id="legend"></div>
+
+<div class="board" id="board"></div>
+
+<div class="ov" id="ov">
+  <div class="sheet">
+    <button class="close" id="ovClose" aria-label="סגירה">×</button>
+    <h2>עץ האתר</h2>
+    <div id="outline"></div>
+  </div>
+</div>
+
+<script>
+const KEY='adam-blueprint-v6';
+const board=document.getElementById('board');
+const savedEl=document.getElementById('saved');
+const legendEl=document.getElementById('legend');
+
+/* ---------- תוכן ברירת מחדל ---------- */
+/* כל סקשן: [שם, פירוט, מטרה, טמפלט] · סקשנים עם אותו טמפלט נצבעים זהה */
+function seed(){
+  const P=(title,note,secs)=>({id:uid(),title,note,sections:secs.map(s=>({id:uid(),title:s[0],note:s[1]||'',goal:s[2]||'',tpl:s[3]||''}))});
+  return {pages:[
+    P('דף הבית','עמוד ראשי · S1 / H-hero',[
+      ['הירו משודרג','כותרת על + סלוגן + CTA ראשי','מסר ראשון + הבטחת ערך','hero-בית'],
+      ['שלוש דרכים לעבוד יחד','3 כרטיסי שירות: ליווי / קורס / הרצאות','ניתוב לשירותים','כרטיסי-שירות'],
+      ['הבעיה והפתרון','למה רוב המשקיעים הקטנים לא מצליחים · + CTA כפתור שפותח פופאפ','יצירת הזדהות וכאב',''],
+      ['המלצות','מה אומרים מי שכבר עובדים איתי','הוכחה חברתית','המלצות'],
+      ['טופס יצירת קשר','טופס יחסית נקי','המרה / לכידת ליד','טופס'],
+      ['אפליקציית IBI','פותחים חשבון מסחר ומתחילים ליישם · כפתור אפילייט','יישום + המרת אפילייט',''],
+      ['CTA סוף עמוד','ורטיקל וואטסאפ אינטראקטיבי · בוא נתחיל את המסע','המרה אחרונה','cta-סוף'],
+    ]),
+    /* שלושת עמודי השירות — אותו סדר סוגי סקשנים (טמפלט אחיד) */
+    P('ליווי השקעות אישי','דף נחיתה · קוד P',[
+      ['Hero','כותרת השירות + CTA','מסגור ההצעה','hero-נחיתה'],
+      ['למה ליווי אישי','השקעה לבד = רעש והחלטות רגשיות','יצירת הזדהות וכאב','כאב'],
+      ['איך זה עובד?','שלבי התהליך · קו פתוח, תיק מסודר, מפגש חודשי','הסבר התהליך','תהליך'],
+      ['איך בוחרים מניות?','שיטת העבודה והבידול שלי','בידול ואמון מקצועי','בידול'],
+      ['המלצות','מה אומרים לקוחות הליווי','הוכחה חברתית','המלצות'],
+      ['CTA','מוכן להתחיל?','המרה','cta'],
+    ]),
+    P('קורס השקעות ערך 1:1','דף נחיתה · קוד C',[
+      ['Hero','כותרת הקורס + CTA + וידאו','מסגור ההצעה','hero-נחיתה'],
+      ['למה הקורס הזה','קורסים דיגיטליים לא מלמדים לחשוב','יצירת הזדהות וכאב','כאב'],
+      ['הסילבוס','מה לומדים — אקורדיון נושאים','הסבר התהליך','תהליך'],
+      ['למה המסלול האישי','לייב, 1:1, שאלות בזמן אמת','בידול ואמון מקצועי','בידול'],
+      ['המלצות','מה אומרים בוגרי הקורס','הוכחה חברתית','המלצות'],
+      ['CTA','רוצה לשמוע עוד?','המרה','cta'],
+    ]),
+    P('הרצאות לארגונים','דף נחיתה · קוד L',[
+      ['Hero','כותרת ההרצאות + CTA','מסגור ההצעה','hero-נחיתה'],
+      ['למה הרצאה פיננסית','עובדים שמבינים כסף מחליטים טוב יותר','יצירת הזדהות וכאב','כאב'],
+      ['מבנה ההרצאה','מה כוללת ההרצאה · נושאים','הסבר התהליך','תהליך'],
+      ['הסוד? להנגיש נכון','מצחיק, מעשי, בגובה העיניים','בידול ואמון מקצועי','בידול'],
+      ['המלצות','מה אומרים ארגונים שאירחו','הוכחה חברתית','המלצות'],
+      ['CTA','רוצה הרצאה לארגון שלך?','המרה (לידים ארגוניים)','cta'],
+    ]),
+    P('אודות','אדם ויינשטיין',[
+      ['הירו סופר-מינימלי','סיפור אישי + רישוי A1','בניית אמון אישי','hero-מינימלי'],
+      ['פודקאסט','הופעות/אזכורים בפודקאסטים — חיזוק אמינות','הוכחה חברתית / סמכות','פודקאסט'],
+      ['יצירת קשר','טופס / CTA ליצירת קשר','המרה / לכידת ליד','טופס'],
+    ]),
+    P('צור קשר','',[
+      ['הירו סופר-מינימלי','','הנמכת חסם','hero-מינימלי'],
+      ['טופס יצירת קשר','','המרה / לכידת ליד','טופס'],
+      ['דרכים נוספות','טלפון / וואטסאפ / מייל מתוך contact.json','נגישות ערוצים',''],
+    ]),
+    P('רגולציה ומסמכים','עמוד-מסמך לכל אחד · ניווט בטאבים · אותו טמפלט',[
+      ['הירו סופר-מינימלי','כותרת המסמך + ניווט טאבים','התמצאות','hero-מינימלי'],
+      ['מדיניות פרטיות','','שקיפות ואמון','עמוד-מסמך'],
+      ['הצהרת נגישות','','','עמוד-מסמך'],
+      ['תנאי שימוש וגילוי נאות','','','עמוד-מסמך'],
+      ['מדיניות עוגיות','','','עמוד-מסמך'],
+    ]),
+    P('גלובלי (כלל-אתרי)','רכיבים שחוזרים בכל עמוד',[
+      ['Header / ניווט','','','גלובלי'],
+      ['Footer','','','גלובלי'],
+      ['כפתורים צפים','וואטסאפ / חזרה למעלה','','גלובלי'],
+      ['ווידג׳ט נגישות','','','גלובלי'],
+      ['באנר עוגיות','','','גלובלי'],
+      ['פופאפ חכם','exit / scroll intent','','גלובלי'],
+    ]),
+  ]};
+}
+
+function uid(){return 'x'+Math.random().toString(36).slice(2,9)}
+function load(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+let st=load()||seed();
+let saveT;
+function save(){
+  localStorage.setItem(KEY,JSON.stringify(st));
+  savedEl.textContent='נשמר';
+  clearTimeout(saveT); saveT=setTimeout(()=>savedEl.textContent='',1200);
+}
+
+/* ---------- helpers ---------- */
+const esc=s=>(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const txt=el=>el.innerText.replace(/ /g,' ').trim();
+const findPage=id=>st.pages.find(p=>p.id===id);
+
+/* ---------- צבעי טמפלט ---------- */
+const PALETTE=['#e07a3c','#3b82e8','#2bb673','#9b59e8','#e84393','#caa300','#16a3a3','#c0392b','#5a6acb','#7a8a3a','#0e9488','#b9770e'];
+let tplColor={};
+const normTpl=t=>(t||'').trim().toLowerCase().replace(/\s+/g,' ');
+function tint(hex){const n=parseInt(hex.slice(1),16);return `rgba(${n>>16&255},${n>>8&255},${n&255},.07)`}
+function computeColors(){
+  const order=[];
+  st.pages.forEach(p=>p.sections.forEach(s=>{const k=normTpl(s.tpl);if(k&&!order.includes(k))order.push(k)}));
+  tplColor={}; order.forEach((k,i)=>tplColor[k]=PALETTE[i%PALETTE.length]);
+}
+function renderLegend(){
+  const keys=Object.keys(tplColor);
+  legendEl.innerHTML = keys.length
+    ? '<span class="lg-t">טמפלטים:</span>'+keys.map(k=>`<span class="lg"><span class="dot" style="background:${tplColor[k]}"></span>${esc(k)}</span>`).join('')
+    : '';
+}
+
+/* ---------- render ---------- */
+function render(){
+  computeColors(); renderLegend();
+  board.innerHTML='';
+  st.pages.forEach((pg,pi)=>board.appendChild(pageEl(pg,pi)));
+  const a=document.createElement('button'); a.className='addpage'; a.innerHTML='<span class="pl">+</span>עמוד';
+  a.onclick=()=>{st.pages.push({id:uid(),title:'',note:'',sections:[]});save();render();
+    const t=board.querySelectorAll('.ptitle'); t[t.length-1]?.focus();};
+  board.appendChild(a);
+}
+
+function pageEl(pg,pi){
+  const el=document.createElement('div'); el.className='page'; el.dataset.pid=pg.id;
+  const h=document.createElement('div'); h.className='phead'; h.draggable=true;
+  h.innerHTML=`
+    <div class="ctl">
+      <button class="ib" data-a="r" title="ימינה">›</button>
+      <button class="ib" data-a="l" title="שמאלה">‹</button>
+      <button class="ib del" data-a="del" title="מחק עמוד">×</button>
+    </div>
+    <span class="idx">עמוד ${pi+1}</span>
+    <div class="ptitle" contenteditable data-ph="שם העמוד">${esc(pg.title)}</div>
+    <div class="pnote" contenteditable data-ph="הערה">${esc(pg.note)}</div>`;
+  h.querySelector('.ptitle').oninput=e=>{pg.title=txt(e.target);save()};
+  h.querySelector('.pnote').oninput=e=>{pg.note=txt(e.target);save()};
+  h.querySelector('[data-a=del]').onclick=()=>{if(confirm('למחוק את העמוד וכל הסקשנים?')){st.pages.splice(pi,1);save();render()}};
+  h.querySelector('[data-a=r]').onclick=()=>swapPage(pi,-1);
+  h.querySelector('[data-a=l]').onclick=()=>swapPage(pi,+1);
+  h.addEventListener('dragstart',e=>{drag={type:'page',pid:pg.id};e.dataTransfer.effectAllowed='move';el.classList.add('dragging');e.stopPropagation()});
+  h.addEventListener('dragend',()=>{el.classList.remove('dragging');clearMarks()});
+  el.appendChild(h);
+
+  const wrap=document.createElement('div'); wrap.className='secs'; wrap.dataset.pid=pg.id;
+  pg.sections.forEach((sc,si)=>wrap.appendChild(secEl(pg,sc,si)));
+  el.appendChild(wrap);
+  wrap.addEventListener('dragover',e=>{if(drag&&drag.type==='sec')e.preventDefault()});
+  wrap.addEventListener('drop',e=>{if(drag&&drag.type==='sec'){e.preventDefault();dropSection(pg.id,pg.sections.length)}});
+  el.addEventListener('dragover',e=>{if(drag&&drag.type==='page'){e.preventDefault();el.classList.add('drop-target')}});
+  el.addEventListener('dragleave',()=>el.classList.remove('drop-target'));
+  el.addEventListener('drop',e=>{if(drag&&drag.type==='page'){e.preventDefault();el.classList.remove('drop-target');dropPage(pg.id)}});
+
+  const add=document.createElement('button'); add.className='add'; add.textContent='+ סקשן';
+  add.onclick=()=>{pg.sections.push({id:uid(),title:'',note:'',goal:'',tpl:''});save();render();};
+  el.appendChild(add);
+  return el;
+}
+
+function secEl(pg,sc,si){
+  const block=document.createElement('div'); block.className='sblock'; block.dataset.sid=sc.id;
+  const goal=document.createElement('div'); goal.className='goal'; goal.contentEditable=true;
+  goal.textContent=sc.goal||''; goal.oninput=e=>{sc.goal=txt(e.target);save()};
+
+  const el=document.createElement('div'); el.className='sec'; el.draggable=true;
+  const col=tplColor[normTpl(sc.tpl)];
+  if(col){el.style.borderInlineStartColor=col; el.style.background=tint(col);}
+  el.innerHTML=`
+    <div class="ctl">
+      <button class="ib" data-a="up" title="מעלה">↑</button>
+      <button class="ib" data-a="dn" title="מטה">↓</button>
+      <button class="ib" data-a="dup" title="שכפל">⧉</button>
+      <button class="ib del" data-a="del" title="מחק">×</button>
+    </div>
+    <div class="top">
+      <span class="sidx">${si+1}</span>
+      <span class="tpl" contenteditable data-ph="טמפלט"${col?` style="color:${col}"`:''}>${esc(sc.tpl)}</span>
+    </div>
+    <div class="stitle" contenteditable data-ph="שם הסקשן">${esc(sc.title)}</div>
+    <div class="snote" contenteditable data-ph="פירוט">${esc(sc.note)}</div>`;
+  el.querySelector('.stitle').oninput=e=>{sc.title=txt(e.target);save()};
+  el.querySelector('.snote').oninput=e=>{sc.note=txt(e.target);save()};
+  el.querySelector('.tpl').addEventListener('blur',e=>{sc.tpl=txt(e.target);save();render()});
+  el.querySelector('[data-a=del]').onclick=()=>{pg.sections.splice(si,1);save();render()};
+  el.querySelector('[data-a=up]').onclick=()=>swapSec(pg,si,-1);
+  el.querySelector('[data-a=dn]').onclick=()=>swapSec(pg,si,+1);
+  el.querySelector('[data-a=dup]').onclick=()=>{pg.sections.splice(si+1,0,{id:uid(),title:sc.title,note:sc.note,goal:sc.goal,tpl:sc.tpl});save();render();};
+
+  el.addEventListener('dragstart',e=>{drag={type:'sec',pid:pg.id,sid:sc.id};e.dataTransfer.effectAllowed='move';block.classList.add('dragging');e.stopPropagation()});
+  el.addEventListener('dragend',()=>{block.classList.remove('dragging');clearMarks()});
+  el.addEventListener('dragover',e=>{
+    if(drag&&drag.type==='sec'){e.preventDefault();e.stopPropagation();
+      const r=block.getBoundingClientRect(); const before=(e.clientY < r.top + r.height/2);
+      clearMarks(); showLine(block,before);}
+  });
+  el.addEventListener('drop',e=>{
+    if(drag&&drag.type==='sec'){e.preventDefault();e.stopPropagation();
+      const r=block.getBoundingClientRect(); const before=(e.clientY < r.top + r.height/2);
+      const idx=pg.sections.findIndex(s=>s.id===sc.id);
+      dropSection(pg.id, before?idx:idx+1);}
+  });
+  block.appendChild(goal); block.appendChild(el);
+  return block;
+}
+
+/* ---------- drag ---------- */
+let drag=null;
+function showLine(block,before){const ln=document.createElement('hr'); ln.className='dropline'; block.parentNode.insertBefore(ln, before?block:block.nextSibling);}
+function clearMarks(){document.querySelectorAll('.dropline').forEach(n=>n.remove());document.querySelectorAll('.drop-target').forEach(n=>n.classList.remove('drop-target'));}
+function dropSection(toPid,toIdx){
+  const from=findPage(drag.pid); const to=findPage(toPid);
+  const i=from.sections.findIndex(s=>s.id===drag.sid); if(i<0)return;
+  const [m]=from.sections.splice(i,1);
+  if(from===to && i<toIdx) toIdx--;
+  to.sections.splice(toIdx,0,m); drag=null; save(); render();
+}
+function dropPage(targetPid){
+  const fi=st.pages.findIndex(p=>p.id===drag.pid); if(fi<0){drag=null;return;}
+  const [m]=st.pages.splice(fi,1);
+  st.pages.splice(st.pages.findIndex(p=>p.id===targetPid),0,m); drag=null; save(); render();
+}
+function swapPage(i,d){const j=i+d;if(j<0||j>=st.pages.length)return;[st.pages[i],st.pages[j]]=[st.pages[j],st.pages[i]];save();render()}
+function swapSec(pg,i,d){const j=i+d;if(j<0||j>=pg.sections.length)return;[pg.sections[i],pg.sections[j]]=[pg.sections[j],pg.sections[i]];save();render()}
+
+/* ---------- read view ---------- */
+const ov=document.getElementById('ov');
+document.getElementById('bRead').onclick=()=>{
+  document.getElementById('outline').innerHTML=st.pages.map((pg,i)=>{
+    const s=pg.sections.length?'<ul>'+pg.sections.map(x=>{const c=tplColor[normTpl(x.tpl)];
+      return `<li${c?` style="border-inline-start-color:${c}"`:''}>${x.goal?`<span class="goal-r">↓ ${esc(x.goal)}</span>`:''}${esc(x.title)||'<span class="ln">(ללא שם)</span>'}${x.tpl?` <span class="tpl-r" style="color:${c||'#888'}">[${esc(x.tpl)}]</span>`:''}${x.note?` <span class="ln">— ${esc(x.note)}</span>`:''}</li>`;
+    }).join('')+'</ul>':'<div class="o-note">אין סקשנים</div>';
+    return `<div class="o-page"><div class="o-h"><span class="n">${i+1}.</span> ${esc(pg.title)||'(ללא שם)'}</div>${pg.note?`<div class="o-note">${esc(pg.note)}</div>`:''}${s}</div>`;
+  }).join('');
+  ov.classList.add('open');
+};
+document.getElementById('ovClose').onclick=()=>ov.classList.remove('open');
+ov.addEventListener('click',e=>{if(e.target===ov)ov.classList.remove('open')});
+
+/* ---------- export / import ---------- */
+function dl(name,content,type){const b=new Blob([content],{type});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),800)}
+document.getElementById('bJson').onclick=()=>dl('blueprint.json',JSON.stringify(st,null,2),'application/json');
+document.getElementById('bMd').onclick=()=>{
+  let m='# עץ האתר\n\n';
+  st.pages.forEach((p,i)=>{m+=`## ${i+1}. ${p.title||'(ללא שם)'}\n`;if(p.note)m+=`> ${p.note}\n`;
+    p.sections.forEach(s=>{if(s.goal)m+=`  · מטרה: ${s.goal}\n`;m+=`- ${s.title||'(ללא שם)'}${s.tpl?` [${s.tpl}]`:''}${s.note?` — ${s.note}`:''}\n`;});m+='\n';});
+  dl('blueprint.md',m,'text/markdown');
+};
+document.getElementById('bImp').onclick=()=>document.getElementById('file').click();
+document.getElementById('file').addEventListener('change',e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);if(!d.pages)throw 0;st=d;save();render();}catch(_){alert('קובץ לא תקין')}};
+  r.readAsText(f);e.target.value='';
+});
+document.getElementById('bReset').onclick=()=>{if(confirm('לאפס לעץ ברירת המחדל? (ייצא קודם אם חשוב)')){st=seed();save();render();}};
+
+render();
+</script>
+</body>
+</html>

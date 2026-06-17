@@ -1,0 +1,36 @@
+{
+  "name": "אדם ויינשטיין",
+  "nameEn": "Adam Vainshtein",
+  "brand": "Influ Capital",
+  "tagline": "ליווי השקעות אישי בשוק ההון | השקעות ערך",
+  "contact": {
+    "phone": "0533384114",
+    "phoneIntl": "+972533384114",
+    "whatsapp": "https://wa.me/972533384114",
+    "email": "info@influ-capital.co.il",
+    "emailPersonal": "adam.vainshtein.investing@gmail.com"
+  },
+  "website": "https://www.adamvainshtein.co.il",
+  "social": {
+    "youtube": "https://www.youtube.com/@AdamVainshtein",
+    "instagram": "https://www.instagram.com/adamv_96/",
+    "facebook": "https://www.facebook.com/adam.vainshtein",
+    "tiktok": null,
+    "spotify": "https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5",
+    "applePodcasts": "https://podcasts.apple.com/gb/podcast/id1789951765",
+    "linkedin": null,
+    "telegram": null,
+    "twitter": null
+  },
+  "links": {
+    "tradingAccount": "https://ibiinvestments.co.il/lp/adam_vainshtein/",
+    "course": "https://www.adamvainshtein.co.il/course",
+    "lectures": "https://www.adamvainshtein.co.il/lectures",
+    "about": "https://www.adamvainshtein.co.il/about"
+  },
+  "_notes": {
+    "tiktok": "לא אומת קישור ודאי — להשלים מהפרופיל אם קיים",
+    "emailPersonal": "מייל אישי מהאתר הציבורי; המייל הראשי לעסק הוא info@influ-capital.co.il",
+    "verified": "2026-06-17"
+  }
+}

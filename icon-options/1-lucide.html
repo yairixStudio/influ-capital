@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סט 1/5 · Lucide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{--navy:#0b2545;--gold:#c9a227;--ink:#15202b;--muted:#64748b;--line:#e6e9ef;--bg:#f6f7f9}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Heebo","Segoe UI",system-ui,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#0b2545,#13355f);color:#fff;padding:42px 24px 34px;text-align:center}
+.badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:5px 14px;border-radius:999px;font-size:13px;margin-bottom:14px}
+header h1{margin:0;font-size:38px;font-weight:800}
+header .sub{margin:8px 0 0;color:#cdd8e6;font-size:15px}
+.lic{margin-top:12px;font-size:12.5px;color:#9fb3cc}
+.lic b{color:var(--gold)}
+main{max-width:1040px;margin:34px auto;padding:0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:12px;transition:.18s}
+.card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 12px 28px rgba(11,37,69,.10)}
+.icon{height:46px;display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.icon svg{width:42px;height:42px;stroke-width:1.8}
+.card:hover .icon{color:var(--gold)}
+.label{font-size:14px;font-weight:500}
+footer{text-align:center;color:var(--muted);padding:10px 20px 50px;font-size:14px}
+footer b{color:var(--navy)}
+</style>
+</head>
+<body>
+<header>
+  <div class="badge">סט 1 מתוך 5</div>
+  <h1>Lucide</h1>
+  <p class="sub">קווי, מינימליסטי ומודרני · lucide.dev</p>
+  <div class="lic">רישיון: <b>ISC</b> — קוד פתוח, חינמי לשימוש מסחרי</div>
+</header>
+<main>
+  <div class="grid">
+    <div class="card"><span class="icon"><i data-lucide="trending-up"></i></span><span class="label">שוק ההון</span></div>
+    <div class="card"><span class="icon"><i data-lucide="user-round"></i></span><span class="label">ליווי אישי</span></div>
+    <div class="card"><span class="icon"><i data-lucide="graduation-cap"></i></span><span class="label">קורס השקעות</span></div>
+    <div class="card"><span class="icon"><i data-lucide="presentation"></i></span><span class="label">הרצאות</span></div>
+    <div class="card"><span class="icon"><i data-lucide="sprout"></i></span><span class="label">צמיחה</span></div>
+    <div class="card"><span class="icon"><i data-lucide="shield-check"></i></span><span class="label">אמון וביטחון</span></div>
+    <div class="card"><span class="icon"><i data-lucide="phone"></i></span><span class="label">טלפון</span></div>
+    <div class="card"><span class="icon"><i data-lucide="mail"></i></span><span class="label">אימייל</span></div>
+    <div class="card"><span class="icon"><i data-lucide="message-circle"></i></span><span class="label">וואטסאפ</span></div>
+    <div class="card"><span class="icon"><i data-lucide="coins"></i></span><span class="label">השקעה</span></div>
+    <div class="card"><span class="icon"><i data-lucide="wallet"></i></span><span class="label">ארנק</span></div>
+    <div class="card"><span class="icon"><i data-lucide="calendar-days"></i></span><span class="label">פגישה</span></div>
+    <div class="card"><span class="icon"><i data-lucide="target"></i></span><span class="label">מטרה</span></div>
+    <div class="card"><span class="icon"><i data-lucide="circle-check"></i></span><span class="label">הצלחה</span></div>
+    <div class="card"><span class="icon"><i data-lucide="bar-chart-3"></i></span><span class="label">ניתוח גרפים</span></div>
+    <div class="card"><span class="icon"><i data-lucide="briefcase"></i></span><span class="label">ניסיון עסקי</span></div>
+  </div>
+</main>
+<footer>סט 1/5 · <b>Lucide</b> — בחר את הסט שאהבת ונרוץ איתו לאורך כל האתר</footer>
+<script>lucide.createIcons();</script>
+</body>
+</html>

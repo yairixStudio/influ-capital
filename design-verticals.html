@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ורטיקלים עיצוביים — Influ Capital</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="brand.css">
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <aside class="side-nav">
+    <div class="brandmark">Influ<b>Capital</b></div>
+    <span class="tag">ורטיקלים עיצוביים</span>
+    <a href="brand-book.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> חזרה לספר המותג</a>
+    <div style="height:1px;background:var(--line);margin:14px 0"></div>
+    <a href="#forms">① טפסי יצירת קשר</a>
+    <a href="#accordion">② אקורדיון / שו״ת</a>
+    <a href="#tables">③ טבלאות</a>
+    <a href="#tabs">④ טאבים (כרטיסיות)</a>
+    <a href="#steps">⑤ צעדים — איך זה עובד</a>
+    <a href="#rail">⑥ שירותים — Rail (רשימה)</a>
+    <a href="#whatsapp">⑦ שיחת וואטסאפ</a>
+  </aside>
+
+  <main class="content">
+    <!-- HERO -->
+    <header class="bb-hero">
+      <div class="wrap">
+        <span class="eyebrow"><i data-lucide="layout-template" class="icon"></i> ורטיקלים עיצוביים · Patterns</span>
+        <h1>ורטיקלים עיצוביים</h1>
+        <p>אוסף רכיבים מורכבים ומוכנים-לשימוש — טפסים, אקורדיונים, טבלאות, טאבים וצעדים — כולם בנויים מאותם Design Tokens ורכיבי הליבה של <code style="color:#9fe7d6">brand.css</code>. מקום מרוכז אחד לעצב ולאשר דפוסים לפני שמטמיעים אותם ב‑<code style="color:#9fe7d6">index.html</code>.</p>
+      </div>
+    </header>
+
+    <!-- ① CONTACT FORMS -->
+    <section class="doc" id="forms">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">① Forms</span><h2>טפסי יצירת קשר</h2>
+          <p>לכידת ליד היא לב האתר. שלושה דפוסים לפי הקשר: טופס מלא, שורת לכידה קומפקטית, ובלוק מפוצל עם פרטי קשר.</p></div>
+
+        <span class="lbl">א. טופס ליד מלא (כרטיס)</span>
+        <div class="form-card" style="margin-bottom:26px">
+          <h3>לתיאום שיחת היכרות</h3>
+          <p class="lead">השאירו פרטים ונחזור אליכם בוואטסאפ או בשיחה. ללא התחייבות.</p>
+          <div class="form-row">
+            <div class="field"><label>שם מלא</label><input class="inp" placeholder="ישראל ישראלי"></div>
+            <div class="field"><label>טלפון</label><input class="inp" placeholder="050-0000000"></div>
+          </div>
+          <div class="field"><label>אימייל</label><input class="inp" placeholder="name@example.com"></div>
+          <div class="field"><label>במה מעניין אותך?</label>
+            <select class="inp"><option>ליווי השקעות אישי</option><option>קורס 1:1</option><option>הרצאה לארגון</option></select>
+          </div>
+          <label class="choice" style="margin-bottom:16px"><input type="checkbox" checked> אני מאשר/ת קבלת עדכונים</label>
+          <button class="btn btn-primary btn-lg btn-block">שליחה ותיאום שיחה</button>
+          <p class="muted" style="font-size:12px;margin-top:12px;text-align:center"><i data-lucide="lock" class="icon"></i> הפרטים נשמרים אצלנו בלבד. ללא ספאם.</p>
+        </div>
+
+        <span class="lbl">ב. שורת לכידה קומפקטית (Inline · לסוף סקשן / פוטר)</span>
+        <form class="inline-form" style="margin-bottom:26px" onsubmit="return false">
+          <input class="inp" placeholder="שם מלא">
+          <input class="inp" placeholder="טלפון">
+          <button class="btn btn-primary btn-md">דברו איתי</button>
+          <label class="choice" style="flex-basis:100%;margin:2px 2px 0;font-size:12.5px;color:var(--muted)"><input type="checkbox" checked> אני מאשר/ת קבלת עדכונים ויצירת קשר</label>
+        </form>
+
+        <span class="lbl">ג. בלוק מפוצל — טופס (מימין) + ערוצי קשר ישירים</span>
+        <div class="contact-split">
+          <div class="contact-form">
+            <h3>השאירו פרטים</h3>
+            <p class="lead">נחזור אליכם בהקדם. ללא התחייבות.</p>
+            <div class="field"><label>שם מלא</label><input class="inp" placeholder="ישראל ישראלי"></div>
+            <div class="field"><label>טלפון</label><input class="inp" placeholder="050-0000000"></div>
+            <div class="field"><label>הודעה (אופציונלי)</label><textarea class="inp" rows="3" placeholder="קצת על מה שמעניין אתכם…"></textarea></div>
+            <label class="choice" style="margin-bottom:16px;font-size:13px"><input type="checkbox" checked> קראתי ואני מאשר/ת יצירת קשר ושמירת הפרטים</label>
+            <button class="btn btn-primary btn-lg btn-block">שליחה</button>
+          </div>
+          <aside class="contact-aside">
+            <h3>מעדיפים לדבר ישירות?</h3>
+            <p class="sub">זמין בערוצים שנוחים לכם.</p>
+            <a class="channel"><span class="ic-wrap"><i data-lucide="message-circle" class="icon"></i></span><div><b>וואטסאפ</b><small>מענה אישי ומהיר</small></div></a>
+            <a class="channel"><span class="ic-wrap"><i data-lucide="phone" class="icon"></i></span><div><b>שיחת טלפון</b><small>תיאום שיחת היכרות</small></div></a>
+            <a class="channel"><span class="ic-wrap"><i data-lucide="mail" class="icon"></i></span><div><b>אימייל</b><small>לפניות מסודרות</small></div></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ② ACCORDION -->
+    <section class="doc" id="accordion">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">② Accordion</span><h2>אקורדיון / שאלות נפוצות</h2>
+          <p>לתוכן ארוך שלא צריך להציג בבת אחת — שו״ת, פרטי שירות, גילוי נאות. נגיש (כפתורים, ניווט מקלדת) ומונפש בעדינות.</p></div>
+        <div class="accordion" style="max-width:760px">
+          <div class="acc-item open">
+            <button class="acc-head" onclick="toggleAcc(this)">האם יש התחייבות לתשואה? <span class="chev"><i data-lucide="chevron-down" class="icon"></i></span></button>
+            <div class="acc-body"><div class="inner">אין התחייבות לתשואה, יש התחייבות לתהליך מקצועי. כל החלטה צריכה לעמוד במבחן ההיגיון, לא במבחן ההייפ — בלי רעש, בלי הבטחות, בלי קיצורי דרך.</div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head" onclick="toggleAcc(this)">איך עובד הליווי האישי? <span class="chev"><i data-lucide="chevron-down" class="icon"></i></span></button>
+            <div class="acc-body"><div class="inner">קו פתוח בוואטסאפ, תיק מסודר, ומפגש חודשי שמחזיק את התהליך. בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת — יש שיטה, יש מעקב, ויש עם מי לדבר.</div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head" onclick="toggleAcc(this)">למי זה מתאים? <span class="chev"><i data-lucide="chevron-down" class="icon"></i></span></button>
+            <div class="acc-body"><div class="inner">למשקיעים שרוצים להפסיק לפעול לבד מול השוק ולעבוד עם שיטה, סדר וזמינות. בין אם אתם בתחילת הדרך ובין אם כבר משקיעים ורוצים תהליך מסודר יותר.</div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-head" onclick="toggleAcc(this)">מה ההבדל בין הליווי לקורס? <span class="chev"><i data-lucide="chevron-down" class="icon"></i></span></button>
+            <div class="acc-body"><div class="inner">בליווי בונים ומנהלים יחד תיק אמיתי לאורך זמן. בקורס 1:1 לומדים בלייב איך לחשוב, להבין דוחות וחברות ולקבל החלטות — ידע שנשאר אתכם.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ TABLES -->
+    <section class="doc" id="tables">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">③ Tables</span><h2>טבלאות</h2>
+          <p>להשוואה ולנתונים. כותרת כהה, פסי זברה, hover, והדגשת עמודה מומלצת. גלילה אופקית במובייל.</p></div>
+
+        <span class="lbl">א. טבלת השוואת שירותים (עם עמודה מודגשת)</span>
+        <div class="tbl-wrap" style="margin-bottom:26px">
+          <table class="tbl tbl-fixed">
+            <thead><tr><th>מה כלול</th><th class="hl">ליווי אישי <span class="rec">מומלץ</span></th><th>קורס 1:1</th><th>הרצאה</th></tr></thead>
+            <tbody>
+              <tr><td class="feat">מפגש חודשי שוטף</td><td class="hl yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="feat">קו פתוח בוואטסאפ</td><td class="hl yes">✓</td><td class="yes">✓</td><td class="no">—</td></tr>
+              <tr><td class="feat">בניית תיק אישית</td><td class="hl yes">✓</td><td class="no">—</td><td class="no">—</td></tr>
+              <tr><td class="feat">לימוד שיטת החשיבה</td><td class="hl yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+              <tr><td class="feat">מתאים לארגונים</td><td class="hl no">—</td><td class="no">—</td><td class="yes">✓</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <span class="lbl">ב. טבלת נתונים (דוגמה — תיק לדוגמה)</span>
+        <div class="tbl-wrap">
+          <table class="tbl">
+            <thead><tr><th>אחזקה</th><th>סוג</th><th>משקל</th><th>שינוי שנתי</th></tr></thead>
+            <tbody>
+              <tr><td class="feat">קרן מחקה S&P 500</td><td>ETF</td><td class="num">40%</td><td class="pos">+12.8%</td></tr>
+              <tr><td class="feat">אג״ח ממשלתי</td><td>אג״ח</td><td class="num">25%</td><td class="pos">+3.1%</td></tr>
+              <tr><td class="feat">מניות טכנולוגיה</td><td>מניות</td><td class="num">20%</td><td class="pos">+21.4%</td></tr>
+              <tr><td class="feat">קרן דיבידנד</td><td>ETF</td><td class="num">15%</td><td class="pos">+7.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:12px;margin-top:10px">* להמחשה בלבד. אין בכך משום הצעה או התחייבות לתשואה.</p>
+      </div>
+    </section>
+
+    <!-- ④ TABS -->
+    <section class="doc" id="tabs">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">④ Tabs</span><h2>טאבים (כרטיסיות)</h2>
+          <p>להחלפת תוכן באותו אזור — למשל פירוט שלושת השירותים בלי לגלול. עיצוב "כדור" (pill) רך.</p></div>
+        <div class="tabs" id="svc-tabs">
+          <button class="tab active" onclick="switchTab(0)">ליווי אישי</button>
+          <button class="tab" onclick="switchTab(1)">קורס 1:1</button>
+          <button class="tab" onclick="switchTab(2)">הרצאות</button>
+        </div>
+        <div class="tab-panel active">
+          <div class="svc" style="max-width:600px">
+            <div class="ic-wrap"><i data-lucide="line-chart" class="icon"></i></div>
+            <h4>ליווי השקעות אישי</h4>
+            <p>קו פתוח, תיק מסודר, ומפגש חודשי שמחזיק את התהליך. בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת.</p>
+            <a href="#">לפרטים מלאים <i data-lucide="arrow-left" class="icon"></i></a>
+          </div>
+        </div>
+        <div class="tab-panel">
+          <div class="svc" style="max-width:600px">
+            <div class="ic-wrap"><i data-lucide="graduation-cap" class="icon"></i></div>
+            <h4>קורס השקעות ערך — מסלול 1:1</h4>
+            <p>לא עוד קורס דיגיטלי. לומדים בלייב, שואלים בזמן אמת ומבינים איך לחשוב — לא לשנן מושגים.</p>
+            <a href="#">לפרטים מלאים <i data-lucide="arrow-left" class="icon"></i></a>
+          </div>
+        </div>
+        <div class="tab-panel">
+          <div class="svc" style="max-width:600px">
+            <div class="ic-wrap"><i data-lucide="users" class="icon"></i></div>
+            <h4>הרצאות לחברות וארגונים</h4>
+            <p>להפוך את שוק ההון לנגיש, מצחיק ומעשי. שעה אחת שיכולה לשנות את הדרך שבה אנשים מסתכלים על כסף.</p>
+            <a href="#">לפרטים מלאים <i data-lucide="arrow-left" class="icon"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ STEPS -->
+    <section class="doc" id="steps">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑤ Steps</span><h2>צעדים — איך זה עובד</h2>
+          <p>לתהליך לינארי. מספור אוטומטי (CSS counter), אייקון מותג, רספונסיבי.</p></div>
+        <div class="steps">
+          <div class="step-card"><div class="n"></div><h4>שיחת היכרות</h4><p>מבינים מאיפה אתם מגיעים, מה המטרות ורמת הסיכון שמתאימה לכם.</p></div>
+          <div class="step-card"><div class="n"></div><h4>בניית תיק</h4><p>בונים יחד אסטרטגיה ותיק שמתאימים לחיים שלכם — בשקיפות מלאה.</p></div>
+          <div class="step-card"><div class="n"></div><h4>קו פתוח</h4><p>גישה ישירה בוואטסאפ לשאלות והתלבטויות לאורך הדרך.</p></div>
+          <div class="step-card"><div class="n"></div><h4>מפגש חודשי</h4><p>סוקרים, מעדכנים ומחזיקים את התהליך לאורך זמן.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ SERVICE RAIL -->
+    <section class="doc" id="rail">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑥ Rail</span><h2>שירותים — Rail (רשימה, לא כרטיסים)</h2>
+          <p>הצגת השירותים כרשימה אופקית נקייה במקום כרטיסים: מספור עדין, קו מבטא טיל שנמשך ב‑hover, וקריאה לפעולה צמודה. שקט, "פרימיום", וקל לסריקה. אידיאלי כשרוצים היררכיה ברורה בין מסלולים בלי עומס ויזואלי.</p></div>
+        <div class="rail">
+          <a class="rail-item" href="#">
+            <span class="rail-idx">01</span>
+            <span class="rail-body"><h4>ליווי השקעות אישי</h4><p>בנייה משותפת של תיק לפי רמת הסיכון, קו פתוח בוואטסאפ ומפגש חודשי שמחזיק את התהליך. ללא התחייבות.</p></span>
+            <span class="rail-go">לפרטים <i data-lucide="arrow-left" class="icon"></i></span>
+          </a>
+          <a class="rail-item" href="#">
+            <span class="rail-idx">02</span>
+            <span class="rail-body"><h4>קורס השקעות ערך — מסלול 1:1</h4><p>לומדים בלייב, שואלים בזמן אמת ומבינים איך לחשוב — מיסודות שוק ההון ועד פסיכולוגיה והתמדה.</p></span>
+            <span class="rail-go">לפרטים <i data-lucide="arrow-left" class="icon"></i></span>
+          </a>
+          <a class="rail-item" href="#">
+            <span class="rail-idx">03</span>
+            <span class="rail-body"><h4>הרצאות לחברות וארגונים</h4><p>להפוך את שוק ההון לנגיש, מצחיק ומעשי — עם דוגמאות מהחיים. מתאים לימי גיבוש ולמידה ארגונית.</p></span>
+            <span class="rail-go">לפרטים <i data-lucide="arrow-left" class="icon"></i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ WHATSAPP DIALOG -->
+    <section class="doc" id="whatsapp" style="border-bottom:none">
+      <div class="wrap">
+        <div class="wa-vert">
+          <!-- ימין: כותרת הסקשן — זמינות ויד על הדופק -->
+          <div class="sec-h">
+            <span class="kicker">⑦ WhatsApp</span>
+            <h2>יד על הדופק — זמינות שיש על מי לסמוך</h2>
+            <p>כשיש שיטה, מעקב וזמינות — משקיעים אחרת. קו פתוח, תיק מסודר, ומפגש חודשי שמחזיק את התהליך: יש שיטה, יש מעקב, ויש עם מי לדבר.</p>
+            <ul class="wa-points">
+              <li><i data-lucide="message-circle" class="icon"></i><span><b>קו פתוח בוואטסאפ</b> — שאלה, התלבטות, או רק לוודא? תמיד יש למי לכתוב.</span></li>
+              <li><i data-lucide="activity" class="icon"></i><span><b>מעקב יזום</b> — אני פונה כשיש סיבה אמיתית, לא מציף בהודעות סתם.</span></li>
+              <li><i data-lucide="shield-check" class="icon"></i><span><b>נאמנים לתוכנית</b> — בלי רדיפה אחרי כותרות; מחליטים בראש שקט ובצורה מסודרת.</span></li>
+            </ul>
+          </div>
+
+          <!-- שמאל: הדמיית צ'אט אינטראקטיבית · ההודעות נטענות ומונפשות ב‑JS -->
+          <div class="wa-chat" id="wa-chat">
+            <a class="wa-head" id="wa-head-link" target="_blank" rel="noopener" aria-label="פתיחת שיחה עם אדם בוואטסאפ">
+              <span class="wa-ava" aria-hidden="true">א</span>
+              <div class="wa-id">
+                <div class="wa-name">אדם ויינשטיין</div>
+                <div class="wa-status">מקוון</div>
+              </div>
+              <div class="wa-actions"><i data-lucide="video" class="icon"></i><i data-lucide="phone" class="icon"></i></div>
+            </a>
+            <div class="wa-body" id="wa-body" aria-live="polite" aria-label="הדמיית שיחת וואטסאפ עם אדם">
+              <span class="wa-day">היום</span>
+            </div>
+            <form class="wa-compose" id="wa-compose" onsubmit="return false">
+              <input id="wa-input" type="text" autocomplete="off" placeholder="הקלידו הודעה…" aria-label="הקלדת הודעה לאדם">
+              <button type="submit" aria-label="שליחה"><i data-lucide="send" class="icon"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="padding:40px 0 70px;text-align:center;color:var(--muted);font-size:14px">
+      <div class="wrap">
+        <p style="font-family:var(--font-head);color:var(--ink);font-weight:600">Influ Capital · ורטיקלים עיצוביים</p>
+        <p style="margin-top:6px">כל הרכיבים נשאבים מ‑<span class="codeline">brand.css</span> — מקור אמת אחד. נרחיב את האוסף ככל שנעצב דפוסים נוספים.</p>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<script>
+  function toggleAcc(btn){ btn.closest('.acc-item').classList.toggle('open'); }
+  function switchTab(i){
+    document.querySelectorAll('#svc-tabs .tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+    document.querySelectorAll('.tab-panel').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+  }
+
+  /* ===== הדמיית שיחת וואטסאפ אינטראקטיבית ===== */
+  // פרטי קשר — מקור אמת: contact.json (מוטמע inline כי file:// חוסם fetch, כמו ב‑index.html)
+  const SITE_CONFIG = {
+    whatsapp: '972533384114',
+    waMessage: 'היי אדם, הגעתי דרך האתר ואשמח לשמוע על ליווי השקעות אישי'
+  };
+  const WA_LINK = 'https://wa.me/' + SITE_CONFIG.whatsapp + '?text=' + encodeURIComponent(SITE_CONFIG.waMessage);
+
+  // תסריט ההדמיה (משחזר את השיחה לדוגמה, עכשיו מונפש אחת-אחרי-השנייה)
+  const WA_DEMO = [
+    {who:'them', text:'בוקר טוב דנה 👋 שמתי לב שאחת החברות בתיק שלך פרסמה דוח חזק היום. רציתי לעדכן שאני על זה.', time:'9:14'},
+    {who:'me',   text:'וואו, תודה שאתה עוקב 🙏 אז כדאי להוסיף עכשיו?', time:'9:16', read:true},
+    {who:'them', text:'לא רצים אחרי. נשארים נאמנים לתוכנית — אם נחליט להגדיל, נעשה את זה מסודר במפגש החודשי.', time:'9:17'},
+    {who:'me',   text:'הגיוני לגמרי. מרגיש טוב לדעת שיש יד על הדופק 💚', time:'9:18', read:true},
+    {who:'them', text:'בדיוק בשביל זה אני כאן: עוקב אחרי התיק ופונה רק כשיש סיבה אמיתית. את רגועה — אנחנו על זה ביחד. 💪', time:'9:19'},
+  ];
+
+  (function waChat(){
+    const body = document.getElementById('wa-body');
+    const input = document.getElementById('wa-input');
+    const form = document.getElementById('wa-compose');
+    if(!body || !input || !form) return;
+
+    // כותרת הצ'אט (שם, תמונה, וידאו, טלפון) → פתיחת וואטסאפ
+    const head = document.getElementById('wa-head-link');
+    if(head) head.href = WA_LINK;
+
+    let token = 0;        // מבטל השמעה תלויה כשמנקים/מתחילים מחדש
+    let cleared = false;  // האם המשתמש כבר ניקה את המסך והתחיל שיחה חדשה
+    const reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const sleep = ms => new Promise(r=>setTimeout(r, reduce ? 0 : ms));
+    const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const nowTime = () => new Date().toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});
+    const scroll = () => { body.scrollTop = body.scrollHeight; };
+
+    function resetBody(){ body.innerHTML = '<span class="wa-day">היום</span>'; }
+
+    function addBubble(m){
+      const el = document.createElement('div');
+      el.className = 'wa-msg ' + m.who;
+      el.innerHTML = esc(m.text) + (m.cta
+        ? '<a class="wa-cta" href="'+WA_LINK+'" target="_blank" rel="noopener"><i data-lucide="message-circle" class="icon"></i> להמשך השיחה בוואטסאפ</a>'
+        : '') + '<time>' + (m.time||nowTime()) + (m.read ? ' <i data-lucide="check-check" class="icon"></i>' : '') + '</time>';
+      body.appendChild(el); lucide.createIcons(); scroll();
+      return el;
+    }
+    function addTyping(){
+      const el = document.createElement('div');
+      el.className = 'wa-typing'; el.setAttribute('aria-label','אדם מקליד…');
+      el.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(el); scroll(); return el;
+    }
+
+    // השמעת תסריט ההדמיה — כל הודעת אדם מקדימה מחוון "מקליד…"
+    async function playDemo(){
+      const my = ++token; resetBody();
+      await sleep(500); if(my!==token) return;
+      for(const m of WA_DEMO){
+        if(m.who==='them'){
+          const t = addTyping(); await sleep(1000);
+          if(my!==token){ t.remove(); return; }
+          t.remove();
+        } else { await sleep(550); if(my!==token) return; }
+        addBubble(m);
+        await sleep(750); if(my!==token) return;
+      }
+    }
+
+    // תשובת אדם להודעת המשתמש — גנרית, עם קישור להמשך בוואטסאפ האמיתי
+    async function adamReply(){
+      const my = token;
+      await sleep(450); if(my!==token) return;
+      const t = addTyping(); await sleep(1400);
+      if(my!==token){ t.remove(); return; }
+      t.remove();
+      addBubble({who:'them', cta:true,
+        text:'תודה על ההודעה! 🙏 זו הדמיה — אשמח להמשיך איתך בוואטסאפ האמיתי ולחזור אישית.'});
+    }
+
+    // לחיצה על שדה ההקלדה → ניקוי המסך, כאילו מתחילים שיחה חדשה מולנו
+    input.addEventListener('focus', () => {
+      if(cleared) return;
+      cleared = true; token++; resetBody(); scroll();
+    });
+
+    // שליחת הודעת משתמש (ירוקה, מימין) → אדם "מקליד" → תשובה גנרית עם לינק
+    form.addEventListener('submit', () => {
+      const v = input.value.trim(); if(!v) return;
+      cleared = true; token++; input.value = '';
+      addBubble({who:'me', text:v, read:true});
+      adamReply();
+    });
+
+    // הפעלת ההדמיה כשהרכיב נכנס לתצוגה (פעם אחת)
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting && !started && !cleared){ started = true; playDemo(); }
+      });
+    }, {threshold:.35});
+    io.observe(document.getElementById('wa-chat'));
+  })();
+
+  lucide.createIcons();
+</script>
+</body>
+</html>

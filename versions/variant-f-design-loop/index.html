@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Influ Capital — אדם ויינשטיין | ליווי השקעות אישי בוואטסאפ</title>
+<meta name="description" content="ליווי השקעות אישי, אנושי ושוטף מבעל רישיון שיווק השקעות מטעם הרשות לניירות ערך — ישירות בוואטסאפ, ללא התחייבות. תיאום שיחת היכרות עם אדם ויינשטיין, Influ Capital.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0C0E1A">
+<link rel="canonical" href="https://influ-capital.example/">
+<meta name="author" content="אדם ויינשטיין">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="Influ Capital">
+<meta property="og:title" content="Influ Capital — ליווי השקעות אישי בוואטסאפ">
+<meta property="og:description" content="ליווי השקעות אישי ושוטף מבעל רישיון שיווק השקעות — ישירות בוואטסאפ, ללא התחייבות.">
+<meta property="og:url" content="https://influ-capital.example/">
+<meta property="og:image" content="https://influ-capital.example/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Influ Capital — ליווי השקעות אישי בוואטסאפ">
+<meta name="twitter:description" content="ליווי השקעות אישי ושוטף מבעל רישיון שיווק השקעות — ישירות בוואטסאפ.">
+<meta name="twitter:image" content="https://influ-capital.example/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234F46E5'/%3E%3Ctext x='50%25' y='54%25' font-family='Arial' font-size='34' font-weight='700' fill='white' text-anchor='middle' dominant-baseline='middle'%3EIC%3C/text%3E%3C/svg%3E">
+
+<!-- Fonts: Rubik (display) + IBM Plex Sans Hebrew (body) — modern, Hebrew-capable, deliberately NOT serif / NOT Inter -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- JSON-LD: FinancialService + Person -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FinancialService",
+      "@id": "https://influ-capital.example/#org",
+      "name": "Influ Capital",
+      "description": "ליווי השקעות אישי מבעל רישיון שיווק השקעות מטעם הרשות לניירות ערך.",
+      "url": "https://influ-capital.example/",
+      "areaServed": "IL",
+      "availableLanguage": "he",
+      "telephone": "+972-50-000-0000",
+      "founder": { "@id": "https://influ-capital.example/#adam" },
+      "serviceType": ["ליווי השקעות אישי", "קורס השקעות ערך 1:1", "הרצאות פיננסיות לארגונים"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://influ-capital.example/#adam",
+      "name": "אדם ויינשטיין",
+      "jobTitle": "בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך",
+      "description": "משווק השקעות, יוטיובר פיננסי ומנחה הפודקאסט \"מפוצצים את הבועה\".",
+      "url": "https://influ-capital.example/",
+      "worksFor": { "@id": "https://influ-capital.example/#org" }
+    }
+  ]
+}
+</script>
+
+<style>
+/* ============================================================
+   DESIGN TOKENS  (design-loop · DESIGN.md §6 — single source)
+   ============================================================ */
+:root{
+  --iris:#4F46E5; --iris-deep:#4338CA; --iris-wash:#EEF0FE;
+  --ink:#0C0E1A; --ink-2:#161A2E; --ink-line:#262B45;
+  --canvas:#F7F8FB; --surface:#FFFFFF;
+  --graphite:#15172B; --slate:#5B5E72; --slate-2:#8A8DA0;
+  --hairline:#E7E8F0; --mint:#19C39A; --mint-wash:#E2F7F0;
+  --danger:#DC2626;
+  --maxw:1120px; --radius:18px; --radius-sm:12px; --radius-pill:999px;
+  --shadow-sm:0 1px 2px rgba(12,14,26,.05);
+  --shadow:0 1px 2px rgba(12,14,26,.04), 0 14px 34px -20px rgba(12,14,26,.22);
+  --shadow-lg:0 1px 2px rgba(12,14,26,.05), 0 30px 60px -28px rgba(12,14,26,.30);
+  --font-body:"IBM Plex Sans Hebrew", system-ui, sans-serif;
+  --font-head:"Rubik", "IBM Plex Sans Hebrew", system-ui, sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body); background:var(--canvas); color:var(--graphite);
+  line-height:1.7; font-size:1.05rem; -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility; overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+:focus-visible{outline:3px solid var(--iris);outline-offset:3px;border-radius:6px}
+
+h1,h2,h3,h4{font-family:var(--font-head);color:var(--graphite);line-height:1.12;font-weight:600;letter-spacing:-.01em}
+h1{font-size:clamp(2.4rem,6vw,4.15rem);font-weight:700;line-height:1.04}
+h2{font-size:clamp(1.7rem,3.6vw,2.6rem)}
+h3{font-size:1.22rem}
+p{max-width:68ch}
+
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:22px}
+.section{padding-block:clamp(4rem,9vw,7rem)}
+.eyebrow{font-family:var(--font-body);font-weight:600;font-size:.8rem;letter-spacing:.06em;color:var(--iris);text-transform:none;display:inline-flex;align-items:center;gap:.5rem}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--iris);border-radius:2px}
+.muted{color:var(--slate)}
+.lead{font-size:clamp(1.05rem,1.6vw,1.25rem);color:var(--slate);max-width:62ch}
+
+/* ---------- Skip link ---------- */
+.skip{position:fixed;top:-100px;right:16px;z-index:300;background:var(--ink);color:#fff;padding:12px 18px;border-radius:10px;transition:top .2s}
+.skip:focus{top:16px}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-weight:600;font-size:1rem;
+  padding:.85rem 1.5rem;border-radius:var(--radius-sm);transition:transform .18s var(--ease),background .18s,box-shadow .18s,border-color .18s;white-space:nowrap}
+.btn-primary{background:var(--iris);color:#fff;box-shadow:0 8px 22px -10px rgba(79,70,229,.7)}
+.btn-primary:hover{background:var(--iris-deep);transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(79,70,229,.75)}
+.btn-ghost{background:var(--surface);color:var(--graphite);border:1px solid var(--hairline)}
+.btn-ghost:hover{border-color:var(--iris);color:var(--iris);transform:translateY(-2px)}
+.btn-wa{background:transparent;color:var(--graphite);border:1px solid var(--hairline)}
+.btn-wa:hover{border-color:var(--mint);color:#0c7a60;transform:translateY(-2px)}
+.btn-wa .dot{width:9px;height:9px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 rgba(25,195,154,.6);animation:pulse 2.4s infinite}
+.btn-lg{padding:1rem 1.8rem;font-size:1.05rem}
+.btn-block{width:100%;justify-content:center}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(25,195,154,.55)}70%{box-shadow:0 0 0 9px rgba(25,195,154,0)}100%{box-shadow:0 0 0 0 rgba(25,195,154,0)}}
+
+/* on-dark button variants */
+.on-ink .btn-ghost{background:rgba(255,255,255,.06);color:#fff;border-color:var(--ink-line)}
+.on-ink .btn-ghost:hover{border-color:#fff;color:#fff}
+
+/* ---------- Header / Nav ---------- */
+.site-header{position:sticky;top:0;z-index:120;background:rgba(247,248,251,.82);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .2s,background .2s}
+.site-header.scrolled{border-color:var(--hairline);background:rgba(247,248,251,.92)}
+.nav{display:flex;align-items:center;gap:1rem;height:72px}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:var(--font-head);font-weight:700;font-size:1.18rem;letter-spacing:-.02em}
+.brand .logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--iris),#7a73f0);color:#fff;display:grid;place-items:center;font-size:.95rem;font-weight:700;box-shadow:0 6px 16px -6px rgba(79,70,229,.6)}
+.brand small{display:block;font-family:var(--font-body);font-weight:500;font-size:.7rem;color:var(--slate);letter-spacing:.02em;margin-top:-2px}
+.nav-links{display:flex;align-items:center;gap:.25rem;margin-inline-start:auto}
+.nav-links a{position:relative;padding:.5rem .8rem;border-radius:9px;font-weight:500;font-size:.96rem;color:var(--slate);transition:color .16s,background .16s}
+.nav-links a:hover{color:var(--graphite);background:rgba(79,70,229,.06)}
+.nav-links a[aria-current="page"]{color:var(--iris)}
+.nav-links a[aria-current="page"]::after{content:"";position:absolute;inset-inline:.8rem;bottom:.18rem;height:2px;background:var(--iris);border-radius:2px}
+.nav-cta{display:flex;align-items:center;gap:.5rem;margin-inline-start:.5rem}
+.nav-toggle{display:none;width:44px;height:44px;border-radius:11px;border:1px solid var(--hairline);background:var(--surface);align-items:center;justify-content:center;margin-inline-start:auto}
+.nav-toggle span{display:block;width:20px;height:2px;background:var(--graphite);position:relative}
+.nav-toggle span::before,.nav-toggle span::after{content:"";position:absolute;left:0;width:20px;height:2px;background:var(--graphite)}
+.nav-toggle span::before{top:-6px}.nav-toggle span::after{top:6px}
+
+/* ---------- Hero ---------- */
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:
+  radial-gradient(60% 55% at 88% 8%,rgba(79,70,229,.42),transparent 60%),
+  radial-gradient(50% 45% at 8% 92%,rgba(25,195,154,.18),transparent 60%);pointer-events:none}
+.hero h1,.hero h2,.hero h3{color:#fff}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4rem);align-items:center;position:relative;z-index:1}
+.hero .eyebrow{color:#b9b6ff}.hero .eyebrow::before{background:#b9b6ff}
+.hero p.lead{color:#c7c9d6}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem}
+.hero-trust{display:flex;flex-wrap:wrap;gap:1.4rem;margin-top:2.5rem;padding-top:1.6rem;border-top:1px solid var(--ink-line)}
+.hero-trust .t{display:flex;flex-direction:column}
+.hero-trust .t b{font-family:var(--font-head);font-size:1.35rem;color:#fff}
+.hero-trust .t span{font-size:.82rem;color:#9a9db4}
+
+/* WhatsApp chat mock */
+.chat{background:var(--ink-2);border:1px solid var(--ink-line);border-radius:24px;padding:18px;box-shadow:var(--shadow-lg)}
+.chat-top{display:flex;align-items:center;gap:.7rem;padding:.3rem .4rem .9rem;border-bottom:1px solid var(--ink-line)}
+.chat-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--iris),var(--mint));display:grid;place-items:center;font-weight:700;color:#fff;font-family:var(--font-head)}
+.chat-top b{font-size:.98rem}
+.chat-top .on{font-size:.74rem;color:var(--mint);display:flex;align-items:center;gap:.35rem}
+.chat-top .on::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--mint)}
+.chat-body{display:flex;flex-direction:column;gap:.55rem;padding:1rem .3rem .3rem}
+.bub{max-width:84%;padding:.6rem .85rem;border-radius:16px;font-size:.92rem;line-height:1.5;opacity:0;transform:translateY(8px);animation:bub .5s var(--ease) forwards}
+.bub.them{background:#22273f;color:#e7e8f0;border-end-start-radius:5px;align-self:flex-start}
+.bub.me{background:var(--iris);color:#fff;border-end-end-radius:5px;align-self:flex-end}
+.bub:nth-child(1){animation-delay:.3s}.bub:nth-child(2){animation-delay:.9s}.bub:nth-child(3){animation-delay:1.5s}.bub:nth-child(4){animation-delay:2.1s}
+.bub time{display:block;font-size:.66rem;opacity:.6;margin-top:.2rem}
+@keyframes bub{to{opacity:1;transform:none}}
+
+/* ---------- Generic layout helpers ---------- */
+.grid{display:grid;gap:1.4rem}
+.cols-3{grid-template-columns:repeat(3,1fr)}
+.cols-2{grid-template-columns:repeat(2,1fr)}
+.center{text-align:center}
+.center p{margin-inline:auto}
+.center .eyebrow{justify-content:center}
+.sec-head{max-width:60ch}
+.sec-head.center{margin-inline:auto}
+
+/* ---------- Cards ---------- */
+.card{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);padding:1.7rem;box-shadow:var(--shadow-sm);transition:transform .2s var(--ease),box-shadow .2s,border-color .2s}
+.card.link:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#d8d9e8}
+.card .ic{width:48px;height:48px;border-radius:13px;background:var(--iris-wash);color:var(--iris);display:grid;place-items:center;margin-bottom:1.1rem}
+.card h3{margin-bottom:.5rem}
+.card p{font-size:.97rem;color:var(--slate)}
+.card .more{display:inline-flex;align-items:center;gap:.35rem;margin-top:1rem;color:var(--iris);font-weight:600;font-size:.95rem}
+.card .more svg{transition:transform .18s}
+.card.link:hover .more svg{transform:translateX(-4px)}
+
+.chip{display:inline-flex;align-items:center;gap:.4rem;background:var(--mint-wash);color:#0c7a60;font-weight:600;font-size:.8rem;padding:.35rem .75rem;border-radius:var(--radius-pill)}
+.chip.iris{background:var(--iris-wash);color:var(--iris-deep)}
+
+/* trust strip */
+.trust-strip{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.trust-strip .item{display:flex;align-items:center;gap:.6rem;background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius-pill);padding:.6rem 1.1rem;font-weight:500;font-size:.92rem;box-shadow:var(--shadow-sm)}
+.trust-strip .item svg{color:var(--iris);flex-shrink:0}
+
+/* problem / solution */
+.ps{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;align-items:stretch}
+.ps .panel{padding:2rem;border-radius:var(--radius)}
+.ps .prob{background:#fff;border:1px solid var(--hairline)}
+.ps .sol{background:var(--ink);color:#fff}
+.ps .sol h3,.ps .sol li{color:#fff}
+.ps ul{list-style:none;display:flex;flex-direction:column;gap:.85rem;margin-top:1.2rem}
+.ps li{display:flex;gap:.7rem;align-items:flex-start;font-size:.98rem}
+.ps .prob li::before{content:"";flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#FEECEC;color:var(--danger);display:grid;place-items:center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23DC2626' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+.ps .sol li::before{content:"";flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(25,195,154,.18);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2319C39A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+
+/* IBI band */
+.ibi{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;background:var(--surface);border:1px solid var(--hairline);border-radius:24px;padding:clamp(1.6rem,4vw,3rem);box-shadow:var(--shadow)}
+.ibi .badge{display:inline-grid;place-items:center;padding:1.4rem 2rem;background:var(--canvas);border:1px solid var(--hairline);border-radius:18px;font-family:var(--font-head);font-weight:700;font-size:2.2rem;color:var(--graphite);letter-spacing:.04em}
+.ibi .badge small{display:block;font-family:var(--font-body);font-weight:500;font-size:.78rem;color:var(--slate);letter-spacing:0}
+
+/* testimonials */
+.quote{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);padding:1.7rem;box-shadow:var(--shadow-sm)}
+.quote .stars{color:#F5B445;letter-spacing:2px;font-size:.9rem;margin-bottom:.6rem}
+.quote p{font-size:1rem;color:var(--graphite)}
+.quote .by{display:flex;align-items:center;gap:.7rem;margin-top:1.1rem}
+.quote .by .av{width:40px;height:40px;border-radius:50%;background:var(--iris-wash);color:var(--iris);display:grid;place-items:center;font-weight:700;font-family:var(--font-head)}
+.quote .by b{font-size:.92rem}.quote .by span{font-size:.8rem;color:var(--slate)}
+
+/* CTA band */
+.cta-band{background:linear-gradient(135deg,var(--iris),#6d63ec);color:#fff;border-radius:26px;padding:clamp(2.2rem,5vw,3.5rem);text-align:center;position:relative;overflow:hidden}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 80% at 12% 0,rgba(255,255,255,.18),transparent 60%)}
+.cta-band h2,.cta-band p{color:#fff;position:relative}
+.cta-band p{margin-inline:auto;color:#e6e5ff}
+.cta-band .hero-cta{justify-content:center;position:relative}
+.cta-band .btn-primary{background:#fff;color:var(--iris-deep);box-shadow:none}
+.cta-band .btn-primary:hover{background:#f3f2ff}
+.cta-band .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.4)}
+.cta-band .btn-ghost:hover{background:rgba(255,255,255,.2)}
+
+/* ---------- Forms ---------- */
+.form-card{background:var(--surface);border:1px solid var(--hairline);border-radius:24px;padding:clamp(1.6rem,4vw,2.6rem);box-shadow:var(--shadow)}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-weight:600;font-size:.92rem;margin-bottom:.45rem}
+.field label .req{color:var(--iris)}
+.field input,.field select,.field textarea{width:100%;font-family:inherit;font-size:1rem;padding:.8rem .9rem;border:1px solid var(--hairline);border-radius:var(--radius-sm);background:var(--surface);color:var(--graphite);transition:border-color .16s,box-shadow .16s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--iris);box-shadow:0 0 0 3px var(--iris-wash)}
+.field .err{display:none;color:var(--danger);font-size:.82rem;margin-top:.35rem}
+.field.invalid input,.field.invalid select{border-color:var(--danger)}
+.field.invalid .err{display:block}
+.form-ok{display:none;text-align:center;padding:2rem 1rem}
+.form-ok .ic{width:64px;height:64px;border-radius:50%;background:var(--mint-wash);color:#0c7a60;display:grid;place-items:center;margin:0 auto 1rem}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start}
+.contact-side .row{display:flex;gap:.9rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--hairline)}
+.contact-side .row .ic{width:42px;height:42px;border-radius:12px;background:var(--iris-wash);color:var(--iris);display:grid;place-items:center;flex-shrink:0}
+.contact-side .row b{display:block;font-size:.95rem}
+.contact-side .row a,.contact-side .row span{color:var(--slate);font-size:.92rem}
+
+/* timeline / syllabus / how-it-works */
+.steps{display:flex;flex-direction:column;gap:0}
+.step{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;padding-bottom:1.8rem;position:relative}
+.step:not(:last-child)::before{content:"";position:absolute;top:42px;right:20px;bottom:0;width:2px;background:var(--hairline)}
+.step .num{width:42px;height:42px;border-radius:13px;background:var(--iris);color:#fff;display:grid;place-items:center;font-family:var(--font-head);font-weight:700;z-index:1;flex-shrink:0}
+.step h3{margin-bottom:.3rem}.step p{font-size:.97rem;color:var(--slate)}
+
+.syllabus{display:flex;flex-direction:column;gap:.8rem}
+details.mod{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius-sm);overflow:hidden}
+details.mod summary{display:flex;align-items:center;gap:.9rem;padding:1.1rem 1.3rem;font-weight:600;cursor:pointer;list-style:none;font-family:var(--font-head)}
+details.mod summary::-webkit-details-marker{display:none}
+details.mod summary .n{width:34px;height:34px;border-radius:10px;background:var(--iris-wash);color:var(--iris);display:grid;place-items:center;font-weight:700;flex-shrink:0}
+details.mod summary .arw{margin-inline-start:auto;transition:transform .2s;color:var(--slate)}
+details.mod[open] summary .arw{transform:rotate(180deg)}
+details.mod .mod-body{padding:0 1.3rem 1.2rem 4.2rem;color:var(--slate);font-size:.96rem}
+
+/* video placeholder */
+.video-ph{aspect-ratio:16/9;border-radius:var(--radius);background:var(--ink);display:grid;place-items:center;position:relative;overflow:hidden;border:1px solid var(--ink-line)}
+.video-ph::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 50% 40%,rgba(79,70,229,.4),transparent 65%)}
+.video-ph .play{width:74px;height:74px;border-radius:50%;background:#fff;display:grid;place-items:center;position:relative;box-shadow:var(--shadow-lg)}
+.video-ph .play svg{color:var(--iris);margin-inline-start:4px}
+.video-ph .cap{position:absolute;bottom:16px;color:#c7c9d6;font-size:.85rem}
+
+/* about */
+.about-hero{display:grid;grid-template-columns:.8fr 1.2fr;gap:2.5rem;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:24px;background:linear-gradient(160deg,var(--ink),var(--ink-2));position:relative;overflow:hidden;display:grid;place-items:center;border:1px solid var(--ink-line)}
+.portrait::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 70% 15%,rgba(79,70,229,.4),transparent 60%)}
+.portrait .mono{font-family:var(--font-head);font-weight:700;font-size:clamp(3rem,8vw,5rem);color:rgba(255,255,255,.12);position:relative}
+.id-card{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;margin-top:1.6rem}
+.id-card .it{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius-sm);padding:1rem 1.1rem}
+.id-card .it b{display:block;font-family:var(--font-head);font-size:.95rem;margin-bottom:.15rem}
+.id-card .it span{font-size:.85rem;color:var(--slate)}
+
+/* legal */
+.legal{max-width:760px;margin-inline:auto}
+.legal h2{margin-bottom:.4rem}
+.legal .updated{color:var(--slate-2);font-size:.85rem;margin-bottom:2rem}
+.legal h3{margin:2rem 0 .6rem;font-size:1.1rem}
+.legal p,.legal li{color:var(--slate);font-size:.98rem;margin-bottom:.8rem}
+.legal ul{padding-inline-start:1.2rem;margin-bottom:.8rem}
+.legal .note{background:var(--mint-wash);border:1px solid #bfe9dc;border-radius:var(--radius-sm);padding:1rem 1.2rem;color:#0c5e4a;font-size:.92rem;margin:1.5rem 0}
+.legal-nav{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;justify-content:center}
+.legal-nav a{font-size:.9rem;padding:.5rem .9rem;border-radius:var(--radius-pill);border:1px solid var(--hairline);background:var(--surface);color:var(--slate);font-weight:500}
+.legal-nav a[aria-current="page"]{background:var(--iris);color:#fff;border-color:var(--iris)}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--ink);color:#c7c9d6;padding-block:3.5rem 2rem;margin-top:2rem}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2rem}
+.site-footer h4{color:#fff;font-size:.95rem;margin-bottom:1rem;font-family:var(--font-head)}
+.site-footer a{color:#a8abc2;font-size:.92rem;display:block;padding:.28rem 0;transition:color .15s}
+.site-footer a:hover{color:#fff}
+.site-footer .brand{color:#fff}.site-footer .brand small{color:#9a9db4}
+.foot-disc{font-size:.84rem;color:#8a8da0;line-height:1.6;max-width:none}
+.foot-bottom{border-top:1px solid var(--ink-line);margin-top:2.5rem;padding-top:1.5rem;display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;font-size:.82rem;color:#8a8da0}
+
+/* ---------- Floating controls ---------- */
+.fab{position:fixed;inset-inline-start:18px;z-index:110;display:flex;flex-direction:column;gap:10px;bottom:18px}
+.fab button,.fab a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:var(--shadow-lg);transition:transform .18s}
+.fab button:hover,.fab a:hover{transform:scale(1.06)}
+.fab .wa{background:#25D366;color:#fff}
+.fab .a11y{background:var(--surface);color:var(--iris);border:1px solid var(--hairline)}
+
+/* ---------- Accessibility panel ---------- */
+.a11y-panel{position:fixed;inset-inline-start:18px;bottom:84px;width:288px;background:var(--surface);border:1px solid var(--hairline);border-radius:18px;box-shadow:var(--shadow-lg);padding:1.2rem;z-index:130;display:none}
+.a11y-panel.open{display:block}
+.a11y-panel h4{font-size:1rem;margin-bottom:.9rem;display:flex;justify-content:space-between;align-items:center}
+.a11y-panel .opt{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid var(--hairline);font-size:.92rem}
+.a11y-panel .opt:last-child{border-bottom:none}
+.tgl{width:46px;height:26px;border-radius:999px;background:var(--hairline);position:relative;transition:background .18s;flex-shrink:0}
+.tgl::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .18s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tgl[aria-pressed="true"]{background:var(--iris)}
+.tgl[aria-pressed="true"]::after{transform:translateX(-20px)}
+.a11y-panel .reset{margin-top:.8rem;font-size:.85rem;color:var(--iris);font-weight:600}
+
+/* ---------- Cookie consent ---------- */
+.cookie{position:fixed;inset-inline:16px;bottom:16px;max-width:440px;margin-inline:auto;background:var(--surface);border:1px solid var(--hairline);border-radius:18px;box-shadow:var(--shadow-lg);padding:1.4rem;z-index:200;display:none}
+.cookie.show{display:block}
+.cookie h4{font-size:1.05rem;margin-bottom:.5rem}
+.cookie p{font-size:.9rem;color:var(--slate);margin-bottom:1rem}
+.cookie p a{color:var(--iris);font-weight:600;text-decoration:underline}
+.cookie .acts{display:flex;flex-wrap:wrap;gap:.6rem}
+.cookie .acts .btn{flex:1;min-width:120px;justify-content:center;padding:.7rem 1rem;font-size:.92rem}
+.cookie .link-btn{background:none;color:var(--slate);font-size:.85rem;text-decoration:underline;width:100%;text-align:center;margin-top:.7rem}
+.modal-bg{position:fixed;inset:0;background:rgba(12,14,26,.55);z-index:210;display:none;align-items:center;justify-content:center;padding:18px}
+.modal-bg.show{display:flex}
+.modal{background:var(--surface);border-radius:20px;max-width:480px;width:100%;padding:1.8rem;box-shadow:var(--shadow-lg);max-height:90vh;overflow:auto}
+.modal h3{margin-bottom:.4rem}
+.modal .ck-opt{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;padding:1rem 0;border-bottom:1px solid var(--hairline)}
+.modal .ck-opt b{font-size:.95rem}.modal .ck-opt p{font-size:.85rem;color:var(--slate);margin:.2rem 0 0}
+.modal .ck-opt .locked{font-size:.78rem;color:var(--slate-2);font-weight:600}
+
+/* ---------- Routing ---------- */
+.route{display:none}
+.route.active{display:block;animation:routein .4s var(--ease)}
+@keyframes routein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+
+/* ===== Accessibility user toggles ===== */
+body.a11y-large{font-size:1.18rem}
+body.a11y-contrast{--canvas:#fff;--slate:#33364a;--hairline:#9a9db4;--graphite:#000}
+body.a11y-contrast .card,body.a11y-contrast .field input,body.a11y-contrast .field select{border-color:#33364a}
+body.a11y-underline a:not(.btn){text-decoration:underline}
+
+/* ---------- Responsive ---------- */
+@media (max-width:920px){
+  .hero-grid{grid-template-columns:1fr}
+  .chat{max-width:420px}
+  .about-hero{grid-template-columns:1fr}
+  .portrait{max-width:340px;margin-inline:auto}
+  .ibi{grid-template-columns:1fr;text-align:center}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .nav-links,.nav-cta{display:none}
+  .nav-toggle{display:flex}
+  .site-header.menu-open .nav-links{display:flex;position:absolute;top:72px;inset-inline:0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--hairline);padding:1rem;gap:.2rem;box-shadow:var(--shadow)}
+  .site-header.menu-open .nav-links a{padding:.8rem 1rem}
+  .site-header.menu-open .nav-cta{display:flex;position:absolute;top:72px;inset-inline:0;margin-top:1px;background:var(--surface);padding:1rem;border-bottom:1px solid var(--hairline);transform:translateY(calc(100% + 0px))}
+  .cols-3,.cols-2,.ps,.id-card{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+  .bub{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">דלג לתוכן הראשי</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap nav">
+    <a href="#/" class="brand" aria-label="Influ Capital — דף הבית">
+      <span class="logo">IC</span>
+      <span>Influ Capital<small>אדם ויינשטיין</small></span>
+    </a>
+    <nav class="nav-links" aria-label="ניווט ראשי" id="navLinks">
+      <a href="#/" data-route="/">בית</a>
+      <a href="#/livui" data-route="/livui">ליווי אישי</a>
+      <a href="#/course" data-route="/course">קורס 1:1</a>
+      <a href="#/lectures" data-route="/lectures">הרצאות</a>
+      <a href="#/about" data-route="/about">אודות</a>
+      <a href="#/contact" data-route="/contact">צור קשר</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#/contact" class="btn btn-primary">תיאום שיחה</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="פתיחת תפריט" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ ROUTE: HOME ============ -->
+<section class="route active" id="route-home" data-route="/" aria-labelledby="home-h1">
+  <div class="hero section">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">ליווי השקעות אישי · ישירות בוואטסאפ</span>
+        <h1 id="home-h1">השקעות בשוק ההון הן מקצוע.<br>אין סיבה לעשות אותו לבד.</h1>
+        <p class="lead" style="margin-top:1.3rem">מתי בפעם האחרונה דיברת עם מי שמלווה את ההשקעות שלך — פשוט בוואטסאפ? ליווי מותאם אישית, אנושי ושוטף, ללא התחייבות, מבעל רישיון שיווק השקעות מטעם הרשות לניירות ערך.</p>
+        <div class="hero-cta">
+          <a href="#/contact" class="btn btn-primary btn-lg">לתיאום שיחת היכרות</a>
+          <a href="#" data-wa class="btn btn-wa btn-lg"><span class="dot"></span>דברו איתי בוואטסאפ</a>
+        </div>
+        <div class="hero-trust">
+          <div class="t"><b>+32K</b><span>עוקבים ביוטיוב</span></div>
+          <div class="t"><b>רישיון</b><span>שיווק השקעות · רשות ני"ע</span></div>
+          <div class="t"><b>1:1</b><span>ליווי אישי שוטף</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="chat" role="img" aria-label="הדמיית שיחת וואטסאפ עם ליווי אישי">
+          <div class="chat-top">
+            <span class="chat-av">א</span>
+            <div><b>אדם · Influ Capital</b><span class="on">מקוון עכשיו</span></div>
+          </div>
+          <div class="chat-body">
+            <div class="bub them">היי, ראיתי ירידה חדה במניה שדיברנו עליה — להיכנס עכשיו?<time>09:41</time></div>
+            <div class="bub me">בוא נסתכל יחד על הדוחות לפני שמחליטים. שולח לך ניתוח קצר 👇<time>09:42</time></div>
+            <div class="bub me">הכיוון ארוך-טווח לא השתנה. נשמור על הפיזור שבנינו.<time>09:42</time></div>
+            <div class="bub them">מושלם, תודה שאתה זמין 🙏<time>09:43</time></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- trust strip -->
+  <div class="section" style="padding-block:clamp(2.5rem,5vw,3.5rem)">
+    <div class="wrap">
+      <div class="trust-strip reveal">
+        <span class="item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>בעל רישיון שיווק השקעות (רשות ני"ע)</span>
+        <span class="item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m23 7-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>ערוץ יוטיוב פעיל מ-2019 · 32K+ עוקבים</span>
+        <span class="item"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 8.5 8 11 4.6-2.5 8-6 8-11V5l-8-3z"/></svg>מנחה הפודקאסט "מפוצצים את הבועה"</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- services -->
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head center reveal" style="margin-bottom:2.6rem">
+        <span class="eyebrow">מה אני מציע</span>
+        <h2 style="margin-top:.7rem">שלוש דרכים להתחיל לעבוד יחד</h2>
+        <p class="muted" style="margin-top:.8rem">בחרו את המסלול שמתאים לכם — או פשוט שלחו הודעה ונבין יחד מה נכון בשבילכם.</p>
+      </div>
+      <div class="grid cols-3">
+        <a href="#/livui" class="card link reveal">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          <h3>ליווי השקעות אישי</h3>
+          <p>בנייה משותפת של תיק לפי רמת הסיכון שלכם, גישה ישירה בוואטסאפ ומפגש חודשי שוטף. ללא אותיות קטנות.</p>
+          <span class="more">למסלול המלא <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></span>
+        </a>
+        <a href="#/course" class="card link reveal">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></span>
+          <h3>קורס השקעות ערך 1:1</h3>
+          <p>מסלול לימוד אחד-על-אחד בגובה העיניים. חמישה מודולים מיסודות שוק ההון ועד פסיכולוגיה והתמדה.</p>
+          <span class="more">לפרטי הקורס <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></span>
+        </a>
+        <a href="#/lectures" class="card link reveal">
+          <span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11h3l4-7v16l-4-7H3z"/><path d="M16 8a4 4 0 0 1 0 8"/></svg></span>
+          <h3>הרצאות לארגונים</h3>
+          <p>חשיפת העובדים לידע פיננסי מעשיר — בצורה קלילה, מצחיקה ועם דוגמאות מהחיים. במה פיננסית מנוסה.</p>
+          <span class="more">להזמנת הרצאה <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- problem / solution -->
+  <div class="section" style="background:var(--surface);border-block:1px solid var(--hairline)">
+    <div class="wrap">
+      <div class="sec-head center reveal" style="margin-bottom:2.6rem">
+        <span class="eyebrow">למה זה קשה לבד</span>
+        <h2 style="margin-top:.7rem">רוב המשקיעים הקטנים מתמודדים עם אותם מכשולים</h2>
+      </div>
+      <div class="ps">
+        <div class="panel prob reveal">
+          <h3>הדרך לבד</h3>
+          <ul>
+            <li>בנייה לא נכונה של תיק ההשקעות</li>
+            <li>חשיפה לסיכון יתר בלי לשים לב</li>
+            <li>חוסר ידע מקצועי לקריאת חברה ודוחות</li>
+            <li>אין זמן לעקוב ולקבל החלטות בזמן אמת</li>
+            <li>החלטות רגשיות בזמני ירידות</li>
+          </ul>
+        </div>
+        <div class="panel sol reveal">
+          <h3>הדרך עם ליווי</h3>
+          <ul>
+            <li>תיק שנבנה יחד, בהתאמה לרמת הסיכון שלכם</li>
+            <li>ניהול סיכונים חכם — פיזור וטיימינג</li>
+            <li>מתודולוגיית "השקעות ערך" ומחקר עומק</li>
+            <li>מישהו מקצועי שזמין בוואטסאפ כשצריך</li>
+            <li>מעקב שוטף שמחזיק אתכם במשמעת לאורך זמן</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IBI -->
+  <div class="section">
+    <div class="wrap">
+      <div class="ibi reveal">
+        <div>
+          <span class="chip iris">מתחילים בסביבה אמינה</span>
+          <h2 style="margin:1rem 0 .8rem">ליווי גם בפתיחת חשבון מסחר ב-IBI</h2>
+          <p class="muted">לא בטוחים איפה להתחיל? אני מלווה אתכם גם בשלב הראשון — פתיחת חשבון מסחר בבית ההשקעות IBI, כדי שתתחילו את הדרך בסביבה אמינה, מוכרת ומסודרת. בלי לחפש לבד, בלי להרגיש אבודים.</p>
+        </div>
+        <div style="text-align:center">
+          <div class="badge">IBI<small>בית השקעות</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- testimonials -->
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head center reveal" style="margin-bottom:2.6rem">
+        <span class="eyebrow">מה אומרים</span>
+        <h2 style="margin-top:.7rem">אנשים אמיתיים, ליווי אמיתי</h2>
+        <p class="muted" style="margin-top:.6rem;font-size:.9rem">* המלצות לדוגמה — להמחשת אופי הליווי.</p>
+      </div>
+      <div class="grid cols-3">
+        <figure class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>"בפעם הראשונה הרגשתי שאני מבין מה קורה בתיק שלי. אדם זמין, מסביר בגובה העיניים, ובלי לחץ למכור לי כלום."</p>
+          <figcaption class="by"><span class="av">ד</span><div><b>דנה ל.</b><span>מלווה אישית, 8 חודשים</span></div></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>"הקורס האישי שינה לי את כל התפיסה. למדתי לקרוא חברה, ולא פחות חשוב — לשמור על קור רוח בירידות."</p>
+          <figcaption class="by"><span class="av">י</span><div><b>יואב מ.</b><span>בוגר קורס 1:1</span></div></figcaption>
+        </figure>
+        <figure class="quote reveal">
+          <div class="stars">★★★★★</div>
+          <p>"הזמנו הרצאה לעובדים והיא הייתה מצחיקה, ברורה ופרקטית. כולם יצאו עם משהו ליישם כבר באותו ערב."</p>
+          <figcaption class="by"><span class="av">ש</span><div><b>שירה כ.</b><span>HR, חברת הייטק</span></div></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>נדבר על ההשקעות שלכם?</h2>
+        <p style="margin-top:.8rem;max-width:46ch">שיחת היכרות קצרה, ללא התחייבות. נבין יחד איפה אתם היום ואיך ליווי אישי יכול לעזור.</p>
+        <div class="hero-cta">
+          <a href="#/contact" class="btn btn-primary btn-lg">לתיאום שיחת היכרות</a>
+          <a href="#" data-wa class="btn btn-ghost btn-lg">וואטסאפ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROUTE: LIVUI ============ -->
+<section class="route" id="route-livui" data-route="/livui" aria-labelledby="livui-h1">
+  <div class="section">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:1rem">
+        <span class="eyebrow">השירות המרכזי</span>
+        <h1 id="livui-h1" style="margin-top:.7rem">ליווי השקעות אישי</h1>
+        <p class="lead" style="margin-top:1rem">שירות מותאם אישית, ישירות בוואטסאפ, ללא התחייבות. לא תבנית אחת לכולם — אלא ליווי שנבנה סביבכם, רמת הסיכון שלכם והקצב שלכם.</p>
+      </div>
+      <div class="hero-cta reveal">
+        <a href="#/contact" class="btn btn-primary btn-lg">רוצה להתחיל</a>
+        <a href="#" data-wa class="btn btn-wa btn-lg"><span class="dot"></span>שאלה מהירה בוואטסאפ</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:2.4rem"><span class="eyebrow">איך זה עובד</span><h2 style="margin-top:.6rem">ארבעה צעדים, בלי אותיות קטנות</h2></div>
+      <div class="steps">
+        <div class="step reveal"><span class="num">1</span><div><h3>שיחת היכרות</h3><p>נכיר, אבין איפה אתם נמצאים היום, מה המטרות ומה רמת הסיכון שמתאימה לכם.</p></div></div>
+        <div class="step reveal"><span class="num">2</span><div><h3>בנייה משותפת של התיק</h3><p>נבנה יחד תיק השקעות מותאם אישית — לפי עקרונות פיזור, ניהול סיכונים והשקעות ערך.</p></div></div>
+        <div class="step reveal"><span class="num">3</span><div><h3>גישה ישירה בוואטסאפ</h3><p>שאלה? התלבטות? ירידה בשוק? יש לכם כתובת מקצועית זמינה, בלי מוקדים ובלי המתנה.</p></div></div>
+        <div class="step reveal"><span class="num">4</span><div><h3>מפגש חודשי שוטף</h3><p>נפגשים אחת לחודש בטלפון או בזום, עוברים על התיק, מעדכנים ומתאימים. ניתן לבטל בכל עת.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section on-ink" style="background:var(--ink);color:#fff">
+    <div class="wrap on-ink">
+      <div class="sec-head reveal" style="margin-bottom:1.4rem"><span class="eyebrow" style="color:#b9b6ff">האסטרטגיה</span><h2 style="margin-top:.6rem;color:#fff">השקעות ערך — לטווח ארוך, בראש שקט</h2><p style="color:#c7c9d6;margin-top:.8rem">הגישה שמובילה את הליווי: לא תזזיתיות, לא הימורים — אלא בנייה שיטתית ומבוססת מחקר.</p></div>
+      <div class="grid cols-3">
+        <div class="card reveal" style="background:var(--ink-2);border-color:var(--ink-line)"><h3 style="color:#fff">מחקר עומק</h3><p style="color:#9a9db4">ניתוח חברות לפי שווי אמיתי, דוחות ויסודות עסקיים — לא לפי רעש יומי.</p></div>
+        <div class="card reveal" style="background:var(--ink-2);border-color:var(--ink-line)"><h3 style="color:#fff">מגמה ארוכת טווח</h3><p style="color:#9a9db4">סבלנות במקום תזמון השוק. בונים פוזיציות שמחזיקות מעמד לאורך זמן.</p></div>
+        <div class="card reveal" style="background:var(--ink-2);border-color:var(--ink-line)"><h3 style="color:#fff">ניהול סיכונים חכם</h3><p style="color:#9a9db4">פיזור נכון וטיימינג מחושב — כדי שאף החלטה בודדת לא תפיל את התיק.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section"><div class="wrap"><div class="cta-band reveal"><h2>מוכנים לליווי אישי?</h2><p style="margin-top:.8rem">בלי התחייבות, בלי אותיות קטנות. מתחילים בשיחה.</p><div class="hero-cta"><a href="#/contact" class="btn btn-primary btn-lg">לתיאום שיחה</a><a href="#" data-wa class="btn btn-ghost btn-lg">וואטסאפ</a></div></div></div></div>
+</section>
+
+<!-- ============ ROUTE: COURSE ============ -->
+<section class="route" id="route-course" data-route="/course" aria-labelledby="course-h1">
+  <div class="section">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:1.6rem">
+        <span class="eyebrow">מסלול אישי 1:1</span>
+        <h1 id="course-h1" style="margin-top:.7rem">קורס השקעות ערך — אחד על אחד</h1>
+        <p class="lead" style="margin-top:1rem">יש המון קורסים דיגיטליים בשוק. מה שאין כמעט — זה ליווי אחד-על-אחד אמיתי. כאן לא צופים בהקלטה: לומדים בלייב, בקצב שלכם, עם מישהו שמלווה אתכם לאורך כל הדרך.</p>
+      </div>
+      <div class="video-ph reveal" role="img" aria-label="וידאו קצר על מסלול הקורס האישי">
+        <div class="play"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+        <span class="cap">סרטון קצר על המסלול האישי</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;background:var(--surface);border-block:1px solid var(--hairline)">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin:0 0 2rem"><span class="eyebrow">הסילבוס</span><h2 style="margin-top:.6rem">חמישה מודולים, מהיסוד ועד הביצוע</h2></div>
+      <div class="syllabus">
+        <details class="mod reveal"><summary><span class="n">1</span>יסודות שוק ההון<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="mod-body">איך השוק עובד באמת, מהן מניות ואג"ח, מושגי יסוד, וכיצד לחשוב על השקעה לטווח ארוך.</div></details>
+        <details class="mod reveal"><summary><span class="n">2</span>קריאת דוחות וניתוח חברה<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="mod-body">ללמוד לקרוא דוח כספי, להבין רווחיות, חוב ותזרים — ולזהות חברה איכותית מאחורי המספרים.</div></details>
+        <details class="mod reveal"><summary><span class="n">3</span>השקעות ערך בפועל<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="mod-body">המתודולוגיה הלכה למעשה: איתור הזדמנויות, הערכת שווי, ומתי באמת כדאי לקנות.</div></details>
+        <details class="mod reveal"><summary><span class="n">4</span>בניית תיק וניהול סיכונים<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="mod-body">פיזור נכון, גודל פוזיציה, איזון בין סיכון לתשואה — ובניית תיק שמתאים דווקא לכם.</div></details>
+        <details class="mod reveal"><summary><span class="n">5</span>פסיכולוגיה והתמדה<span class="arw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></summary><div class="mod-body">החלק שמפריד בין הצלחה לכישלון: שליטה ברגש, משמעת, והתמודדות עם ירידות בלי לאבד את הראש.</div></details>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:2.2rem"><span class="eyebrow">למה אישי</span><h2 style="margin-top:.6rem">קשר שהוא מסע, לא מוצר</h2></div>
+      <div class="grid cols-3">
+        <div class="card reveal"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><h3>למידה בלייב</h3><p>בגובה העיניים, עם שאלות בזמן אמת והתאמה לקצב ולרמה שלכם — לא הרצאה מוקלטת.</p></div>
+        <div class="card reveal"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></svg></span><h3>ערובה להתמדה</h3><p>מישהו שמחכה לכם בצד השני שומר עליכם ממוקדים — שם נמצא ההבדל האמיתי.</p></div>
+        <div class="card reveal"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span><h3>מסע מלווה</h3><p>הקשר לא נגמר בשיעור האחרון — הוא הופך אתכם למשקיעים עצמאיים ובטוחים.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0"><div class="wrap"><div class="cta-band reveal"><h2>רוצים פרטים על המסלול?</h2><p style="margin-top:.8rem">ספרו לי איפה אתם היום ונבנה יחד את התוכנית.</p><div class="hero-cta"><a href="#/contact" class="btn btn-primary btn-lg">דברו איתי</a><a href="#" data-wa class="btn btn-ghost btn-lg">וואטסאפ</a></div></div></div></div>
+</section>
+
+<!-- ============ ROUTE: LECTURES ============ -->
+<section class="route" id="route-lectures" data-route="/lectures" aria-labelledby="lectures-h1">
+  <div class="section">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:1.6rem">
+        <span class="eyebrow">לחברות וארגונים</span>
+        <h1 id="lectures-h1" style="margin-top:.7rem">הרצאות פיננסיות שאנשים זוכרים</h1>
+        <p class="lead" style="margin-top:1rem">חשיפת העובדים והארגון לידע פיננסי מעשיר — בצורה קלילה, מצחיקה ועם דוגמאות מהחיים. הרצאה שיוצאים ממנה עם כלים פרקטיים, לא רק עם מצגת.</p>
+      </div>
+      <div class="hero-cta reveal"><a href="#/contact" class="btn btn-primary btn-lg">להזמנת הרצאה</a><a href="#" data-wa class="btn btn-wa btn-lg"><span class="dot"></span>בדיקת זמינות</a></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="grid cols-3">
+        <div class="card reveal"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span><h3>קלילה ומצחיקה</h3><p>תוכן פיננסי שמרגיש כמו סטנד-אפ חכם — קל לעיכול ונשאר בראש הרבה אחרי.</p></div>
+        <div class="card reveal"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><h3>דוגמאות מהחיים</h3><p>סיפורים אמיתיים מהשוק ומהדרך האישית — ככה ידע פיננסי באמת מתחבר.</p></div>
+        <div class="card reveal"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><h3>מותאמת לארגון</h3><p>מתאימים את התכנים והשפה לקהל — מצוות סטארטאפ ועד כנס עובדים גדול.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background:var(--surface);border-block:1px solid var(--hairline)">
+    <div class="wrap about-hero">
+      <div class="portrait reveal"><span class="mono">AW</span></div>
+      <div class="reveal">
+        <span class="eyebrow">על המרצה</span>
+        <h2 style="margin:.7rem 0 1rem">אדם ויינשטיין</h2>
+        <p class="muted">בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך, יוטיובר פיננסי ומנחה פודקאסט. מרצה מבוקש עם ניסיון בעמידה מול קהל והובלת במות פיננסיות — מאוניברסיטאות ועד חברות הייטק. משלב ידע מקצועי עמוק עם יכולת להעביר אותו בשפה אנושית ומשעשעת.</p>
+        <div class="hero-cta" style="margin-top:1.6rem"><a href="#/contact" class="btn btn-primary">להזמנת הרצאה</a><a href="#/about" class="btn btn-ghost">עוד עליי</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROUTE: ABOUT ============ -->
+<section class="route" id="route-about" data-route="/about" aria-labelledby="about-h1">
+  <div class="section">
+    <div class="wrap about-hero">
+      <div class="portrait reveal"><span class="mono">אדם</span></div>
+      <div class="reveal">
+        <span class="eyebrow">אודות</span>
+        <h1 id="about-h1" style="margin:.7rem 0 1rem">מ-"Influencer" לליווי השקעות מקצועי</h1>
+        <p class="lead">"Influ" הוא קיצור של Influencer — השורש שממנו צמח הכל. דרך לא שגרתית שהתחילה מסקרנות, אומץ ורצון אמיתי להשפיע.</p>
+        <div class="id-card">
+          <div class="it"><b>רישיון רשמי</b><span>שיווק השקעות · רשות ני"ע</span></div>
+          <div class="it"><b>יוטיובר פיננסי</b><span>ערוץ מ-2019 · 32K+ עוקבים</span></div>
+          <div class="it"><b>פודקאסט</b><span>"מפוצצים את הבועה"</span></div>
+          <div class="it"><b>בחיים</b><span>נשוי לקרינה, אבא למייקל</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap" style="max-width:760px">
+      <div class="reveal">
+        <span class="eyebrow">הסיפור</span>
+        <h2 style="margin:.7rem 0 1.2rem">איך זה התחיל</h2>
+        <p class="muted">בדצמבר 2019 פתחתי ערוץ יוטיוב. לא ידעתי לאן זה ילך — אבל היה לי רצון לפרק את עולם ההשקעות לשפה פשוטה ואנושית. הערוץ צבר עם הזמן 32,000 רשומים, ופתח לי דלת אל העולם המקצועי של ההשקעות.</p>
+        <p class="muted" style="margin-top:1rem">היום אני מוביל קהילה, מעביר קורסים בניתוח מניות, ומרצה לחברות ובאוניברסיטאות. במהלך הדרך גם השגתי רישיון רשמי לשיווק השקעות מטעם הרשות לניירות ערך — כי אמינות מקצועית היא הבסיס לכל מה שאני עושה.</p>
+        <p class="muted" style="margin-top:1rem">הערכים שמובילים אותי פשוטים: אמינות, אנושיות, ליווי אישי ומעקב. אני לא כאן כדי למכור — אני כאן כדי ללוות. וכן, אני גם אוהד צ'לסי אופטימי באופן בלתי-נלאה.</p>
+      </div>
+      <div class="hero-cta reveal" style="margin-top:2rem"><a href="#/contact" class="btn btn-primary btn-lg">בואו נכיר</a><a href="#" data-wa class="btn btn-wa btn-lg"><span class="dot"></span>וואטסאפ</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROUTE: CONTACT ============ -->
+<section class="route" id="route-contact" data-route="/contact" aria-labelledby="contact-h1">
+  <div class="section">
+    <div class="wrap">
+      <div class="sec-head reveal" style="margin-bottom:2.4rem">
+        <span class="eyebrow">צור קשר</span>
+        <h1 id="contact-h1" style="margin-top:.7rem">בואו נדבר על ההשקעות שלכם</h1>
+        <p class="lead" style="margin-top:1rem">השאירו פרטים ואחזור אליכם, או דברו איתי ישירות בוואטסאפ. שיחת היכרות ראשונה — ללא התחייבות.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="form-card reveal">
+          <form id="leadForm" novalidate>
+            <div class="field">
+              <label for="f-name">שם מלא <span class="req">*</span></label>
+              <input type="text" id="f-name" name="name" autocomplete="name" required>
+              <span class="err">נא להזין שם מלא</span>
+            </div>
+            <div class="field">
+              <label for="f-phone">טלפון <span class="req">*</span></label>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel" inputmode="tel" required>
+              <span class="err">נא להזין מספר טלפון תקין</span>
+            </div>
+            <div class="field">
+              <label for="f-email">אימייל <span class="req">*</span></label>
+              <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" required>
+              <span class="err">נא להזין כתובת אימייל תקינה</span>
+            </div>
+            <div class="field">
+              <label for="f-interest">במה מעניין אתכם? <span class="req">*</span></label>
+              <select id="f-interest" name="interest" required>
+                <option value="">בחרו אפשרות…</option>
+                <option value="ליווי אישי">ליווי השקעות אישי</option>
+                <option value="קורס">קורס השקעות ערך 1:1</option>
+                <option value="הרצאה">הרצאה לארגון</option>
+              </select>
+              <span class="err">נא לבחור תחום עניין</span>
+            </div>
+            <div class="field">
+              <label for="f-msg">משהו שתרצו להוסיף? (אופציונלי)</label>
+              <textarea id="f-msg" name="message" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">שליחה</button>
+            <p class="muted" style="font-size:.8rem;margin-top:.8rem;text-align:center">בשליחה אתם מאשרים יצירת קשר בנוגע לפנייתכם. הפרטים נשמרים בהתאם ל<a href="#/privacy" style="color:var(--iris)">מדיניות הפרטיות</a>.</p>
+          </form>
+          <div class="form-ok" id="formOk">
+            <div class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg></div>
+            <h3>הפנייה נשלחה!</h3>
+            <p class="muted">תודה — אחזור אליכם בהקדם. רוצים תשובה מהירה יותר? דברו איתי בוואטסאפ.</p>
+            <a href="#" data-wa class="btn btn-wa" style="margin-top:1rem"><span class="dot"></span>וואטסאפ</a>
+          </div>
+        </div>
+        <div class="contact-side reveal">
+          <div class="row">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div><b>טלפון</b><a id="phoneLink" href="#">050-000-0000</a></div>
+          </div>
+          <div class="row">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></span>
+            <div><b>וואטסאפ</b><a href="#" data-wa>שליחת הודעה ישירה</a></div>
+          </div>
+          <div class="row">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+            <div><b>אימייל</b><a id="emailLink" href="#">hello@influ-capital.example</a></div>
+          </div>
+          <div class="row" style="border-bottom:none">
+            <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <div><b>זמינות</b><span>א'–ה', מענה שוטף בוואטסאפ</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEGAL ROUTES ============ -->
+<section class="route" id="route-privacy" data-route="/privacy" aria-labelledby="legal-h1">
+  <div class="section"><div class="wrap legal">
+    <nav class="legal-nav" aria-label="מסמכים משפטיים" id="legalNav"></nav>
+    <h2 id="legal-h1" style="font-size:clamp(1.8rem,4vw,2.4rem)">מדיניות פרטיות</h2>
+    <p class="updated">עודכן לאחרונה: יוני 2026</p>
+    <div class="note">טקסט זה הוא נוסח לדוגמה (placeholder). מומלץ לאמת ולהתאים מסמכים משפטיים מול עורך/ת דין לפני פרסום.</div>
+    <p>אנו מכבדים את פרטיותכם. מסמך זה מסביר אילו נתונים נאספים באתר, כיצד נעשה בהם שימוש וכיצד הם נשמרים.</p>
+    <h3>איסוף מידע</h3>
+    <p>בעת מילוי טופס יצירת קשר אנו אוספים שם, טלפון, אימייל ותחום העניין שציינתם, לצורך מענה לפנייתכם בלבד.</p>
+    <h3>שימוש באנליטיקה</h3>
+    <p>בכפוף להסכמתכם, האתר עושה שימוש בכלי אנליטיקה (Google Analytics 4, Microsoft Clarity) לצורך שיפור חוויית המשתמש. ניתן לשנות את הסכמתכם בכל עת דרך הגדרות העוגיות.</p>
+    <h3>שמירה ואבטחה</h3>
+    <p>הנתונים נשמרים לפרק זמן סביר הנדרש למתן מענה, ומאובטחים באמצעים מקובלים. לא נעביר את פרטיכם לצד שלישי ללא הסכמתכם, למעט כנדרש על פי דין.</p>
+    <h3>זכויותיכם</h3>
+    <p>באפשרותכם לבקש לעיין במידע שנאסף עליכם, לתקנו או למחקו. לפנייה בנושא ניתן ליצור קשר בכתובת האימייל המופיעה באתר.</p>
+  </div></div>
+</section>
+
+<section class="route" id="route-accessibility" data-route="/accessibility" aria-labelledby="legal-h2">
+  <div class="section"><div class="wrap legal">
+    <nav class="legal-nav" aria-label="מסמכים משפטיים"></nav>
+    <h2 id="legal-h2" style="font-size:clamp(1.8rem,4vw,2.4rem)">הצהרת נגישות</h2>
+    <p class="updated">עודכן לאחרונה: יוני 2026</p>
+    <div class="note">נוסח לדוגמה. מומלץ להתאים את הצהרת הנגישות בפועל לתקן הישראלי (ת"י 5568) ולבדיקת נגישות מקצועית.</div>
+    <p>אתר Influ Capital שואף להנגיש את שירותיו לכלל המשתמשים, לרבות אנשים עם מוגבלות, בהתאם לתקן הישראלי ת"י 5568 ולהנחיות WCAG 2.1 ברמה AA.</p>
+    <h3>אמצעי נגישות באתר</h3>
+    <ul>
+      <li>ניווט מלא באמצעות מקלדת וסימון פוקוס נראה לעין.</li>
+      <li>תפריט נגישות ייעודי: הגדלת טקסט, ניגודיות גבוהה והדגשת קישורים.</li>
+      <li>תמיכה בהעדפת המשתמש להפחתת תנועה (prefers-reduced-motion).</li>
+      <li>מבנה סמנטי, תוויות ARIA וטקסט חלופי לתמונות.</li>
+      <li>שמירה על יחסי ניגודיות צבע התואמים את הדרישות.</li>
+    </ul>
+    <h3>פנייה בנושא נגישות</h3>
+    <p>נתקלתם בקושי? נשמח לסייע ולתקן. ניתן לפנות אלינו בכל אחד מערוצי יצירת הקשר המופיעים באתר.</p>
+  </div></div>
+</section>
+
+<section class="route" id="route-terms" data-route="/terms" aria-labelledby="legal-h3">
+  <div class="section"><div class="wrap legal">
+    <nav class="legal-nav" aria-label="מסמכים משפטיים"></nav>
+    <h2 id="legal-h3" style="font-size:clamp(1.8rem,4vw,2.4rem)">תנאי שימוש וגילוי נאות</h2>
+    <p class="updated">עודכן לאחרונה: יוני 2026</p>
+    <div class="note">נוסח לדוגמה. גילוי נאות ותנאי שימוש הם מסמכים מהותיים — מומלץ לאמת מול עורך/ת דין המתמחה בתחום שוק ההון.</div>
+    <h3>גילוי נאות</h3>
+    <p>אדם ויינשטיין הוא בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך. השירותים המוצעים באתר הם ליווי ושיווק השקעות, ואינם מהווים ייעוץ השקעות בלתי תלוי. ייתכן וקיימת זיקה לנכסים פיננסיים מסוימים. אין באמור באתר משום המלצה לביצוע פעולה כלשהי, והוא אינו תחליף לבחינת התאמה אישית של כל משקיע.</p>
+    <h3>אחריות</h3>
+    <p>השקעה בשוק ההון כרוכה בסיכון, לרבות אובדן חלק מהקרן או כולה. ביצועי עבר אינם מעידים על ביצועים עתידיים. כל החלטת השקעה היא באחריות המשקיע בלבד.</p>
+    <h3>שימוש באתר</h3>
+    <p>התכנים באתר מוגנים בזכויות יוצרים. אין לעשות בהם שימוש מסחרי ללא אישור. השימוש באתר כפוף לתנאים אלה ולהוראות כל דין.</p>
+  </div></div>
+</section>
+
+<section class="route" id="route-cookies" data-route="/cookies" aria-labelledby="legal-h4">
+  <div class="section"><div class="wrap legal">
+    <nav class="legal-nav" aria-label="מסמכים משפטיים"></nav>
+    <h2 id="legal-h4" style="font-size:clamp(1.8rem,4vw,2.4rem)">מדיניות עוגיות</h2>
+    <p class="updated">עודכן לאחרונה: יוני 2026</p>
+    <div class="note">נוסח לדוגמה. מומלץ לאמת מול עורך/ת דין.</div>
+    <p>האתר עושה שימוש בעוגיות (Cookies) כדי לתפעל את האתר ולשפר את חוויית המשתמש. ניתן לשלוט בהעדפות בכל עת.</p>
+    <h3>קטגוריות עוגיות</h3>
+    <ul>
+      <li><b>הכרחיות:</b> דרושות לתפקוד בסיסי של האתר ולשמירת העדפותיכם. פעילות תמיד.</li>
+      <li><b>אנליטיקה:</b> Google Analytics 4 ו-Microsoft Clarity — נטענות רק לאחר הסכמתכם, ומסייעות לנו להבין כיצד משתמשים באתר.</li>
+      <li><b>שיווק:</b> שמורות לעתיד (כגון פיקסל פייסבוק). אינן נטענות כיום.</li>
+    </ul>
+    <h3>ניהול ההסכמה</h3>
+    <p>ניתן לשנות את העדפות העוגיות בכל עת.</p>
+    <p><button class="btn btn-ghost" id="openCookiePrefs2">פתיחת הגדרות עוגיות</button></p>
+  </div></div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#/" class="brand"><span class="logo">IC</span><span>Influ Capital<small>אדם ויינשטיין</small></span></a>
+        <p class="foot-disc" style="margin-top:1rem">ליווי השקעות אישי, אנושי ושוטף מבעל רישיון שיווק השקעות מטעם הרשות לניירות ערך. אין באמור באתר משום המלצה; ראו גילוי נאות.</p>
+      </div>
+      <div>
+        <h4>שירותים</h4>
+        <a href="#/livui">ליווי השקעות אישי</a>
+        <a href="#/course">קורס השקעות ערך 1:1</a>
+        <a href="#/lectures">הרצאות לארגונים</a>
+      </div>
+      <div>
+        <h4>ניווט</h4>
+        <a href="#/about">אודות</a>
+        <a href="#/contact">צור קשר</a>
+        <a href="#" data-wa>וואטסאפ</a>
+      </div>
+      <div>
+        <h4>משפטי</h4>
+        <a href="#/privacy">מדיניות פרטיות</a>
+        <a href="#/accessibility">הצהרת נגישות</a>
+        <a href="#/terms">תנאי שימוש וגילוי נאות</a>
+        <a href="#/cookies">מדיניות עוגיות</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> Influ Capital · אדם ויינשטיין. כל הזכויות שמורות.</span>
+      <button class="link-btn" id="openCookiePrefs" style="color:#a8abc2;text-decoration:underline;font-size:.82rem">הגדרות עוגיות</button>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ FLOATING CONTROLS ============ -->
+<div class="fab">
+  <button class="a11y" id="a11yBtn" aria-label="פתיחת תפריט נגישות" aria-expanded="false">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="4" r="2"/><path d="M19 7H5M12 7v8m0 0-3 5m3-5 3 5"/></svg>
+  </button>
+  <a class="wa" href="#" data-wa aria-label="שליחת הודעת וואטסאפ">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.9.9-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5.1a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2.1-.1 0-.3 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.6 1.1 2.8a9.4 9.4 0 0 0 3.7 3.2c1.3.6 1.8.6 2.5.5.4 0 1.4-.6 1.6-1.1s.2-1 .1-1.1z"/></svg>
+  </a>
+</div>
+
+<!-- a11y panel -->
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות" aria-modal="false">
+  <h4>נגישות <button id="a11yClose" aria-label="סגירה" style="color:var(--slate);font-size:1.3rem;line-height:1">×</button></h4>
+  <div class="opt"><span>טקסט גדול</span><button class="tgl" data-a11y="a11y-large" aria-pressed="false" aria-label="הגדלת טקסט"></button></div>
+  <div class="opt"><span>ניגודיות גבוהה</span><button class="tgl" data-a11y="a11y-contrast" aria-pressed="false" aria-label="ניגודיות גבוהה"></button></div>
+  <div class="opt"><span>הדגשת קישורים</span><button class="tgl" data-a11y="a11y-underline" aria-pressed="false" aria-label="הדגשת קישורים"></button></div>
+  <button class="reset" id="a11yReset">איפוס הגדרות</button>
+</div>
+
+<!-- ============ COOKIE CONSENT ============ -->
+<div class="cookie" id="cookieBanner" role="region" aria-label="הסכמת עוגיות">
+  <h4>אנחנו מכבדים את הפרטיות שלכם 🍪</h4>
+  <p>אנו משתמשים בעוגיות הכרחיות לתפעול האתר, ובעוגיות אנליטיקה (בכפוף להסכמה) כדי לשפר את החוויה. ראו <a href="#/cookies">מדיניות עוגיות</a>.</p>
+  <div class="acts">
+    <button class="btn btn-primary" id="ckAcceptAll">אישור הכל</button>
+    <button class="btn btn-ghost" id="ckNecessary">הכרחיות בלבד</button>
+  </div>
+  <button class="link-btn" id="ckCustomize">התאמה אישית</button>
+</div>
+
+<div class="modal-bg" id="cookieModalBg">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ck-title">
+    <h3 id="ck-title">הגדרות עוגיות</h3>
+    <p class="muted" style="font-size:.9rem">בחרו אילו קטגוריות לאפשר. ניתן לשנות בכל עת.</p>
+    <div class="ck-opt">
+      <div><b>הכרחיות</b><p>נדרשות לתפקוד האתר. לא ניתן לכבות.</p></div>
+      <span class="locked">תמיד פעיל</span>
+    </div>
+    <div class="ck-opt">
+      <div><b>אנליטיקה</b><p>Google Analytics 4 ו-Microsoft Clarity לשיפור האתר.</p></div>
+      <button class="tgl" id="ckAnalytics" aria-pressed="false" aria-label="אנליטיקה"></button>
+    </div>
+    <div class="ck-opt">
+      <div><b>שיווק</b><p>שמור לעתיד (פיקסל פייסבוק). אינו נטען כעת.</p></div>
+      <span class="locked">בקרוב</span>
+    </div>
+    <div class="hero-cta" style="margin-top:1.4rem;justify-content:flex-end">
+      <button class="btn btn-ghost" id="ckCancel">ביטול</button>
+      <button class="btn btn-primary" id="ckSave">שמירת העדפות</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   SITE_CONFIG — central source of truth (TODO: replace placeholders)
+   ============================================================ */
+const SITE_CONFIG = {
+  phone:        "+972500000000",                 // TODO: real phone (E.164)
+  phoneDisplay: "050-000-0000",                  // TODO: display format
+  whatsapp:     "972500000000",                  // TODO: real WhatsApp number (no +)
+  whatsappMsg:  "היי אדם, הגעתי דרך האתר ואשמח לשמוע על ליווי ההשקעות האישי 🙂",
+  email:        "hello@influ-capital.example",   // TODO: real email
+  ga4Id:        "G-XXXXXXXXXX",                   // TODO: real GA4 Measurement ID
+  clarityId:    "xxxxxxxxxx",                     // TODO: real Microsoft Clarity ID
+  formEndpoint: "https://example.com/api/lead"    // TODO: real lead form endpoint
+};
+
+(function(){
+  "use strict";
+  const $  = (s,c=document)=>c.querySelector(s);
+  const $$ = (s,c=document)=>Array.from(c.querySelectorAll(s));
+
+  /* ---------- Wire contact channels from SITE_CONFIG ---------- */
+  const waHref = "https://wa.me/"+SITE_CONFIG.whatsapp+"?text="+encodeURIComponent(SITE_CONFIG.whatsappMsg);
+  $$('[data-wa]').forEach(a=>{ a.setAttribute('href',waHref); a.setAttribute('target','_blank'); a.setAttribute('rel','noopener'); });
+  const pl=$('#phoneLink'); if(pl){pl.href="tel:"+SITE_CONFIG.phone; pl.textContent=SITE_CONFIG.phoneDisplay;}
+  const el=$('#emailLink'); if(el){el.href="mailto:"+SITE_CONFIG.email; el.textContent=SITE_CONFIG.email;}
+  $('#year').textContent = new Date().getFullYear();
+
+  /* ---------- Hash router (single-file, all pages reachable) ---------- */
+  const routes = {
+    '/':'בית','/livui':'ליווי השקעות אישי','/course':'קורס השקעות ערך 1:1',
+    '/lectures':'הרצאות לארגונים','/about':'אודות','/contact':'צור קשר',
+    '/privacy':'מדיניות פרטיות','/accessibility':'הצהרת נגישות',
+    '/terms':'תנאי שימוש וגילוי נאות','/cookies':'מדיניות עוגיות'
+  };
+  const baseTitle = "Influ Capital — אדם ויינשטיין";
+  function currentRoute(){
+    let h = location.hash.replace(/^#/,'');
+    if(!h || h==='/') return '/';
+    if(!routes.hasOwnProperty(h)) return '/';
+    return h;
+  }
+  function showRoute(){
+    const r = currentRoute();
+    $$('.route').forEach(s=>s.classList.toggle('active', s.dataset.route===r));
+    // active nav
+    $$('.nav-links a').forEach(a=>{
+      if(a.dataset.route===r) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    $$('.legal-nav a').forEach(a=>{
+      if(a.getAttribute('href')==='#'+r) a.setAttribute('aria-current','page'); else a.removeAttribute('aria-current');
+    });
+    document.title = r==='/' ? baseTitle+" | ליווי השקעות אישי בוואטסאפ" : routes[r]+" · "+baseTitle;
+    // close mobile menu
+    header.classList.remove('menu-open'); navToggle.setAttribute('aria-expanded','false');
+    // scroll + focus for a11y
+    window.scrollTo({top:0,behavior:'instant' in window?'instant':'auto'});
+    const active = $('.route.active'); const h1 = active && active.querySelector('h1, h2[id]');
+    if(h1){ h1.setAttribute('tabindex','-1'); h1.focus({preventScroll:true}); }
+    runReveal();
+  }
+  window.addEventListener('hashchange', showRoute);
+
+  /* ---------- Build legal sub-nav ---------- */
+  const legalLinks = [['/privacy','פרטיות'],['/accessibility','נגישות'],['/terms','תנאי שימוש'],['/cookies','עוגיות']];
+  $$('.legal-nav').forEach(nav=>{
+    legalLinks.forEach(([href,label])=>{ const a=document.createElement('a'); a.href='#'+href; a.textContent=label; nav.appendChild(a); });
+  });
+
+  /* ---------- Header scroll + mobile menu ---------- */
+  const header = $('#siteHeader'), navToggle = $('#navToggle');
+  window.addEventListener('scroll', ()=>header.classList.toggle('scrolled', window.scrollY>8), {passive:true});
+  navToggle.addEventListener('click', ()=>{
+    const open = header.classList.toggle('menu-open');
+    navToggle.setAttribute('aria-expanded', open?'true':'false');
+  });
+  $$('.nav-links a').forEach(a=>a.addEventListener('click',()=>{header.classList.remove('menu-open');navToggle.setAttribute('aria-expanded','false');}));
+
+  /* ---------- Reveal on scroll ---------- */
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let io;
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+  }
+  function runReveal(){
+    const active = $('.route.active'); if(!active) return;
+    $$('.reveal', active).forEach(el=>{
+      if(reduceMotion || !io){ el.classList.add('in'); }
+      else if(!el.classList.contains('in')){ io.observe(el); }
+    });
+  }
+
+  /* ---------- Accessibility panel ---------- */
+  const a11yBtn=$('#a11yBtn'), a11yPanel=$('#a11yPanel');
+  function toggleA11y(force){
+    const open = force!==undefined?force:!a11yPanel.classList.contains('open');
+    a11yPanel.classList.toggle('open',open); a11yBtn.setAttribute('aria-expanded',open?'true':'false');
+    if(open) a11yPanel.querySelector('.tgl').focus();
+  }
+  a11yBtn.addEventListener('click',()=>toggleA11y());
+  $('#a11yClose').addEventListener('click',()=>{toggleA11y(false);a11yBtn.focus();});
+  const A11Y_KEY='ic_a11y';
+  function loadA11y(){
+    let s={}; try{s=JSON.parse(localStorage.getItem(A11Y_KEY))||{};}catch(e){}
+    $$('.tgl[data-a11y]').forEach(btn=>{
+      const k=btn.dataset.a11y, on=!!s[k];
+      document.body.classList.toggle(k,on); btn.setAttribute('aria-pressed',on?'true':'false');
+    });
+  }
+  $$('.tgl[data-a11y]').forEach(btn=>btn.addEventListener('click',()=>{
+    const k=btn.dataset.a11y, on=!document.body.classList.contains(k);
+    document.body.classList.toggle(k,on); btn.setAttribute('aria-pressed',on?'true':'false');
+    let s={}; try{s=JSON.parse(localStorage.getItem(A11Y_KEY))||{};}catch(e){}
+    s[k]=on; localStorage.setItem(A11Y_KEY,JSON.stringify(s));
+  }));
+  $('#a11yReset').addEventListener('click',()=>{
+    $$('.tgl[data-a11y]').forEach(btn=>{document.body.classList.remove(btn.dataset.a11y);btn.setAttribute('aria-pressed','false');});
+    localStorage.removeItem(A11Y_KEY);
+  });
+  loadA11y();
+
+  /* ---------- Lead form ---------- */
+  const form=$('#leadForm');
+  function setErr(field,bad){ field.classList.toggle('invalid',bad); }
+  function validEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function validPhone(v){ return v.replace(/[^\d]/g,'').length>=9; }
+  if(form){
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const name=$('#f-name'), phone=$('#f-phone'), email=$('#f-email'), interest=$('#f-interest');
+      let ok=true;
+      [[name,name.value.trim().length>=2],[phone,validPhone(phone.value)],[email,validEmail(email.value.trim())],[interest,!!interest.value]]
+        .forEach(([inp,good])=>{ const f=inp.closest('.field'); setErr(f,!good); if(!good)ok=false; });
+      if(!ok){ const bad=form.querySelector('.field.invalid input,.field.invalid select'); if(bad)bad.focus(); return; }
+      const payload={name:name.value.trim(),phone:phone.value.trim(),email:email.value.trim(),interest:interest.value,message:$('#f-msg').value.trim(),source:'website'};
+      try{
+        // Demo placeholder endpoint — guard so a fake URL still shows success in the demo.
+        if(!/example\.com/.test(SITE_CONFIG.formEndpoint)){
+          await fetch(SITE_CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        }
+      }catch(err){ /* swallow in demo */ }
+      form.style.display='none'; $('#formOk').style.display='block';
+      $('#formOk').setAttribute('tabindex','-1'); $('#formOk').focus();
+    });
+    // clear error on input
+    $$('#leadForm input,#leadForm select').forEach(i=>i.addEventListener('input',()=>setErr(i.closest('.field'),false)));
+  }
+
+  /* ============================================================
+     COOKIE CONSENT  (gates analytics; marketing reserved-not-loaded)
+     ============================================================ */
+  const CK_KEY='ic_consent';
+  const banner=$('#cookieBanner'), modalBg=$('#cookieModalBg'), ckAnalytics=$('#ckAnalytics');
+  function getConsent(){ try{return JSON.parse(localStorage.getItem(CK_KEY));}catch(e){return null;} }
+  function saveConsent(c){ localStorage.setItem(CK_KEY,JSON.stringify(c)); applyConsent(c); }
+
+  let gaLoaded=false, clarityLoaded=false;
+  function loadGA4(){
+    if(gaLoaded || !SITE_CONFIG.ga4Id || /XXXX/.test(SITE_CONFIG.ga4Id)) return; // guard placeholder
+    gaLoaded=true;
+    const s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+SITE_CONFIG.ga4Id; document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[]; function gtag(){dataLayer.push(arguments);} window.gtag=gtag;
+    gtag('js',new Date()); gtag('config',SITE_CONFIG.ga4Id,{anonymize_ip:true});
+  }
+  function loadClarity(){
+    if(clarityLoaded || !SITE_CONFIG.clarityId || /xxxx/i.test(SITE_CONFIG.clarityId)) return; // guard placeholder
+    clarityLoaded=true;
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",SITE_CONFIG.clarityId);
+  }
+  // RESERVED for future — NOT called, NOT blocked architecturally:
+  function loadMarketing(){ /* TODO future: Facebook Pixel etc. Only call when consent.marketing === true */ }
+
+  function applyConsent(c){
+    if(c && c.analytics){ loadGA4(); loadClarity(); }
+    // marketing intentionally never auto-loaded
+  }
+  function openModal(){
+    const c=getConsent(); ckAnalytics.setAttribute('aria-pressed', c&&c.analytics?'true':'false');
+    modalBg.classList.add('show');
+  }
+  function closeModal(){ modalBg.classList.remove('show'); }
+  ckAnalytics.addEventListener('click',()=>{ const on=ckAnalytics.getAttribute('aria-pressed')!=='true'; ckAnalytics.setAttribute('aria-pressed',on?'true':'false'); });
+  $('#ckAcceptAll').addEventListener('click',()=>{ saveConsent({necessary:true,analytics:true,marketing:false,ts:Date.now()}); banner.classList.remove('show'); });
+  $('#ckNecessary').addEventListener('click',()=>{ saveConsent({necessary:true,analytics:false,marketing:false,ts:Date.now()}); banner.classList.remove('show'); });
+  $('#ckCustomize').addEventListener('click',openModal);
+  $('#ckSave').addEventListener('click',()=>{ saveConsent({necessary:true,analytics:ckAnalytics.getAttribute('aria-pressed')==='true',marketing:false,ts:Date.now()}); closeModal(); banner.classList.remove('show'); });
+  $('#ckCancel').addEventListener('click',closeModal);
+  modalBg.addEventListener('click',e=>{ if(e.target===modalBg) closeModal(); });
+  $('#openCookiePrefs').addEventListener('click',openModal);
+  const ocp2=$('#openCookiePrefs2'); if(ocp2) ocp2.addEventListener('click',openModal);
+
+  // init consent state
+  (function initConsent(){
+    const c=getConsent();
+    if(c){ applyConsent(c); } else { banner.classList.add('show'); }
+  })();
+
+  /* ---------- Global ESC handling ---------- */
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Escape'){
+      if(modalBg.classList.contains('show')) closeModal();
+      if(a11yPanel.classList.contains('open')) toggleA11y(false);
+      if(header.classList.contains('menu-open')){header.classList.remove('menu-open');navToggle.setAttribute('aria-expanded','false');}
+    }
+  });
+
+  /* ---------- Boot ---------- */
+  showRoute();
+})();
+</script>
+</body>
+</html>
