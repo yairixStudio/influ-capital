@@ -51,7 +51,7 @@ service-account*.json
 # ───────────── Third-party vendored repo (reference only) ──────────────
 # jezweb-claude-skills is an external repo with its own .git/LICENSE, copied
 # into an old design variant. Kept on disk as reference; not part of our repo.
-versions/variant-f-design-loop/skills/jezweb-claude-skills/
+old versions - tests/variant-f-design-loop/skills/jezweb-claude-skills/
 
 # ───────────── Camera RAW masters (not web assets) ─────────────
 # ~51MB of .cr3 lecture sources. Backed up in iCloud; would only bloat the repo
