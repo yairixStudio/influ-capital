@@ -44,6 +44,10 @@
   /* — Spacing (4px base) — */
   --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-6:24px; --s-8:32px; --s-12:48px; --s-16:64px;
 
+  /* — Layout — */
+  --wrap-pad:24px;     /* ריווח צד של .wrap — מקור יחיד, משמש גם לכפתור ה-CTA ה-full-bleed בהידר */
+  --nav-pad-y:14px;    /* גובה הפדינג האנכי של ההידר — משמש לביטולו בכפתור ה-CTA */
+
   /* — Radius — */
   --r-sm:8px; --r-md:11px; --r-lg:16px; --r-xl:22px; --r-pill:999px;
 
@@ -65,7 +69,7 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 var(--wrap-pad)}
 .muted{color:var(--muted)}
 .icon{width:1em;height:1em;display:inline-block;vertical-align:-.125em}
 
@@ -368,13 +372,25 @@ section.doc:last-child{border-bottom:none}
   padding-top:clamp(16px,2.4vw,26px);padding-bottom:0}
 
 /* ===== Navbar שקוף מעל ההירו ===== */
-.site-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 0}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:var(--nav-pad-y) 0}
 .site-nav .logo img{height:30px;display:block}
 .site-nav .nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0}
 .site-nav .nav-links a{color:#dfe2f5;text-decoration:none;font-size:14.5px;font-weight:500;transition:var(--dur)}
 .site-nav .nav-links a:hover{color:#fff}
 .site-nav .nav-actions{display:flex;gap:10px;align-items:center}
 @media(max-width:820px){.site-nav .nav-links{display:none}}
+/* CTA צמוד-קצה בהידר: בלוק מרובע, בגובה מלא (צמוד לתקרה ולרצפה) וצמוד לקצה ההידר —
+   במקום כפתור עם פדינגים ופינות מעוגלות. מבטל את הפדינג האנכי של ההידר ואת ריווח ה-wrap. */
+.site-nav .nav-actions:has(.nav-cta){align-self:stretch;align-items:stretch;margin-inline-end:calc(var(--wrap-pad)*-1)}
+.nav-cta{align-self:stretch;display:inline-flex;align-items:center;gap:8px;
+  margin-block:calc(var(--nav-pad-y)*-1);
+  padding-inline:clamp(20px,2.2vw,30px);
+  background:var(--brand);color:#fff;text-decoration:none;border-radius:0;
+  font-family:var(--font-head);font-weight:600;font-size:14.5px;white-space:nowrap;
+  transition:background var(--dur) var(--ease)}
+.nav-cta:hover{background:var(--brand-hover)}
+.nav-cta:focus-visible{outline:3px solid var(--indigo-200);outline-offset:-3px}
+.nav-cta .icon{width:17px;height:17px}
 .hero-main .hero-grid{margin-top:clamp(18px,3vw,38px)}
 .hero-main::before{content:"";position:absolute;inset:0;pointer-events:none;background:
   radial-gradient(70% 80% at 82% 100%,rgba(28,205,168,.16),transparent 58%),
@@ -487,4 +503,70 @@ section.doc:last-child{border-bottom:none}
   .wa-msg,.wa-typing{animation:none}
   .wa-typing span{animation:none;opacity:.6}
   .wa-body{scroll-behavior:auto}
+}
+
+/* =========================================================
+   SITE FOOTER — פוטר האתר (כהה, ארבע עמודות + פס תחתון)
+   ========================================================= */
+.site-footer{background:var(--ink);color:#c2c8e4;font-size:14px;padding:clamp(40px,5vw,56px) 0 22px}
+.site-footer a{color:#c2c8e4;text-decoration:none;transition:color var(--dur) var(--ease)}
+.site-footer a:hover{color:#fff}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:32px}
+@media(max-width:820px){.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.footer-grid{grid-template-columns:1fr}}
+.footer-brand img{height:30px;width:auto;display:block;margin-bottom:14px}
+.footer-brand p{color:#9aa2c8;font-size:13.5px;line-height:1.6;max-width:34ch}
+.footer-social{display:flex;gap:10px;margin-top:16px}
+.footer-social a{width:38px;height:38px;border-radius:var(--r-sm);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;color:#c2c8e4}
+.footer-social a:hover{background:rgba(255,255,255,.14);color:#fff;transform:translateY(-1px)}
+.footer-social .icon{width:18px;height:18px}
+.footer-col h4{font-family:var(--font-head);color:#fff;font-size:14.5px;font-weight:600;margin-bottom:14px}
+.footer-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.footer-col .f-contact{display:flex;align-items:center;gap:9px}
+.footer-col .f-contact .icon{width:16px;height:16px;color:var(--teal-300);flex:none}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:clamp(30px,4vw,40px);padding-top:18px;
+  display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;
+  font-size:12px;color:#8a91b8;line-height:1.6}
+.footer-bottom .legal{max-width:62ch}
+.footer-bottom .legal b{color:#aab1d6;font-weight:600}
+.footer-bottom .credit{white-space:nowrap}
+
+/* =========================================================
+   MODAL / POPUP — חלון קופץ (overlay כללי + שני וריאנטים)
+   ========================================================= */
+.modal-overlay{position:fixed;inset:0;z-index:1300;background:rgba(14,19,48,.55);
+  display:none;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.show{display:flex;animation:modal-fade var(--dur) var(--ease)}
+.modal{position:relative;width:100%;max-width:440px;background:var(--surface);color:var(--ink);
+  border-radius:var(--r-xl);box-shadow:var(--sh-lg);padding:30px 28px 28px}
+.modal-overlay.show .modal{animation:modal-pop .26s var(--ease)}
+.modal .modal-close{position:absolute;inset-inline-start:14px;top:14px;width:34px;height:34px;border:none;
+  border-radius:50%;background:var(--gray-100);color:var(--muted);display:grid;place-items:center;
+  cursor:pointer;transition:var(--dur) var(--ease)}
+.modal .modal-close:hover{background:var(--line);color:var(--ink)}
+.modal .modal-close .icon{width:18px;height:18px}
+.modal .modal-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;
+  color:var(--teal-700);background:var(--teal-50);border:1px solid var(--teal-200);
+  padding:5px 12px;border-radius:var(--r-pill);margin-bottom:14px}
+.modal .modal-pill .icon{width:14px;height:14px}
+.modal h3{font-size:23px;line-height:1.22;margin-bottom:7px}
+.modal .modal-sub{font-size:14px;color:var(--muted);line-height:1.55;margin-bottom:20px}
+.modal .modal-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+.modal .modal-note .icon{width:13px;height:13px;vertical-align:-.15em}
+/* וריאנט יצירת קשר — חלון אינדיגו כהה עם ערוצי קשר (משתמש ב-.channel הקיים) */
+.modal.modal-contact{background:linear-gradient(165deg,var(--indigo-600),var(--indigo-800));color:#fff}
+.modal.modal-contact .modal-pill{color:#9fe7d6;background:rgba(28,205,168,.14);border-color:rgba(28,205,168,.34)}
+.modal.modal-contact .modal-sub{color:#c7cbf5}
+.modal.modal-contact .modal-close{background:rgba(255,255,255,.12);color:#dfe2f5}
+.modal.modal-contact .modal-close:hover{background:rgba(255,255,255,.22);color:#fff}
+.modal-channels{display:grid;gap:11px}
+/* במה לתצוגת מסמך — מציגה מודאל סטטי על רקע מעומעם (לא fixed) */
+.modal-stage{position:relative;display:grid;place-items:center;padding:clamp(28px,4vw,46px) 20px;
+  border-radius:var(--r-lg);background:rgba(14,19,48,.55);
+  background-image:radial-gradient(120% 120% at 80% 0,rgba(67,67,219,.35),transparent 60%)}
+.modal-stage .modal{box-shadow:var(--sh-lg)}
+@keyframes modal-fade{from{opacity:0}to{opacity:1}}
+@keyframes modal-pop{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){
+  .modal-overlay.show,.modal-overlay.show .modal{animation:none}
 }

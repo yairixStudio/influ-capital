@@ -13,7 +13,7 @@
   .frame-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--gray-100);border-bottom:1px solid var(--line)}
   .frame-bar i{width:11px;height:11px;border-radius:50%;background:var(--gray-300);display:inline-block}
   .frame-bar .url{margin-inline-start:10px;font-size:12px;color:var(--muted);font-family:var(--font-head)}
-  .frame .wrap{padding-inline:clamp(20px,4vw,40px)}
+  .frame .wrap{--wrap-pad:clamp(20px,4vw,40px)}
 </style>
 </head>
 <body>
@@ -30,6 +30,8 @@
     <a href="#home-center">② עמוד הבית — ממורכז</a>
     <a href="#inner-dark">③ עמוד פנימי — כהה</a>
     <a href="#inner-light">④ עמוד פנימי — בהיר</a>
+    <a href="#footer">⑤ פוטר האתר</a>
+    <a href="#popup">⑥ פופאפ (חלון קופץ)</a>
   </aside>
 
   <main class="content">
@@ -37,14 +39,14 @@
     <section class="doc" id="header">
       <div class="wrap">
         <div class="sec-h"><span class="kicker">⓪ Header</span><h2>ההידר (Navbar)</h2>
-          <p>ההידר הראשי של האתר — לוגו, ניווט ראשי ו‑CTA. navbar שקוף שמעוצב לשבת מעל רקע כהה (ההירו או באנר עמוד פנימי).</p></div>
+          <p>ההידר הראשי של האתר — לוגו, ניווט ראשי ו‑CTA. navbar שקוף שמעוצב לשבת מעל רקע כהה (ההירו או באנר עמוד פנימי). כפתור ה‑CTA אינו כפתור-גלולה רגיל אלא <b>בלוק מרובע צמוד-קצה</b>: בגובה מלא (צמוד לתקרה ולרצפה) וצמוד לקצה ההידר, ללא פינות מעוגלות — נקודת עיגון ויזואלית קבועה.</p></div>
       </div>
       <div class="wrap"><div class="frame">
         <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il</span></div>
         <div style="background:#0a0e1d">
           <div class="wrap">
             <nav class="site-nav">
-              <a class="logo" href="#" aria-label="Influ Capital — דף הבית"><img src="media/brand%20logos/logo/lockup-horizontal/influ-capital-logo-horizontal-white.png" alt="Influ Capital"></a>
+              <a class="logo" href="#" aria-label="Influ Capital — דף הבית"><img src="media/brand-logos/logo/lockup-horizontal/influ-capital-logo-horizontal-white.png" alt="Influ Capital"></a>
               <ul class="nav-links">
                 <li><a href="#">בית</a></li>
                 <li><a href="#">ליווי אישי</a></li>
@@ -52,7 +54,7 @@
                 <li><a href="#">הרצאות</a></li>
                 <li><a href="#">אודות</a></li>
               </ul>
-              <div class="nav-actions"><a class="btn btn-primary btn-sm">תיאום שיחה</a></div>
+              <div class="nav-actions"><a class="nav-cta" href="#"><i data-lucide="calendar-check" class="icon"></i> תיאום שיחה</a></div>
             </nav>
           </div>
         </div>
@@ -88,7 +90,7 @@
                 </div>
               </div>
               <div class="hero-portrait">
-                <img src="media/adam%20and%20more/web/cutouts/adam-navy-suit-smiling-800.webp" alt="אדם ויינשטיין — משווק השקעות">
+                <img src="media/adam/web/cutouts/adam-navy-suit-smiling-800.webp" alt="אדם ויינשטיין — משווק השקעות">
               </div>
             </div>
           </div>
@@ -167,6 +169,107 @@
           </div>
         </section>
       </div></div>
+    </section>
+
+    <!-- ⑤ SITE FOOTER -->
+    <section class="doc" id="footer">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑤ Footer</span><h2>פוטר האתר</h2>
+          <p>הפוטר הראשי — לוגו ותקציר, ניווט, מידע משפטי וערוצי קשר, ופס תחתון עם גילוי נאות וזכויות. כהה, ארבע עמודות, רספונסיבי (יורד ל‑2 ול‑1 עמודות).</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il</span></div>
+        <footer class="site-footer">
+          <div class="wrap">
+            <div class="footer-grid">
+              <div class="footer-brand">
+                <img src="media/brand-logos/logo/lockup-horizontal/influ-capital-logo-horizontal-white.png" alt="Influ Capital">
+                <p>ליווי השקעות אישי בשוק ההון, בגובה העיניים. להשקיע עם שיטה, לא עם תחושת בטן.</p>
+                <div class="footer-social">
+                  <a href="https://www.youtube.com/@AdamVainshtein" target="_blank" rel="noopener" aria-label="יוטיוב"><i data-lucide="youtube" class="icon"></i></a>
+                  <a href="https://www.instagram.com/adamv_96/" target="_blank" rel="noopener" aria-label="אינסטגרם"><i data-lucide="instagram" class="icon"></i></a>
+                  <a href="https://www.facebook.com/adam.vainshtein" target="_blank" rel="noopener" aria-label="פייסבוק"><i data-lucide="facebook" class="icon"></i></a>
+                  <a href="https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5" target="_blank" rel="noopener" aria-label="פודקאסט"><i data-lucide="podcast" class="icon"></i></a>
+                </div>
+              </div>
+              <nav class="footer-col" aria-label="ניווט ראשי">
+                <h4>ניווט</h4>
+                <ul>
+                  <li><a href="#">בית</a></li>
+                  <li><a href="#">ליווי אישי</a></li>
+                  <li><a href="#">קורס 1:1</a></li>
+                  <li><a href="#">הרצאות</a></li>
+                  <li><a href="#">אודות</a></li>
+                </ul>
+              </nav>
+              <nav class="footer-col" aria-label="מידע">
+                <h4>מידע</h4>
+                <ul>
+                  <li><a href="#">שאלות נפוצות</a></li>
+                  <li><a href="#">גילוי נאות</a></li>
+                  <li><a href="#">מדיניות פרטיות</a></li>
+                  <li><a href="#">הצהרת נגישות</a></li>
+                </ul>
+              </nav>
+              <div class="footer-col">
+                <h4>יצירת קשר</h4>
+                <ul>
+                  <li><a class="f-contact" href="tel:+972533384114"><i data-lucide="phone" class="icon"></i> 053-3384114</a></li>
+                  <li><a class="f-contact" href="https://wa.me/972533384114" target="_blank" rel="noopener"><i data-lucide="message-circle" class="icon"></i> וואטסאפ</a></li>
+                  <li><a class="f-contact" href="mailto:info@influ-capital.co.il"><i data-lucide="mail" class="icon"></i> info@influ-capital.co.il</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="footer-bottom">
+              <p class="legal"><b>אדם ויינשטיין</b> — בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך. אין התחייבות לתשואה, יש התחייבות לתהליך מקצועי. האמור אינו מהווה ייעוץ השקעות ואינו תחליף לייעוץ אישי המתחשב בנתוני כל אדם.</p>
+              <span class="credit">© 2026 Influ Capital · כל הזכויות שמורות</span>
+            </div>
+          </div>
+        </footer>
+      </div></div>
+    </section>
+
+    <!-- ⑥ POPUP / MODAL -->
+    <section class="doc" id="popup" style="border-bottom:none">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑥ Popup</span><h2>פופאפ (חלון קופץ)</h2>
+          <p>חלון מודאלי עם רקע מעומעם — נגיש (מלכודת פוקוס, סגירה ב‑Esc / לחיצה מחוץ, <span class="codeline">role="dialog"</span>). שני וריאנטים: לכידת ליד (טופס קצר) ויצירת קשר (ערוצים ישירים). למטה תצוגה סטטית של כל אחד, ולחצן לתצוגה חיה.</p></div>
+
+        <span class="lbl">א. מודאל לכידת ליד (exit-intent / לחיצה על CTA)</span>
+        <div class="modal-stage" style="margin-bottom:26px">
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-lead-title">
+            <button class="modal-close" type="button" aria-label="סגירה"><i data-lucide="x" class="icon"></i></button>
+            <span class="modal-pill"><i data-lucide="sparkles" class="icon"></i> רגע לפני שאתם ממשיכים</span>
+            <h3 id="m-lead-title">להשקיע עם שיטה, לא עם תחושת בטן.</h3>
+            <p class="modal-sub">השאירו פרטים לשיחת היכרות קצרה — נחזור אליכם בוואטסאפ או בטלפון. ללא התחייבות.</p>
+            <div class="field"><label>שם מלא</label><input class="inp" placeholder="ישראל ישראלי"></div>
+            <div class="field"><label>טלפון</label><input class="inp" placeholder="050-0000000"></div>
+            <label class="choice" style="margin-bottom:16px;font-size:13px"><input type="checkbox" checked> אני מאשר/ת יצירת קשר ושמירת הפרטים</label>
+            <button class="btn btn-primary btn-lg btn-block">תיאום שיחת היכרות</button>
+            <p class="modal-note"><i data-lucide="lock" class="icon"></i> הפרטים נשמרים אצלנו בלבד. ללא ספאם.</p>
+          </div>
+        </div>
+
+        <span class="lbl">ב. מודאל יצירת קשר (מכפתור "תיאום שיחה" בהידר)</span>
+        <div class="modal-stage">
+          <div class="modal modal-contact" role="dialog" aria-modal="true" aria-labelledby="m-contact-title">
+            <button class="modal-close" type="button" aria-label="סגירה"><i data-lucide="x" class="icon"></i></button>
+            <span class="modal-pill"><i data-lucide="message-circle" class="icon"></i> מדברים ישירות</span>
+            <h3 id="m-contact-title">איך נוח לכם לדבר?</h3>
+            <p class="modal-sub">זמין בערוצים שנוחים לכם — בלי טפסים, בלי המתנה.</p>
+            <div class="modal-channels">
+              <a class="channel" href="https://wa.me/972533384114" target="_blank" rel="noopener"><span class="ic-wrap"><i data-lucide="message-circle" class="icon"></i></span><div><b>וואטסאפ</b><small>מענה אישי ומהיר</small></div></a>
+              <a class="channel" href="tel:+972533384114"><span class="ic-wrap"><i data-lucide="phone" class="icon"></i></span><div><b>שיחת טלפון</b><small>053-3384114</small></div></a>
+              <a class="channel" href="mailto:info@influ-capital.co.il"><span class="ic-wrap"><i data-lucide="mail" class="icon"></i></span><div><b>אימייל</b><small>info@influ-capital.co.il</small></div></a>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+          <button class="btn btn-primary btn-md" type="button" data-open-modal="popup-lead"><i data-lucide="external-link" class="icon"></i> תצוגה חיה — לכידת ליד</button>
+          <button class="btn btn-secondary btn-md" type="button" data-open-modal="popup-contact"><i data-lucide="external-link" class="icon"></i> תצוגה חיה — יצירת קשר</button>
+        </div>
+      </div>
     </section>
 
     <footer style="padding:40px 0 70px;text-align:center;color:var(--muted);font-size:14px">
