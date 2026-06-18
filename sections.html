@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>סקשנים חוזרים — Influ Capital</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="brand.css">
+<link rel="stylesheet" href="brand-docs.css">
+<style>
+  /* תצוגה בלבד — מסגרת שמדמה דפדפן סביב כל סקשן (כמו ב-heroes.html) */
+  .frame{border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md);background:var(--surface);margin-bottom:8px}
+  .frame-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:var(--gray-100);border-bottom:1px solid var(--line)}
+  .frame-bar i{width:11px;height:11px;border-radius:50%;background:var(--gray-300);display:inline-block}
+  .frame-bar .url{margin-inline-start:10px;font-size:12px;color:var(--muted);font-family:var(--font-head)}
+  .frame .wrap{--wrap-pad:clamp(20px,4vw,40px)}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="side-nav">
+    <div class="brandmark">Influ<b>Capital</b></div>
+    <span class="tag">סקשנים חוזרים</span>
+    <a href="brand-book.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> ספר המותג</a>
+    <a href="heroes.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> סקשני הירו ושלד</a>
+    <a href="design-verticals.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> ורטיקלים עיצוביים</a>
+    <div style="height:1px;background:var(--line);margin:14px 0"></div>
+    <a href="#pain">① כאב / הזדהות</a>
+    <a href="#edge">② בידול — למה איתי</a>
+    <a href="#testi">③ המלצות</a>
+    <a href="#cta">④ CTA — קריאה לפעולה</a>
+    <a href="#podcast">⑤ פודקאסט / אזכורים</a>
+    <a href="#doc">⑥ עמוד-מסמך (רגולציה)</a>
+  </aside>
+
+  <main class="content">
+    <!-- HERO -->
+    <header class="bb-hero">
+      <div class="wrap">
+        <span class="eyebrow"><i data-lucide="layout-panel-top" class="icon"></i> סקשנים חוזרים · Section Templates</span>
+        <h1>סקשנים חוזרים</h1>
+        <p>הטמפלטים שחוזרים על עצמם בכמה עמודים — מנוהלים כאן ממקום אחד. כל סקשן בנוי מ‑Design Tokens ורכיבי הליבה של <code style="color:#9fe7d6">brand.css</code>; משנים פעם אחת, מתעדכן בכל העמודים שמשתמשים בטמפלט. מקור המבנה: <code style="color:#9fe7d6">BLUEPRINT.md</code>, הקופי: <code style="color:#9fe7d6">COPY.md</code>.</p>
+      </div>
+    </header>
+
+    <!-- ① PAIN -->
+    <section class="doc" id="pain">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">① כאב</span><h2>כאב / הזדהות</h2>
+          <p>טמפלט <span class="codeline">[כאב]</span> · חוזר ב‑3 עמודי השירות (ליווי · קורס · הרצאות). מטרה: יצירת הזדהות וכאב לפני הצגת הפתרון. שלוש נקודות כאב + שורת היפוך שמובילה אל השיטה.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/ליווי-אישי</span></div>
+        <section class="pain">
+          <div class="wrap">
+            <div class="section-head">
+              <span class="eyebrow"><i data-lucide="alert-triangle" class="icon"></i> למה ליווי אישי</span>
+              <h2>השקעה לבד היא בעיקר רעש והחלטות רגשיות</h2>
+              <p>רוב המשקיעים הקטנים לא נכשלים מחוסר ידע — אלא מחוסר שיטה, סדר ומישהו לחשוב איתו. ככה זה נראה כשעושים את זה לבד:</p>
+            </div>
+            <div class="pain-grid">
+              <div class="pain-item">
+                <div class="ic-wrap"><i data-lucide="volume-2" class="icon"></i></div>
+                <h4>רעש אינסופי</h4>
+                <p>כותרות, "טיפים חמים" והמלצות סותרות מכל כיוון. קשה לדעת למי להקשיב ומה באמת רלוונטי אליך.</p>
+              </div>
+              <div class="pain-item">
+                <div class="ic-wrap"><i data-lucide="heart-crack" class="icon"></i></div>
+                <h4>החלטות רגשיות</h4>
+                <p>פחד ותאוות בצע מנהלים את התיק במקום שיטה — קונים בשיא, נבהלים ומוכרים בתחתית.</p>
+              </div>
+              <div class="pain-item">
+                <div class="ic-wrap"><i data-lucide="shuffle" class="icon"></i></div>
+                <h4>בלי מערכת</h4>
+                <p>פעולות בודדות בלי אסטרטגיה, בלי מעקב ובלי מישהו לחשוב איתו בקול. כל החלטה מתחילה מאפס.</p>
+              </div>
+            </div>
+            <div class="pain-resolve">
+              <i data-lucide="shield-check" class="icon"></i>
+              <p>במקום זה — <b>יש שיטה, יש מעקב, ויש עם מי לדבר.</b></p>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ② EDGE / DIFFERENTIATION -->
+    <section class="doc" id="edge">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">② בידול</span><h2>בידול — למה איתי</h2>
+          <p>טמפלט <span class="codeline">[בידול]</span> · חוזר ב‑3 עמודי השירות. מטרה: בידול ואמון מקצועי — שיטת העבודה שמבדלת את אדם. שלושה עוגני בידול עם אייקון מבטא טיל.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/ליווי-אישי</span></div>
+        <section class="edge">
+          <div class="wrap">
+            <div class="section-head center">
+              <span class="eyebrow"><i data-lucide="compass" class="icon"></i> השיטה שלי</span>
+              <h2>איך בוחרים מניות — בלי לרדוף אחרי השוק</h2>
+              <p>המטרה היא לא לרדוף אחרי השוק, אלא לעבוד נכון בתוכו — עם תהליך שקוף, אישי ומסודר.</p>
+            </div>
+            <div class="edge-grid">
+              <div class="edge-item">
+                <div class="ic-wrap"><i data-lucide="search-check" class="icon"></i></div>
+                <h4><span class="num">01</span>השקעות ערך</h4>
+                <p>קונים עסקים טובים במחיר הגיוני — לא מניות "חמות". להבין מה קונים, למה קונים, ואיך זה מתאים אליך.</p>
+              </div>
+              <div class="edge-item">
+                <div class="ic-wrap"><i data-lucide="user-round-cog" class="icon"></i></div>
+                <h4><span class="num">02</span>מותאם אליך</h4>
+                <p>בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת. רמת הסיכון, המטרות והקצב — שלך.</p>
+              </div>
+              <div class="edge-item">
+                <div class="ic-wrap"><i data-lucide="eye" class="icon"></i></div>
+                <h4><span class="num">03</span>שקיפות מלאה</h4>
+                <p>בלי רעש, בלי הבטחות, בלי קיצורי דרך. כל החלטה עומדת במבחן ההיגיון, לא במבחן ההייפ.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ③ TESTIMONIALS -->
+    <section class="doc" id="testi">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">③ המלצות</span><h2>המלצות</h2>
+          <p>טמפלט <span class="codeline">[המלצות]</span> · חוזר בדף הבית וב‑3 עמודי השירות. מטרה: הוכחה חברתית. שתי וריאציות: <b>גריד</b> (דף הבית) ו‑<b>קיר ביקורות נע</b> (<span class="codeline">.testi-wall</span>, עמודי המוצר) — גלילה אנכית רציפה, דירוג כוכבים, והמקור (פלטפורמה) מתחת לשם. המקור: <span class="codeline">testimonials.json</span> (דמה).</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il</span></div>
+        <section class="testi">
+          <div class="wrap">
+            <div class="section-head center">
+              <span class="eyebrow"><i data-lucide="messages-square" class="icon"></i> מה אומרים</span>
+              <h2>מי שכבר עובדים איתי</h2>
+              <p>אנשים אמיתיים שעברו מספקולציה לתהליך מסודר — בגובה העיניים, בלי הבטחות.</p>
+            </div>
+            <div class="testi-grid">
+              <div class="quote">
+                <p>"לראשונה הרגשתי שיש לי עם מי לדבר על ההשקעות, בלי הרגשה שמוכרים לי משהו. למדתי לחקור מניה לבד וזה שווה זהב."</p>
+                <div class="who"><span class="av">מ</span><div><b>מירב כהן</b><small>בליווי אישי</small></div></div>
+              </div>
+              <div class="quote">
+                <p>"הליווי האישי שינה לי את כל הגישה להשקעות. עברתי מספקולציות לאסטרטגיית ערך מסודרת. ממליץ בחום!"</p>
+                <div class="who"><span class="av">י</span><div><b>יוסי מזרחי</b><small>בליווי אישי</small></div></div>
+              </div>
+              <div class="quote">
+                <p>"אדם לא נותן 'טיפים חמים', הוא מלמד אותך לדוג. בדיוק מה שחיפשתי — תיק ההשקעות שלי נראה אחרת לגמרי."</p>
+                <div class="who"><span class="av">א</span><div><b>אלי פרץ</b><small>בליווי אישי</small></div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div></div>
+      <span class="lbl" style="margin-top:20px;display:block">וריאציה ב' · <span class="codeline">.testi-wall</span> — קיר ביקורות נע (עמודי המוצר)</span>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/ליווי-אישי</span></div>
+        <section class="testi" style="border-top:none">
+          <div class="wrap">
+            <div class="section-head center"><span class="eyebrow"><i data-lucide="messages-square" class="icon"></i> מה אומרים</span><h2>לקוחות שכבר עשו את הצעד</h2></div>
+            <div class="testi-wall" data-testi-wall></div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ④ CTA BAND -->
+    <section class="doc" id="cta">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">④ CTA</span><h2>CTA — קריאה לפעולה תחתונה</h2>
+          <p>טמפלט <span class="codeline">[cta]</span> · חוזר בתחתית 3 עמודי השירות. מטרה: המרה. רצועת גרדיאנט מותג עם כותרת, תת‑שורה ושני כפתורים (תיאום שיחה + וואטסאפ).</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/ליווי-אישי</span></div>
+        <div style="padding:clamp(28px,4vw,46px) 0;background:var(--bg)">
+          <div class="wrap">
+            <div class="cta-band">
+              <span class="hero-pill"><i data-lucide="sparkles" class="icon"></i> מוכנים להתחיל?</span>
+              <h2>להשקיע עם שיטה, לא עם תחושת בטן.</h2>
+              <p>שיחת היכרות קצרה, בלי התחייבות — נבין מאיפה אתם מגיעים ואיך אפשר לעבוד יחד.</p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-lg" href="#"><i data-lucide="calendar-check" class="icon"></i> תיאום שיחת היכרות</a>
+                <a class="btn btn-wa btn-lg" href="#">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.43-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.43 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2zm0 18.04c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+                  דברו איתי בוואטסאפ
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <!-- ⑤ PODCAST -->
+    <section class="doc" id="podcast">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑤ פודקאסט</span><h2>פודקאסט / אזכורים</h2>
+          <p>טמפלט <span class="codeline">[פודקאסט]</span> · חוזר בדף הבית ובאודות. מטרה: הוכחה חברתית / סמכות. שורת פלטפורמות + כרטיסי הופעה/פרק. הקישורים מ‑<span class="codeline">contact.json</span>.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/אודות</span></div>
+        <section class="podcast">
+          <div class="wrap">
+            <div class="section-head center">
+              <span class="eyebrow"><i data-lucide="mic" class="icon"></i> שומעים אותי</span>
+              <h2>הופעות ואזכורים בפודקאסטים</h2>
+              <p>שיחות על שוק ההון, השקעות ערך ופסיכולוגיה של כסף — בגובה העיניים. זמין בפלטפורמות:</p>
+            </div>
+            <div class="pod-logos">
+              <a class="pod-chip" href="https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5" target="_blank" rel="noopener"><i data-lucide="audio-lines" class="icon"></i> Spotify</a>
+              <a class="pod-chip" href="https://podcasts.apple.com/gb/podcast/id1789951765" target="_blank" rel="noopener"><i data-lucide="podcast" class="icon"></i> Apple Podcasts</a>
+              <a class="pod-chip" href="https://www.youtube.com/@AdamVainshtein" target="_blank" rel="noopener"><i data-lucide="youtube" class="icon"></i> YouTube</a>
+            </div>
+
+            <!-- גלריית וידאו "coverflow": מרכז embedded, צדדים קטנים מציצים. לחיצה על הקטנים או החלקה → מעבר.
+                 data-yt = מזהה וידאו (כאן מזהי דמו — להחליף בסרטונים האמיתיים של אדם). -->
+            <div class="vid-cf" role="group" aria-roledescription="גלריית וידאו" aria-label="סרטונים והופעות וידאו">
+              <button class="vcf-item" type="button" data-yt="9bZkp7q19f0" data-title="וידאו 1" aria-label="נגן וידאו 1"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><i data-lucide="play" class="icon"></i></span></span></button>
+              <button class="vcf-item" type="button" data-yt="kJQP7kiw5Fk" data-title="וידאו 2" aria-label="נגן וידאו 2"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><i data-lucide="play" class="icon"></i></span></span></button>
+              <button class="vcf-item" type="button" data-yt="aqz-KE-bpKQ" data-title="וידאו 3" aria-label="נגן וידאו 3"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><i data-lucide="play" class="icon"></i></span></span></button>
+              <button class="vcf-item" type="button" data-yt="OPf0YbXqDm0" data-title="וידאו 4" aria-label="נגן וידאו 4"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><i data-lucide="play" class="icon"></i></span></span></button>
+              <button class="vcf-item" type="button" data-yt="jNQXAC9IVRw" data-title="וידאו 5" aria-label="נגן וידאו 5"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><i data-lucide="play" class="icon"></i></span></span></button>
+            </div>
+            <div class="vcf-dots" aria-label="בחירת וידאו"></div>
+
+            <div class="pod-cards">
+              <a class="pod-card" href="#">
+                <span class="cover"><i data-lucide="mic" class="icon"></i></span>
+                <div><h4>איך מתחילים להשקיע נכון</h4><small>פרק אורח · 48 דק׳</small></div>
+              </a>
+              <a class="pod-card" href="#">
+                <span class="cover"><i data-lucide="mic" class="icon"></i></span>
+                <div><h4>השקעות ערך בגובה העיניים</h4><small>פרק אורח · 35 דק׳</small></div>
+              </a>
+              <a class="pod-card" href="#">
+                <span class="cover"><i data-lucide="mic" class="icon"></i></span>
+                <div><h4>פסיכולוגיה של כסף</h4><small>פרק אורח · 52 דק׳</small></div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ⑥ LEGAL / DOC PAGE -->
+    <section class="doc" id="doc" style="border-bottom:none">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑥ עמוד-מסמך</span><h2>עמוד-מסמך (רגולציה)</h2>
+          <p>טמפלט <span class="codeline">[עמוד-מסמך]</span> · חוזר ×4 בעמוד "רגולציה ומסמכים" (פרטיות · נגישות · תנאי שימוש · עוגיות). מטרה: שקיפות ואמון. ניווט בטאבים (<span class="codeline">.tabs</span> הקיים) + מיכל פרוזה <span class="codeline">.legal-doc</span>. הטקסט להמחשה — להחלפה בנוסח משפטי סופי.</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/רגולציה</span></div>
+        <section class="hero-page minimal">
+          <div class="wrap">
+            <nav class="breadcrumb"><a href="#">בית</a><span class="sep">/</span><span class="cur">רגולציה ומסמכים</span></nav>
+            <span class="hero-pill"><i data-lucide="scale" class="icon"></i> שקיפות מלאה</span>
+            <h1>רגולציה ומסמכים</h1>
+            <p class="lead">כל המסמכים המשפטיים של האתר במקום אחד — בחרו מסמך לעיון.</p>
+          </div>
+        </section>
+        <div style="background:var(--bg);padding:clamp(26px,4vw,46px) 0">
+          <div class="wrap">
+            <div class="tabs" id="doc-tabs">
+              <button class="tab active" onclick="switchDoc(0)">מדיניות פרטיות</button>
+              <button class="tab" onclick="switchDoc(1)">הצהרת נגישות</button>
+              <button class="tab" onclick="switchDoc(2)">תנאי שימוש</button>
+              <button class="tab" onclick="switchDoc(3)">מדיניות עוגיות</button>
+            </div>
+            <div class="tab-panel active">
+              <div class="legal-doc">
+                <p class="updated">עודכן לאחרונה: יוני 2026</p>
+                <h3>מדיניות פרטיות</h3>
+                <p>אנו מכבדים את פרטיותכם ואוספים מינימום מידע הנחוץ ליצירת קשר ולמתן השירות. מסמך זה מסביר אילו נתונים נאספים, כיצד נעשה בהם שימוש, וכיצד אתם יכולים לממש את זכויותיכם.</p>
+                <h3>אילו נתונים נאספים</h3>
+                <ul>
+                  <li>פרטי קשר שאתם מוסרים מרצונכם בטופס (שם, טלפון, אימייל).</li>
+                  <li>נתוני שימוש אנונימיים לשיפור האתר (ללא טראקרים פולשניים).</li>
+                </ul>
+                <h3>השימוש בנתונים</h3>
+                <p>הנתונים משמשים אך ורק ליצירת קשר חוזר ולמתן השירות המבוקש. איננו מוכרים או מעבירים מידע לצדדים שלישיים למטרות שיווק.</p>
+              </div>
+            </div>
+            <div class="tab-panel">
+              <div class="legal-doc">
+                <p class="updated">עודכן לאחרונה: יוני 2026</p>
+                <h3>הצהרת נגישות</h3>
+                <p>האתר נבנה בהתאם לעקרונות נגישות (WCAG AA) ושואף לאפשר שימוש נוח לכלל המשתמשים, לרבות אנשים עם מוגבלות.</p>
+                <h3>אמצעי נגישות</h3>
+                <ul>
+                  <li>ניווט מקלדת מלא וסדר טאב הגיוני (RTL).</li>
+                  <li>ניגודיות צבעים תקינה ותמיכה בהגדלת טקסט.</li>
+                  <li>תגיות ARIA וטקסט חלופי לתמונות ואייקונים משמעותיים.</li>
+                </ul>
+                <h3>יצירת קשר בנושאי נגישות</h3>
+                <p>נתקלתם בקושי? נשמח לסייע ולשפר — פנו אלינו ונטפל בכך בהקדם.</p>
+              </div>
+            </div>
+            <div class="tab-panel">
+              <div class="legal-doc">
+                <p class="updated">עודכן לאחרונה: יוני 2026</p>
+                <h3>תנאי שימוש וגילוי נאות</h3>
+                <p>השימוש באתר כפוף לתנאים המפורטים להלן. התוכן באתר הינו מידע כללי בלבד ואינו מהווה ייעוץ השקעות ואינו תחליף לייעוץ אישי המתחשב בנתוניו של כל אדם.</p>
+                <h3>גילוי נאות</h3>
+                <p>אדם ויינשטיין הוא בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך. אין התחייבות לתשואה, יש התחייבות לתהליך מקצועי. כל החלטת השקעה היא באחריות המשתמש.</p>
+              </div>
+            </div>
+            <div class="tab-panel">
+              <div class="legal-doc">
+                <p class="updated">עודכן לאחרונה: יוני 2026</p>
+                <h3>מדיניות עוגיות (Cookies)</h3>
+                <p>האתר עושה שימוש מצומצם בעוגיות הנחוצות לתפעולו התקין ולשיפור חוויית הגלישה.</p>
+                <h3>סוגי עוגיות</h3>
+                <ul>
+                  <li>עוגיות חיוניות — נדרשות לתפקוד בסיסי של האתר.</li>
+                  <li>עוגיות מדידה אנונימיות — לשיפור הביצועים והתוכן.</li>
+                </ul>
+                <h3>ניהול העדפות</h3>
+                <p>ניתן לחסום או למחוק עוגיות דרך הגדרות הדפדפן. חסימה מלאה עשויה לפגוע בחלק מהפונקציות.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </section>
+
+    <footer style="padding:40px 0 70px;text-align:center;color:var(--muted);font-size:14px">
+      <div class="wrap">
+        <p style="font-family:var(--font-head);color:var(--ink);font-weight:600">Influ Capital · סקשנים חוזרים</p>
+        <p style="margin-top:6px">כל הרכיבים נשאבים מ‑<span class="codeline">brand.css</span> — מקור אמת אחד. נרחיב את האוסף ככל שנוסיף טמפלטים ל‑<span class="codeline">BLUEPRINT.md</span>.</p>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<script>
+  /* טאבים לעמוד-המסמך — שימוש חוזר בדפוס מ-design-verticals.html */
+  function switchDoc(i){
+    document.querySelectorAll('#doc-tabs .tab').forEach((t,idx)=>t.classList.toggle('active',idx===i));
+    document.querySelectorAll('#doc .tab-panel').forEach((p,idx)=>p.classList.toggle('active',idx===i));
+  }
+  /* קיר ביקורות נע — הדגמת .testi-wall (תואם index.html) */
+  (function(){
+    const T=[{name:'דנה לוי',platform:'whatsapp',rating:5,text:'הצטרפתי בלי שום רקע, והיום אני מבינה בדיוק מה אני קונה ולמה. אדם מסביר בסבלנות אינסופית.'},
+      {name:'יוסי מזרחי',platform:'google',rating:5,text:'הליווי האישי שינה לי את כל הגישה. עברתי מספקולציות לאסטרטגיית ערך מסודרת. ממליץ בחום!'},
+      {name:'מירב כהן',platform:'whatsapp',rating:5,text:'סוף סוף מישהו שמדבר בגובה העיניים ולא מוכר חלומות. למדתי לחקור מניה לבד וזה שווה זהב.'},
+      {name:'אורן בן דוד',platform:'instagram',rating:5,text:'עוקב אחרי התוכן כבר שנתיים, וההצטרפות לליווי הייתה הצעד הכי טוב שעשיתי לכסף שלי.'},
+      {name:'נטע גולן',platform:'google',rating:5,text:'הגעתי בלי לדעת מה זה דוח רווח והפסד, והיום אני קוראת דוחות בעצמי. ענייני ומקצועי.'},
+      {name:'רון שמואלי',platform:'instagram',rating:5,text:'הכי אהבתי שאין לחץ ואין הבטחות סרק. גישה שמרנית, אחראית ולטווח ארוך.'}];
+    const PLAT={whatsapp:'וואטסאפ',google:'Google',instagram:'אינסטגרם',facebook:'פייסבוק'};
+    const STAR='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.6 5.7 6.2.6-4.7 4.1 1.4 6.1L12 15.8 6.5 19.1l1.4-6.1L3.2 8.8l6.2-.6z"/></svg>';
+    const card=t=>{const s=Array.from({length:5},(_,i)=>'<span'+(i<t.rating?'':' class="off"')+'>'+STAR+'</span>').join('');
+      return '<article class="testi-rev"><div class="rev-top"><span class="rev-ava" aria-hidden="true">'+t.name[0]+'</span><span class="rev-id"><span class="rev-name">'+t.name+'</span><span class="rev-plat"><i data-lucide="circle-check" class="icon"></i> '+PLAT[t.platform]+'</span></span><span class="rev-stars" role="img" aria-label="'+t.rating+' מתוך 5">'+s+'</span></div><p class="rev-text">'+t.text+'</p></article>';};
+    document.querySelectorAll('[data-testi-wall]').forEach(w=>{const c=[[],[],[]];T.forEach((t,i)=>c[i%3].push(card(t)));w.innerHTML=c.map(x=>{const inner=x.join('');return '<div class="testi-col"><div class="testi-track">'+inner+inner+'</div></div>';}).join('');});
+  })();
+
+  /* גלריית וידאו "coverflow" — מרכז embedded, צדדים קטנים, מעבר בלחיצה/החלקה (RTL), נגן youtube-nocookie */
+  (function vidCoverflow(){
+    document.querySelectorAll('.vid-cf').forEach(cf => {
+      const items = [...cf.querySelectorAll('.vcf-item')];
+      const n = items.length; if(!n) return;
+      const dots = cf.parentElement.querySelector('.vcf-dots');
+      let active = Math.floor(n/2), armed = false;
+      function ensureMedia(){
+        if(!armed) return;
+        items.forEach((it,i) => {
+          const frame = it.querySelector('.vcf-frame');
+          if(i === active){
+            if(!it.dataset.loaded && it.dataset.yt){
+              it.dataset.loaded = '1';
+              const f = document.createElement('iframe');
+              f.src = 'https://www.youtube-nocookie.com/embed/' + it.dataset.yt + '?rel=0';
+              f.title = it.dataset.title || 'וידאו'; f.loading = 'lazy';
+              f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+              f.setAttribute('allowfullscreen','');
+              frame.appendChild(f);
+            }
+          } else if(it.dataset.loaded){
+            it.dataset.loaded = '';
+            const f = frame.querySelector('iframe'); if(f) f.remove();
+          }
+        });
+      }
+      function layout(){
+        items.forEach((it,i) => {
+          let p = i - active;
+          if(p >  n/2) p -= n;
+          if(p < -n/2) p += n;
+          it.dataset.pos = Math.abs(p) > 2 ? 'hidden' : String(p);
+          it.tabIndex = (p === 0) ? 0 : -1;
+          it.setAttribute('aria-hidden', String(Math.abs(p) > 2));
+        });
+        if(dots) [...dots.children].forEach((d,i) => d.setAttribute('aria-current', String(i === active)));
+      }
+      function go(idx){ active = (idx % n + n) % n; armed = true; layout(); ensureMedia(); }
+      if(dots){
+        dots.innerHTML = '';
+        items.forEach((it,i) => {
+          const b = document.createElement('button');
+          b.type = 'button'; b.setAttribute('aria-label','וידאו ' + (i+1));
+          b.addEventListener('click', () => go(i));
+          dots.appendChild(b);
+        });
+      }
+      items.forEach((it,i) => it.addEventListener('click', e => {
+        if(cf.dataset.swiping === '1'){ e.preventDefault(); return; }
+        if(i !== active){ e.preventDefault(); go(i); }
+        else if(!it.dataset.loaded){ armed = true; ensureMedia(); }
+      }));
+      let sx = 0, dx = 0, down = false;
+      cf.addEventListener('pointerdown', e => { down = true; sx = e.clientX; dx = 0; cf.dataset.swiping = ''; });
+      cf.addEventListener('pointermove', e => { if(down){ dx = e.clientX - sx; if(Math.abs(dx) > 8) cf.dataset.swiping = '1'; } });
+      function endSwipe(){ if(!down) return; down = false;
+        if(Math.abs(dx) > 45) go(active + (dx < 0 ? 1 : -1));   /* RTL: החלקה שמאלה = הבא */
+        setTimeout(() => { cf.dataset.swiping = ''; }, 0);
+      }
+      cf.addEventListener('pointerup', endSwipe);
+      cf.addEventListener('pointercancel', endSwipe);
+      cf.addEventListener('pointerleave', endSwipe);
+      cf.addEventListener('keydown', e => {
+        if(e.key === 'ArrowLeft'){ e.preventDefault(); go(active + 1); }
+        else if(e.key === 'ArrowRight'){ e.preventDefault(); go(active - 1); }
+      });
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver(ents => {
+          ents.forEach(en => { if(en.isIntersecting && !armed){ armed = true; ensureMedia(); io.disconnect(); } });
+        }, {threshold:.25});
+        io.observe(cf);
+      } else { armed = true; }
+      layout(); ensureMedia();
+    });
+  })();
+
+  lucide.createIcons();
+</script>
+</body>
+</html>

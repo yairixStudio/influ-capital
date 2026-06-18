@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <script src="https://unpkg.com/lucide@latest"></script>
 <link rel="stylesheet" href="brand.css">
+<link rel="stylesheet" href="brand-docs.css">
 <style>
   /* תצוגה בלבד — מסגרת שמדמה דפדפן סביב כל הירו */
   .frame{border:1px solid var(--line);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-md);background:var(--surface);margin-bottom:8px}
@@ -23,6 +24,7 @@
     <div class="brandmark">Influ<b>Capital</b></div>
     <span class="tag">הירו — דוגמאות</span>
     <a href="brand-book.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> ספר המותג</a>
+    <a href="sections.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> סקשנים חוזרים</a>
     <a href="design-verticals.html" style="color:var(--brand)"><i data-lucide="arrow-right" class="icon"></i> ורטיקלים עיצוביים</a>
     <div style="height:1px;background:var(--line);margin:14px 0"></div>
     <a href="#header">⓪ ההידר (Navbar)</a>
@@ -30,8 +32,9 @@
     <a href="#home-center">② עמוד הבית — ממורכז</a>
     <a href="#inner-dark">③ עמוד פנימי — כהה</a>
     <a href="#inner-light">④ עמוד פנימי — בהיר</a>
-    <a href="#footer">⑤ פוטר האתר</a>
-    <a href="#popup">⑥ פופאפ (חלון קופץ)</a>
+    <a href="#hero-min">⑤ הירו מינימלי</a>
+    <a href="#footer">⑥ פוטר האתר</a>
+    <a href="#popup">⑦ פופאפ (חלון קופץ)</a>
   </aside>
 
   <main class="content">
@@ -129,12 +132,14 @@
     <section class="doc" id="inner-dark">
       <div class="wrap">
         <div class="sec-h"><span class="kicker">③ Inner</span><h2>עמוד פנימי — רצועה כהה</h2>
-          <p>לעמודי השירות: פירורי לחם, תווית, כותרת ממוקדת, lead ו‑CTA יחיד. תואם את ההירו הראשי אך דק יותר.</p></div>
+          <p>לעמודי השירות: פירורי לחם, תווית, כותרת, lead ו‑CTA. וריאציה עם ויזואל צד (<span class="codeline">.hero-page-grid</span> + <span class="codeline">.hero-page-visual</span>) — איור השירות מ‑<span class="codeline">media/assets</span>, נעלם במובייל.</p></div>
       </div>
       <div class="wrap"><div class="frame">
         <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/ליווי-אישי</span></div>
         <section class="hero-page">
           <div class="wrap">
+            <div class="hero-page-grid">
+            <div class="hero-page-copy">
             <nav class="breadcrumb"><a href="#">בית</a><span class="sep">/</span><a href="#">שירותים</a><span class="sep">/</span><span class="cur">ליווי השקעות אישי</span></nav>
             <span class="hero-pill"><i data-lucide="line-chart" class="icon"></i> השירות המוביל</span>
             <h1>ליווי השקעות אישי, בגובה העיניים.</h1>
@@ -142,6 +147,9 @@
             <div class="hero-cta">
               <a class="btn btn-primary btn-lg">לתיאום שיחת היכרות</a>
               <a class="btn btn-ghost btn-lg" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)">איך זה עובד</a>
+            </div>
+          </div>
+            <div class="hero-page-visual"><img src="media/assets/3d-bold-items/guidance-chat-bubbles.webp" alt="איור ליווי אישי — בועות שיחה ומצפן" width="280" height="280"></div>
             </div>
           </div>
         </section>
@@ -171,10 +179,39 @@
       </div></div>
     </section>
 
-    <!-- ⑤ SITE FOOTER -->
+    <!-- ⑤ HERO — minimal (super-minimal) -->
+    <section class="doc" id="hero-min">
+      <div class="wrap">
+        <div class="sec-h"><span class="kicker">⑤ Minimal</span><h2>הירו סופר-מינימלי</h2>
+          <p>טמפלט <span class="codeline">[hero-מינימלי]</span> · חוזר באודות, צור קשר ורגולציה. כותרת קצרה + lead בלבד, ללא CTA — הנמכת חסם והתמצאות. וריאנט <span class="codeline">.hero-page.minimal</span> (גרסה כהה ובהירה).</p></div>
+      </div>
+      <div class="wrap"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/אודות</span></div>
+        <section class="hero-page minimal">
+          <div class="wrap">
+            <nav class="breadcrumb"><a href="#">בית</a><span class="sep">/</span><span class="cur">אודות</span></nav>
+            <span class="hero-pill"><i data-lucide="user-round" class="icon"></i> מי אני</span>
+            <h1>אדם ויינשטיין</h1>
+            <p class="lead">בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך, יוצר תוכן פיננסי. כאן כדי להנגיש את שוק ההון בגובה העיניים — בלי רעש ובלי הבטחות.</p>
+          </div>
+        </section>
+      </div></div>
+      <div class="wrap" style="margin-top:14px"><div class="frame">
+        <div class="frame-bar"><i></i><i></i><i></i><span class="url">influ-capital.co.il/צור-קשר</span></div>
+        <section class="hero-page minimal light">
+          <div class="wrap">
+            <nav class="breadcrumb"><a href="#">בית</a><span class="sep">/</span><span class="cur">צור קשר</span></nav>
+            <h1>בואו נדבר</h1>
+            <p class="lead">שיחת היכרות קצרה, בלי התחייבות. נבין מאיפה אתם מגיעים ואיך אפשר לעבוד יחד.</p>
+          </div>
+        </section>
+      </div></div>
+    </section>
+
+    <!-- ⑥ SITE FOOTER -->
     <section class="doc" id="footer">
       <div class="wrap">
-        <div class="sec-h"><span class="kicker">⑤ Footer</span><h2>פוטר האתר</h2>
+        <div class="sec-h"><span class="kicker">⑥ Footer</span><h2>פוטר האתר</h2>
           <p>הפוטר הראשי — לוגו ותקציר, ניווט, מידע משפטי וערוצי קשר, ופס תחתון עם גילוי נאות וזכויות. כהה, ארבע עמודות, רספונסיבי (יורד ל‑2 ול‑1 עמודות).</p></div>
       </div>
       <div class="wrap"><div class="frame">
@@ -232,12 +269,12 @@
     <!-- ⑥ POPUP / MODAL -->
     <section class="doc" id="popup" style="border-bottom:none">
       <div class="wrap">
-        <div class="sec-h"><span class="kicker">⑥ Popup</span><h2>פופאפ (חלון קופץ)</h2>
+        <div class="sec-h"><span class="kicker">⑦ Popup</span><h2>פופאפ (חלון קופץ)</h2>
           <p>חלון מודאלי עם רקע מעומעם — נגיש (מלכודת פוקוס, סגירה ב‑Esc / לחיצה מחוץ, <span class="codeline">role="dialog"</span>). שני וריאנטים: לכידת ליד (טופס קצר) ויצירת קשר (ערוצים ישירים). למטה תצוגה סטטית של כל אחד, ולחצן לתצוגה חיה.</p></div>
 
         <span class="lbl">א. מודאל לכידת ליד (exit-intent / לחיצה על CTA)</span>
         <div class="modal-stage" style="margin-bottom:26px">
-          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="m-lead-title">
+          <div class="modal" role="group" aria-labelledby="m-lead-title">
             <button class="modal-close" type="button" aria-label="סגירה"><i data-lucide="x" class="icon"></i></button>
             <span class="modal-pill"><i data-lucide="sparkles" class="icon"></i> רגע לפני שאתם ממשיכים</span>
             <h3 id="m-lead-title">להשקיע עם שיטה, לא עם תחושת בטן.</h3>
@@ -252,7 +289,7 @@
 
         <span class="lbl">ב. מודאל יצירת קשר (מכפתור "תיאום שיחה" בהידר)</span>
         <div class="modal-stage">
-          <div class="modal modal-contact" role="dialog" aria-modal="true" aria-labelledby="m-contact-title">
+          <div class="modal modal-contact" role="group" aria-labelledby="m-contact-title">
             <button class="modal-close" type="button" aria-label="סגירה"><i data-lucide="x" class="icon"></i></button>
             <span class="modal-pill"><i data-lucide="message-circle" class="icon"></i> מדברים ישירות</span>
             <h3 id="m-contact-title">איך נוח לכם לדבר?</h3>
@@ -262,6 +299,7 @@
               <a class="channel" href="tel:+972533384114"><span class="ic-wrap"><i data-lucide="phone" class="icon"></i></span><div><b>שיחת טלפון</b><small>053-3384114</small></div></a>
               <a class="channel" href="mailto:info@influ-capital.co.il"><span class="ic-wrap"><i data-lucide="mail" class="icon"></i></span><div><b>אימייל</b><small>info@influ-capital.co.il</small></div></a>
             </div>
+            <p class="modal-note"><i data-lucide="clock" class="icon"></i> זמינים בימים א׳–ה׳, 9:00–18:00</p>
           </div>
         </div>
 
@@ -281,6 +319,78 @@
   </main>
 </div>
 
-<script>lucide.createIcons();</script>
+<!-- ===== Overlays חיים לתצוגת הפופאפ (fixed) ===== -->
+<div class="modal-overlay" id="popup-lead" role="presentation">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="ov-lead-title">
+    <button class="modal-close" type="button" data-close-modal aria-label="סגירה"><i data-lucide="x" class="icon"></i></button>
+    <span class="modal-pill"><i data-lucide="sparkles" class="icon"></i> רגע לפני שאתם ממשיכים</span>
+    <h3 id="ov-lead-title">להשקיע עם שיטה, לא עם תחושת בטן.</h3>
+    <p class="modal-sub">השאירו פרטים לשיחת היכרות קצרה — נחזור אליכם בוואטסאפ או בטלפון. ללא התחייבות.</p>
+    <div class="field"><label>שם מלא</label><input class="inp" placeholder="ישראל ישראלי"></div>
+    <div class="field"><label>טלפון</label><input class="inp" placeholder="050-0000000"></div>
+    <label class="choice" style="margin-bottom:16px;font-size:13px"><input type="checkbox" checked> אני מאשר/ת יצירת קשר ושמירת הפרטים</label>
+    <button class="btn btn-primary btn-lg btn-block">תיאום שיחת היכרות</button>
+    <p class="modal-note"><i data-lucide="lock" class="icon"></i> הפרטים נשמרים אצלנו בלבד. ללא ספאם.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="popup-contact" role="presentation">
+  <div class="modal modal-contact" role="dialog" aria-modal="true" aria-labelledby="ov-contact-title">
+    <button class="modal-close" type="button" data-close-modal aria-label="סגירה"><i data-lucide="x" class="icon"></i></button>
+    <span class="modal-pill"><i data-lucide="message-circle" class="icon"></i> מדברים ישירות</span>
+    <h3 id="ov-contact-title">איך נוח לכם לדבר?</h3>
+    <p class="modal-sub">זמין בערוצים שנוחים לכם — בלי טפסים, בלי המתנה.</p>
+    <div class="modal-channels">
+      <a class="channel" href="https://wa.me/972533384114" target="_blank" rel="noopener"><span class="ic-wrap"><i data-lucide="message-circle" class="icon"></i></span><div><b>וואטסאפ</b><small>מענה אישי ומהיר</small></div></a>
+      <a class="channel" href="tel:+972533384114"><span class="ic-wrap"><i data-lucide="phone" class="icon"></i></span><div><b>שיחת טלפון</b><small>053-3384114</small></div></a>
+      <a class="channel" href="mailto:info@influ-capital.co.il"><span class="ic-wrap"><i data-lucide="mail" class="icon"></i></span><div><b>אימייל</b><small>info@influ-capital.co.il</small></div></a>
+    </div>
+    <p class="modal-note"><i data-lucide="clock" class="icon"></i> זמינים בימים א׳–ה׳, 9:00–18:00</p>
+  </div>
+</div>
+
+<script>
+  /* ===== מודאל / פופאפ — פתיחה, סגירה, נגישות (Esc, לחיצה מחוץ, מלכודת פוקוס) ===== */
+  (function modals(){
+    let active = null, lastFocus = null;
+    const FOCUSABLE = 'a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])';
+
+    function open(id){
+      const ov = document.getElementById(id); if(!ov) return;
+      lastFocus = document.activeElement;
+      ov.classList.add('show'); active = ov;
+      document.body.style.overflow = 'hidden';
+      const first = ov.querySelector(FOCUSABLE); if(first) first.focus();
+    }
+    function close(){
+      if(!active) return;
+      active.classList.remove('show'); active = null;
+      document.body.style.overflow = '';
+      if(lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-open-modal]').forEach(btn =>
+      btn.addEventListener('click', () => open(btn.getAttribute('data-open-modal'))));
+    document.querySelectorAll('[data-close-modal]').forEach(btn =>
+      btn.addEventListener('click', close));
+    // לחיצה על הרקע (מחוץ למודאל) סוגרת
+    document.querySelectorAll('.modal-overlay').forEach(ov =>
+      ov.addEventListener('mousedown', e => { if(e.target === ov) close(); }));
+    // Esc + מלכודת פוקוס (Tab) בתוך המודאל הפעיל
+    document.addEventListener('keydown', e => {
+      if(!active) return;
+      if(e.key === 'Escape'){ close(); return; }
+      if(e.key === 'Tab'){
+        const f = [...active.querySelectorAll(FOCUSABLE)].filter(el => el.offsetParent !== null);
+        if(!f.length) return;
+        const first = f[0], last = f[f.length-1];
+        if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+        else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+      }
+    });
+  })();
+
+  lucide.createIcons();
+</script>
 </body>
 </html>

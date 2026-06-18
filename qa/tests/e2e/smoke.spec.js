@@ -60,7 +60,8 @@ test.describe('בריאות בסיסית של האתר', () => {
 
   test('US-06 — אקורדיון שאלות נפוצות נפתח', async ({ page }) => {
     await page.goto('/#/קורס');
-    const items = page.locator('.acc-item');
+    // אקורדיון בעמוד הפעיל בלבד (SPA: יש אקורדיונים גם בעמודים מוסתרים — שו״ת בבית, סילבוס בקורס)
+    const items = page.locator('article.page.active .acc-item');
     if (await items.count() === 0) test.skip(true, 'אין אקורדיון בעמוד זה');
     const first = items.first();
     await first.locator('button, .acc-head, [aria-expanded]').first().click();
