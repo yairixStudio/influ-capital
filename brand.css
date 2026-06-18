@@ -13,7 +13,7 @@
   --font-body:'IBM Plex Sans Hebrew', sans-serif; /* גוף הטקסט */
 
   /* — Brand · Indigo scale — */
-  --indigo-50:#eef0fc; --indigo-100:#dcdffa; --indigo-200:#b8bdf5;
+  --indigo-50:#eef0fc; --indigo-100:#dcdffa; --indigo-200:#b8bdf5; --violet-50:#f3effb;
   --indigo-300:#8f97ee; --indigo-400:#6b72e6; --indigo-500:#4343db; /* ★ מותג */
   --indigo-600:#3530c2; --indigo-700:#2a259c; --indigo-800:#211e7a; --indigo-900:#181659;
 
@@ -73,6 +73,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--ink);line-hei
 h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 .wrap{max-width:1080px;margin:0 auto;padding:0 var(--wrap-pad)}
 .muted{color:var(--muted)}
+.flip-x{transform:scaleX(-1)}  /* היפוך אופקי לתמונות assets שכיוונן הותאם במקור ל-LTR */
 .icon{width:1em;height:1em;display:inline-block;vertical-align:-.125em}
 
 
@@ -97,6 +98,8 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 /* כפתור וואטסאפ על רקע כהה (הירו): גרסת זכוכית — מתמזגת עם הרקע ולא מתחרה ב‑CTA הראשי */
 .hero-main .btn-wa,.hero-page .btn-wa{background:rgba(255,255,255,.07);color:#fff;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
 .hero-main .btn-wa:hover,.hero-page .btn-wa:hover{filter:none;background:rgba(255,255,255,.13)}
+.hero-main .hero-cta .btn-primary{background:var(--teal-300);color:var(--teal-700);box-shadow:0 10px 24px rgba(79,217,189,.32)}
+.hero-main .hero-cta .btn-primary:hover{background:var(--teal-400);transform:translateY(-1px)}
 .btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
 .btn-sm{font-size:13px;padding:8px 14px;border-radius:var(--r-sm)}
 .btn-md{font-size:14px;padding:11px 20px}
@@ -121,12 +124,21 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 .toggle.on::after{right:23px}
 
 /* ===== Cards ===== */
-.svc{padding:24px;border-radius:var(--r-lg);border:1px solid var(--line);background:var(--surface);box-shadow:var(--sh-sm);transition:var(--dur)}
-.svc:hover{box-shadow:var(--sh-md);transform:translateY(-2px)}
-.svc .ic-wrap{width:46px;height:46px;border-radius:var(--r-md);background:var(--indigo-50);color:var(--brand);display:grid;place-items:center;margin-bottom:14px}
-.svc h4,.svc h3{font-size:18px;margin-bottom:6px}
-.svc p{font-size:14px;color:var(--muted);margin-bottom:14px}
-.svc a{font-weight:600;color:var(--brand);font-size:14px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+/* כרטיס שירות — שורה אופקית לחיצה: תיאור מימין, תמונה בגובה הכרטיס עם crop (RTL: שמאל). רקע בגוון בהיר שונה לכל כרטיס + מצבי hover/active "קליקיים". */
+.svc{display:flex;align-items:stretch;gap:0;border-radius:var(--r-lg);border:1px solid var(--line);background:var(--surface);box-shadow:var(--sh-sm);overflow:hidden;cursor:pointer;text-decoration:none;color:var(--ink);transition:transform var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease)}
+.svc:hover{box-shadow:var(--sh-lg);transform:translateY(-3px);border-color:var(--indigo-200)}
+.svc:active{transform:translateY(-1px) scale(.995)}
+.svc:nth-child(1){background:var(--teal-50)}
+.svc:nth-child(2){background:var(--indigo-50)}
+.svc:nth-child(3){background:var(--violet-50)}
+.svc .svc-body{flex:1;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px;padding:12px 16px}
+.svc h4,.svc h3{font-family:var(--font-head);font-size:20px;font-weight:700;margin:0;color:var(--ink);line-height:1.2;transition:color var(--dur) var(--ease)}
+.svc:hover h3,.svc:hover h4{color:var(--brand)}
+.svc p{font-size:13px;color:var(--muted);line-height:1.4;margin:0}
+.svc-media{flex:none;align-self:stretch;display:block;width:clamp(112px,28%,148px);min-height:112px;background:var(--indigo-50);overflow:hidden}
+.svc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
+.svc:hover .svc-media img{transform:scale(1.05)}
+@media(prefers-reduced-motion:reduce){.svc{transition:none}.svc:hover{transform:none}.svc:active{transform:none}.svc:hover .svc-media img{transform:none}}
 .stat{padding:22px;border-radius:var(--r-lg);background:var(--ink);color:#fff}
 .stat .k{font-size:13px;opacity:.7;margin-bottom:6px}
 .stat .v{font-family:var(--font-head);font-size:34px;font-weight:700;line-height:1}
@@ -176,14 +188,15 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 .contact-form{background:var(--surface);padding:28px}
 .contact-form h3{font-size:20px;margin-bottom:4px}
 .contact-form .lead{font-size:13.5px;color:var(--muted);margin-bottom:18px}
-.contact-aside{background:linear-gradient(165deg,var(--indigo-600),var(--indigo-800));color:#fff;padding:26px;display:flex;flex-direction:column;gap:13px}
+.contact-aside{background:var(--bg-alt);color:var(--ink);padding:26px;display:flex;flex-direction:column;gap:13px;border-inline-start:1px solid var(--line)}
 .contact-aside h3{font-size:19px;line-height:1.3}
-.contact-aside .sub{font-size:13px;color:#c7cbf5;margin:-4px 0 4px}
-.channel{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:var(--r-md);padding:12px 14px;text-decoration:none;color:#fff;transition:var(--dur)}
-.channel:hover{background:rgba(255,255,255,.15);transform:translateY(-1px)}
-.channel .ic-wrap{width:38px;height:38px;border-radius:var(--r-sm);background:rgba(255,255,255,.13);display:grid;place-items:center;flex:none;color:#9fe7d6}
-.channel b{font-family:var(--font-head);font-size:14px;display:block}
-.channel small{color:#b9bdf0;font-size:11.5px}
+.contact-aside .sub{font-size:13px;color:var(--muted);margin:-4px 0 4px}
+.channel{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;text-decoration:none;color:var(--ink);transition:var(--dur) var(--ease)}
+.channel:hover{background:var(--indigo-50);border-color:var(--teal-200);transform:translateY(-1px)}
+.channel .ic-wrap{width:38px;height:38px;border-radius:var(--r-sm);background:var(--indigo-50);display:grid;place-items:center;flex:none;color:var(--brand)}
+.channel[data-wa-link] .ic-wrap{background:var(--teal-50);color:var(--whatsapp)}
+.channel b{font-family:var(--font-head);font-size:14px;display:block;color:var(--ink)}
+.channel small{color:var(--muted);font-size:11.5px}
 
 /* ===== Accordion vertical ===== */
 .accordion{border:1px solid var(--line);border-radius:var(--r-lg);overflow:hidden;background:var(--surface);box-shadow:var(--sh-sm)}
@@ -258,6 +271,8 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
    HERO — סקשני פתיחה (ראשי + עמודים פנימיים)
    ========================================================================= */
 .hero-pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;color:#9fe7d6;background:rgba(28,205,168,.12);border:1px solid rgba(28,205,168,.32);padding:6px 13px;border-radius:var(--r-pill);margin-bottom:16px}
+/* גרסת התג לרקע בהיר (למשל בסקשן הטופס) */
+.hero-pill.on-light{color:var(--teal-700);background:var(--teal-50);border-color:var(--teal-200)}
 
 /* ===== Hero ראשי — עמוד הבית (פרימיום כהה) ===== */
 /* רקע: דיו עמוק אחיד + זוהר טיל עדין מאחורי הפורטרט (בלי גרדיאנט כחול) */
@@ -302,7 +317,7 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 .hero-main::before{content:"";position:absolute;inset:0;pointer-events:none;background:
   radial-gradient(70% 80% at 82% 100%,rgba(28,205,168,.16),transparent 58%),
   radial-gradient(55% 60% at 6% -10%,rgba(67,67,219,.14),transparent 60%)}
-.hero-main .wrap{position:relative;z-index:1}
+.hero-main .wrap{position:relative;z-index:1;padding-bottom:var(--wrap-pad)}
 .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:36px;align-items:stretch}
 .hero-grid .hero-copy{align-self:center;padding-bottom:clamp(40px,6vw,72px)}
 /* Hero ממורכז (אדיטוריאלי) — וריאציה בלי תמונה, פדינג מאוזן למעלה/למטה */
@@ -312,10 +327,14 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 .hero-main.center h1{max-width:none;margin-inline:auto}
 .hero-main.center .hook{margin-inline:auto}
 .hero-main.center .hero-cta,.hero-main.center .hero-trust{justify-content:center}
-@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:8px}
+@media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:4px}
+  .hero-main{text-align:center}
   .hero-main .hero-grid .hero-copy{display:contents}
-  .hero-main .hero-pill{order:-2;justify-self:center;font-size:10px;padding:3px 9px;gap:4px;margin-bottom:4px}
-  .hero-main .hero-pill .icon{width:11px;height:11px}
+  .hero-main .hero-pill{display:none}
+  .hero-main h1{order:-1;max-width:none;margin-top:0;margin-inline:auto;font-size:clamp(34px,8.8vw,44px);line-height:1.1}
+  .hero-main .hook{margin-inline:auto}
+  .hero-main .hero-cta{justify-content:center}
+  .hero-main .hero-trust{justify-content:center}
   .hero-grid .hero-copy{padding-bottom:18px}}
 .hero-kicker{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:500;letter-spacing:.03em;color:#c7cbf5;margin-bottom:18px}
 .hero-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(28,205,168,.22);flex:none}
@@ -335,7 +354,12 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
 }
 @keyframes tw-blink{0%,49%{opacity:1}50%,100%{opacity:0}}
 .hero-main h1 .accent{color:var(--teal-300)}
+.hero-main h1 .hero-h1-line{display:block}
 .hero-main .hook{margin-top:18px;font-size:clamp(16px,1.8vw,20px);line-height:1.55;color:#e0e3f5;max-width:46ch}
+@media(max-width:820px){
+  .hero-main h1{margin-bottom:0}
+  .hero-main .hook{margin-top:0}
+}
 .hero-main .hook b{color:#fff;font-weight:600}
 .hero-main .subline{margin-top:12px;font-size:15px;line-height:1.6;color:#aebbcf;max-width:52ch}
 .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
@@ -344,7 +368,7 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
 .hero-trust .ts b{font-family:var(--font-head);color:#fff;font-size:16px;font-weight:600}
 .hero-trust .ts .icon{color:var(--teal-300);width:18px;height:18px}
 @media(max-width:820px){
-  .hero-trust{flex-wrap:nowrap;gap:6px 10px;margin-top:22px;padding-top:5px;padding-bottom:10px}
+  .hero-trust{flex-wrap:nowrap;gap:6px 10px;margin-top:22px;padding-top:5px;padding-bottom:0}
   .hero-trust .ts{font-size:11px;gap:5px;white-space:nowrap}
   .hero-trust .ts b{font-size:inherit;font-weight:600}
   .hero-trust .ts .icon{width:14px;height:14px;flex-shrink:0}
@@ -355,10 +379,10 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
   .hero-trust .ts .icon{width:12px;height:12px}
 }
 .hero-portrait{position:relative;align-self:stretch;display:flex;align-items:flex-end;justify-content:center}
-.hero-portrait img{width:100%;max-width:380px;height:auto;display:block;position:relative;z-index:1;vertical-align:bottom}
+.hero-portrait img{width:100%;max-width:480px;height:auto;display:block;position:relative;z-index:1;vertical-align:bottom}
 .hero-portrait::after{content:"";position:absolute;z-index:0;width:82%;aspect-ratio:1;left:50%;bottom:0;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(28,205,168,.28),transparent 70%);filter:blur(26px)}
 /* מובייל: הפורטרט מעל הקופי (order:-1), ממורכז ובפרופורציה מוקטנת */
-@media(max-width:820px){.hero-main .hero-portrait{order:-1;max-width:200px;margin:0 auto 6px;align-self:center}.hero-main .hero-portrait img{max-width:200px}}
+@media(max-width:820px){.hero-main .hero-portrait{order:-3;max-width:200px;margin:0 auto 2px;align-self:center}.hero-main .hero-portrait img{max-width:200px}}
 
 /* ===== Hero עמוד פנימי — רצועה כהה דקה ===== */
 /* רקע אחיד עם עמוד הבית (.hero-main): אותו בסיס כהה + אותם הילות teal/indigo, בעוצמה מעט קטנה יותר. גובה מינימלי כדי שלא ייראו "נמוכים" מדי, עם מירכוז אנכי של התוכן. */
@@ -394,12 +418,21 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
 
 /* ===== WhatsApp — הדמיית דיאלוג (ורטיקל "יד על הדופק") ===== */
 .wa-vert{display:grid;grid-template-columns:1fr .9fr;gap:clamp(26px,4vw,58px);align-items:center}
-@media(max-width:860px){.wa-vert{grid-template-columns:1fr;gap:30px}}
+/* מובייל: הוויזואל (תמונה/צ'אט) מעל בלוק הכותרת */
+@media(max-width:860px){.wa-vert{display:flex;flex-direction:column-reverse;gap:30px}}
 .wa-vert .sec-h{margin-bottom:0}
 .wa-points{list-style:none;margin:22px 0 0;padding:0;display:grid;gap:13px}
 .wa-points li{display:flex;gap:11px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--muted)}
 .wa-points li .icon{color:var(--whatsapp);flex-shrink:0;width:19px;height:19px;margin-top:1px}
 .wa-points li b{color:var(--ink);font-weight:600}
+/* עמודת ה-CTA הסופית (ליד הצ'אט): נקודות עם תגי-אייקון, מרווח אוורירי ושורת פעולה */
+.cta-final .wa-points{gap:16px;margin-top:22px}
+.cta-final .wa-points li{align-items:center;gap:14px;font-size:15.5px;color:var(--gray-700)}
+.cta-final .wa-points li > svg,.cta-final .wa-points li > .icon{width:42px;height:42px;padding:10px;
+  border-radius:var(--r-md);background:var(--teal-50);color:var(--teal-600);box-shadow:var(--sh-sm);
+  border:1px solid var(--teal-200);flex:none;margin-top:0}
+.cta-final .wa-points li b{color:var(--ink)}
+.cta-final .cta-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
 .wa-chat{width:100%;max-width:384px;margin-inline:auto;border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--line);box-shadow:var(--sh-lg);background:#0b141a;font-family:var(--font-body)}
 .wa-head{display:flex;align-items:center;gap:11px;padding:11px 14px;background:#202c33;text-decoration:none;cursor:pointer;transition:background var(--dur) var(--ease)}
@@ -464,8 +497,13 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
 .footer-brand img{height:30px;width:auto;display:block;margin-bottom:14px}
 .footer-brand p{color:#9aa2c8;font-size:13.5px;line-height:1.6;max-width:34ch}
 .footer-social{display:flex;gap:10px;margin-top:16px}
-.footer-social a{width:38px;height:38px;border-radius:var(--r-sm);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;color:#c2c8e4}
-.footer-social a:hover{background:rgba(255,255,255,.14);color:#fff;transform:translateY(-1px)}
+.footer-social a{width:38px;height:38px;border-radius:var(--r-sm);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:grid;place-items:center;color:#c2c8e4;transition:var(--dur) var(--ease)}
+.footer-social a:hover{background:#fff;border-color:#fff;transform:translateY(-1px)}
+/* בריחוף — האייקון נצבע בצבע המותג של כל רשת (chip לבן + לוגו צבעוני) */
+.footer-social a[href*="youtube"]:hover{color:#FF0000}
+.footer-social a[href*="facebook"]:hover{color:#1877F2}
+.footer-social a[href*="spotify"]:hover{color:#1DB954}
+.footer-social a[href*="instagram"]:hover{color:#fff;border-color:transparent;background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5)}
 .footer-social .icon{width:18px;height:18px}
 .footer-col h3,.footer-col h4{font-family:var(--font-head);color:#fff;font-size:14.5px;font-weight:600;margin-bottom:22px}
 .footer-col ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
@@ -592,9 +630,9 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
      מעבר בלחיצה על הקטנים או בהחלקה (ללא חיצים) · נגן youtube-nocookie (פרטיות) — */
 .vid-cf{position:relative;margin-top:26px;height:clamp(170px,30vw,280px);overflow:hidden;
   touch-action:pan-y;-webkit-user-select:none;user-select:none}
-.vcf-item{position:absolute;top:50%;left:50%;width:min(430px,56%);border:0;padding:0;background:none;
+.vcf-item{position:absolute;top:50%;left:50%;width:min(420px,54%);border:0;padding:0;background:none;
   cursor:pointer;transform:translate(-50%,-50%);will-change:transform;
-  transition:transform .42s var(--ease),opacity .42s var(--ease),filter .42s var(--ease)}
+  transition:transform .42s var(--ease),opacity .42s var(--ease)}
 .vcf-frame{position:relative;display:block;width:100%;padding-top:56.25%;border-radius:var(--r-lg);overflow:hidden;
   box-shadow:var(--sh-lg);background:linear-gradient(150deg,var(--indigo-700),var(--indigo-900))}
 .vcf-frame img,.vcf-frame iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
@@ -606,20 +644,60 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
 .vcf-item:focus-visible{outline:none}
 .vcf-item:focus-visible .vcf-frame{outline:3px solid var(--indigo-200);outline-offset:3px}
 /* מצבי מיקום (data-pos נקבע ב-JS) — RTL: pos חיובי = הפריטים הבאים, משמאל */
-.vcf-item[data-pos="0"]{z-index:5;opacity:1;filter:none}
-.vcf-item[data-pos="1"],.vcf-item[data-pos="-1"]{z-index:3;opacity:.6;filter:saturate(.9)}
+.vcf-item[data-pos="0"]{z-index:5;opacity:1}
+.vcf-item[data-pos="1"],.vcf-item[data-pos="-1"]{z-index:3;opacity:.6}
 .vcf-item[data-pos="2"],.vcf-item[data-pos="-2"]{z-index:2;opacity:.32}
-.vcf-item[data-pos="1"]{transform:translate(-50%,-50%) translateX(70%) scale(.72)}
-.vcf-item[data-pos="2"]{transform:translate(-50%,-50%) translateX(122%) scale(.55)}
-.vcf-item[data-pos="-1"]{transform:translate(-50%,-50%) translateX(-70%) scale(.72)}
-.vcf-item[data-pos="-2"]{transform:translate(-50%,-50%) translateX(-122%) scale(.55)}
+.vcf-item[data-pos="1"]{transform:translate(-50%,-50%) translateX(58%) scale(.62)}
+.vcf-item[data-pos="-1"]{transform:translate(-50%,-50%) translateX(-58%) scale(.62)}
 .vcf-item[data-pos="hidden"]{opacity:0;pointer-events:none;z-index:1;transform:translate(-50%,-50%) scale(.4)}
-.vcf-dots{display:flex;gap:8px;justify-content:center;margin-top:18px}
-.vcf-dots button{width:8px;height:8px;border-radius:var(--r-pill);border:0;padding:0;background:var(--gray-300);
-  cursor:pointer;transition:var(--dur) var(--ease)}
-.vcf-dots button[aria-current="true"]{background:var(--brand);width:22px}
-.vcf-dots button:focus-visible{outline:2px solid var(--indigo-200);outline-offset:2px}
+.vcf-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+/* יעד מגע 24px (WCAG 2.5.8) — הנקודה הויזואלית קטנה דרך ::after */
+.vcf-dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.vcf-dots button::after{content:"";width:8px;height:8px;border-radius:var(--r-pill);background:var(--gray-300);transition:var(--dur) var(--ease)}
+.vcf-dots button[aria-current="true"]::after{background:var(--brand);width:22px}
+.vcf-dots button:focus-visible{outline:2px solid var(--indigo-200);outline-offset:2px;border-radius:var(--r-pill)}
 @media(prefers-reduced-motion:reduce){.vcf-item{transition:none}}
+/* מובייל — סקשן פודקאסט: הגלריה מעל, ואז לוגואים בסטאק אנכי (כמו הגדרות iOS) · והקרוסלה הופכת לסליידר snap-center */
+@media(max-width:640px){
+  .podcast .wrap{display:flex;flex-direction:column}
+  .podcast .section-head{order:1}
+  .podcast .vid-cf{order:2}
+  .podcast .vcf-dots{order:3}
+  /* כפתורי הפלטפורמות במובייל — דבוקה אחת רחבה בסגנון iOS: מסגרת+פינות לקבוצה, שורות עם divider, ואייקון פתיחה-חיצונית בקצה */
+  .podcast .pod-logos{order:4;margin-top:24px;flex-direction:column;align-items:stretch;gap:0;
+    max-width:none;margin-inline:0;border:1px solid var(--line);border-radius:var(--r-lg);
+    overflow:hidden;background:var(--surface);box-shadow:var(--sh-sm)}
+  .podcast .pod-chip{justify-content:flex-start;gap:12px;border:0;border-radius:0;box-shadow:none;
+    background:transparent;padding:16px 18px;font-size:15px;border-bottom:1px solid var(--line)}
+  .podcast .pod-chip:last-child{border-bottom:0}
+  .podcast .pod-chip:hover,.podcast .pod-chip:active{transform:none;background:var(--gray-100);color:var(--gray-700)}
+  /* אייקון "פתיחה חיצונית" (external-link) בקצה כל שורה — מסמן שהקישור יוצא מהאתר */
+  .podcast .pod-chip::after{content:"";flex:none;margin-inline-start:auto;width:15px;height:15px;background:var(--muted);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E") center/contain no-repeat;
+    mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E") center/contain no-repeat}
+  /* סליידר נייטיב עם snap למרכז במקום ה-coverflow */
+  .vid-cf{height:auto;overflow:visible;overflow-x:auto;display:flex;gap:14px;padding-block:6px;padding-inline:11%;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-x;scrollbar-width:none}
+  .vid-cf::-webkit-scrollbar{display:none}
+  .vid-cf .vcf-item{position:static;flex:0 0 78%;width:78%;scroll-snap-align:center;
+    transform:none!important;opacity:1!important;filter:none!important;z-index:auto!important;pointer-events:auto!important}
+}
+
+/* — סקשן "דופק השוק": מספרי אחוזים רנדומליים צפים (אדום/ירוק) ברקע · הלוגיקה ב-index.html — */
+.market-pulse{position:relative;overflow:hidden;display:grid;place-items:center;min-height:clamp(360px,48vw,480px)}
+.market-pulse .wrap{position:relative;z-index:1}
+.market-pulse .section-head{margin-bottom:0}
+.mp-stage{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.mp-note{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:7px;margin-top:24px;color:var(--muted);font-size:12px;text-align:center}
+.mp-note .icon{width:14px;height:14px;flex:none}
+.mp-badge{position:absolute;display:inline-flex;align-items:center;gap:5px;font-family:var(--font-head);font-weight:700;
+  font-size:clamp(15px,2.4vw,24px);padding:6px 13px;border-radius:var(--r-pill);white-space:nowrap;border:1px solid;
+  opacity:0;animation:mp-pop var(--mp-dur,3s) var(--ease) forwards;will-change:transform,opacity}
+.mp-badge.up{color:var(--positive);background:rgba(18,165,148,.10);border-color:rgba(18,165,148,.34)}
+.mp-badge.down{color:var(--danger);background:rgba(224,86,74,.10);border-color:rgba(224,86,74,.34)}
+.mp-badge .arw{width:1em;height:1em;flex:none}
+@keyframes mp-pop{0%{opacity:0;transform:translateY(10px) scale(.82)}16%{opacity:1;transform:translateY(0) scale(1)}82%{opacity:1}100%{opacity:0;transform:translateY(-12px) scale(.9)}}
+@media(prefers-reduced-motion:reduce){.mp-badge{display:none}}
 
 /* — עמוד-מסמך / רגולציה · פרוזה משפטית (ניווט בטאבים ב-.tabs הקיים) — */
 .legal-doc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--sh-sm);padding:clamp(24px,4vw,40px);max-width:760px;margin-top:22px}
@@ -696,7 +774,7 @@ article.page > section:nth-of-type(even):not(.hero-main):not(.hero-page){backgro
 .ticker{position:relative;overflow:hidden;direction:ltr;margin-top:clamp(20px,3vw,32px);
   -webkit-mask-image:linear-gradient(to right,transparent,#000 11%,#000 89%,transparent);
           mask-image:linear-gradient(to right,transparent,#000 11%,#000 89%,transparent)}
-.ticker-track{display:flex;width:max-content;direction:ltr;animation:ticker-scroll 60s linear infinite;will-change:transform}
+.ticker-track{display:flex;width:max-content;direction:ltr;animation:ticker-scroll 120s linear infinite;will-change:transform}
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .tkr{display:inline-flex;align-items:center;gap:10px;padding:8px 8px 8px 15px;margin-inline-end:14px;border:1px solid var(--line);border-radius:var(--r-pill);background:var(--surface);box-shadow:var(--sh-sm);white-space:nowrap;flex:none}
 .tkr img{height:18px;width:auto;max-width:88px;object-fit:contain;display:block}

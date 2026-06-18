@@ -107,17 +107,28 @@
       padding:10px 18px; border-radius:var(--r-sm); font-family:var(--font-head); font-weight:600; text-decoration:none; transition:top .2s var(--ease) }
     .skip-link:focus{ top:12px }
 
-    /* הידר כמעט שקוף מעל ההירו (וילון לבן עדין 5%) — נגלל עם הדף. כשההירו יוצא מהפריים ההידר חוזר נעוץ עם רקע כהה.
-       טקסט/לוגו בהירים, כי הרקע מאחור כהה (הירו) או כהה (revealed). */
+    /* ההידר יושב מעל ראש העמוד ונגלל מעלה יחד עם התוכן (absolute) — לא נעוץ, לא מופיע/נעלם ולא מתחלף ללבן בגלילה.
+       טקסט/לוגו בהירים מעל הירו כהה; over-light (רקע כהה) רק כשההירו בהיר, לטובת ניגודיות. */
     .site-header{ position:absolute; inset-inline:0; top:0; z-index:900;
       background:rgba(255,255,255,.05); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
       transition:background .3s var(--ease) }
     /* מעל הירו בהיר (דפי משנה) — רקע כהה לטובת ניגודיות הטקסט הבהיר */
     .site-header.over-light{ background:var(--surface-dark); -webkit-backdrop-filter:none; backdrop-filter:none }
-    /* ההירו יצא מהפריים — ההידר חוזר, נעוץ למעלה, עם רקע כהה וצל, ומחליק פנימה */
-    .site-header.revealed{ position:fixed; background:var(--surface-dark); -webkit-backdrop-filter:none; backdrop-filter:none;
-      box-shadow:0 6px 20px rgba(10,14,29,.28); animation:header-drop .35s var(--ease) }
-    @keyframes header-drop{ from{ transform:translateY(-100%) } to{ transform:none } }
+    /* ההירו יצא מהפריים — רק הרקע הופך ללבן עם צל (ללא החלקה/הופעה). ההידר נשאר במקומו תמיד. */
+    .site-header.revealed{ background:var(--surface); -webkit-backdrop-filter:none; backdrop-filter:none;
+      box-shadow:0 4px 18px rgba(14,19,48,.10) }
+    /* כשההידר נחשף (ההירו יצא מהפריים) — וריאציה לבנה: לוגו צבעוני, טקסט כהה */
+    .site-header .nav-links a, .site-header .nav-toggle{ transition:color .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease) }
+    .site-nav .logo img.logo-color{ display:none }
+    .site-header.revealed .logo img.logo-light{ display:none }
+    .site-header.revealed .logo img.logo-color{ display:block }
+    .site-header.revealed .nav-links a{ color:var(--gray-700) }
+    .site-header.revealed .nav-links a:hover, .site-header.revealed .nav-links a[aria-current="page"]{ color:var(--brand) }
+    .site-header.revealed .nav-toggle{ color:var(--ink) }
+    .site-header.revealed .nav-links.open{ background:var(--surface); border-top-color:var(--line); box-shadow:0 14px 22px rgba(14,19,48,.12) }
+    .site-header.revealed .nav-links.open li a{ border-bottom-color:var(--line) }
+    .site-header.revealed .nav-links.open li + li{ border-top-color:var(--line) }
+    .site-header.revealed .nav-links.open li a:hover{ background:var(--gray-100) }
     /* פינוי מקום לנאב ה-absolute מעל ההירו (גובה: פדינג אנכי*2 + לוגו 30px + אוויר) */
     .hero-main,.hero-page,.hero-page.minimal{ padding-top:calc(var(--nav-pad-y)*2 + 30px + clamp(10px,1.8vw,22px)) }
 
@@ -141,6 +152,14 @@
     .lead-figure{ justify-self:center; align-self:end; line-height:0 }
     .lead-figure img{ width:100%; max-width:340px; height:auto; display:block }
     @media(max-width:820px){ .lead-split{ grid-template-columns:1fr } .lead-figure{ display:none } }
+    /* "נדבר?" — טופס ממורכז ברוחב הסקשן, תמונת אדם בצד צמודה לתחתית הסקשן עם דעיכה רכה (כדי שהקיטום למטה ייראה מכוון), בלי שהטופס יסתיר אותה. הרקע הוא var(--bg-alt) כי זה סקשן זוגי. */
+    .contact-section{ position:relative; overflow:hidden; padding-bottom:0 }
+    .contact-section .lead-split{ display:block; max-width:1080px; margin-inline:auto; padding-bottom:clamp(46px,6vw,78px) }
+    .contact-section .form-card{ width:100%; max-width:500px; margin-inline:auto; position:relative; z-index:2 }
+    .contact-section .lead-figure{ position:absolute; bottom:0; inset-inline-start:max(16px,calc((100% - 1080px)/2)); width:clamp(220px,22vw,290px); margin:0; z-index:1; pointer-events:none }
+    .contact-section .lead-figure img{ width:100%; max-width:none }
+    .contact-section .lead-figure::after{ content:""; position:absolute; inset-inline:0; bottom:0; height:34%; background:linear-gradient(to top, var(--bg-alt), transparent); pointer-events:none }
+    @media(max-width:1080px){ .contact-section .lead-figure{ display:none } }
 
     /* === כניסת תוכן ההירו (עמוד בית בלבד) ===
        ה-h1 ("הכותרת הראשית") עם אפקט typewriter. כל שאר תוכן ההירו מוסתר עד שה-h1 מסיים להיכתב,
@@ -151,19 +170,20 @@
     html.hero-intro .hero-main .hero-cta,
     html.hero-intro .hero-main .hero-trust,
     html.hero-intro .hero-main .hero-portrait{ opacity:0 }
+    /* פורטרט נכנס יחד עם תחילת ה-typewriter (לא מחכה לסיום) */
+    .hero-main.intro-portrait-go .hero-portrait{ animation:hero-rise .6s var(--ease) both }
     .hero-main.intro-go .hero-pill,
     .hero-main.intro-go .hook,
     .hero-main.intro-go .hero-cta,
-    .hero-main.intro-go .hero-trust,
-    .hero-main.intro-go .hero-portrait{ animation:hero-rise .6s var(--ease) both }
+    .hero-main.intro-go .hero-trust{ animation:hero-rise .6s var(--ease) both }
     .hero-main.intro-go .hero-pill{ animation-delay:.02s }
-    .hero-main.intro-go .hero-portrait{ animation-delay:.1s }
     .hero-main.intro-go .hook{ animation-delay:.2s }        /* כותרת המשנה */
     .hero-main.intro-go .hero-cta{ animation-delay:.34s }
     .hero-main.intro-go .hero-trust{ animation-delay:.48s }  /* שאר התוכן */
-    /* ההידר כולו (כולל וילון ה-5% והבלאר) מוסתר עד סיום ה-h1 (רק בנחיתה על הבית), ואז נכנס עם תוכן ההירו */
+    /* ההידר כולו (כולל וילון ה-5% והבלאר) מוסתר עד סיום ה-h1 (רק בנחיתה על הבית), ואז פשוט מופיע — ללא אנימציה.
+       חשוב: בלי keyframe על ה-intro-in, אחרת הסרת .revealed (גלילה חזרה אל ההירו) מפעילה מחדש את האנימציה. */
     html.hero-intro.home-landing .site-header{ opacity:0 }
-    .site-header.intro-in{ animation:hero-rise .6s var(--ease) both }
+    html.hero-intro.home-landing .site-header.intro-in{ opacity:1 }
     @keyframes hero-rise{ from{ opacity:0; transform:translateY(24px) } to{ opacity:1; transform:none } }
     /* ללא תנועה — לבטל הסתרה/אנימציה (ה-typewriter ממילא לא רץ, ולא יתווסף intro-go) */
     @media (prefers-reduced-motion: reduce){
@@ -193,6 +213,10 @@
       .site-nav .nav-links.open li a:hover{ background:rgba(255,255,255,.06) }
       @keyframes nav-drop{ from{ opacity:0; transform:translateY(-12px) scaleY(.94) } to{ opacity:1; transform:none } }
       @keyframes nav-item{ from{ opacity:0; transform:translateY(-8px) } to{ opacity:1; transform:none } }
+      /* אנימציית סגירה — הפוכה לפתיחה (החלקה כלפי מעלה + דהייה) */
+      .site-nav .nav-links.open.closing{ animation:nav-up var(--dur) var(--ease) both }
+      .site-nav .nav-links.open.closing li{ animation:none }
+      @keyframes nav-up{ from{ opacity:1; transform:none } to{ opacity:0; transform:translateY(-12px) scaleY(.94) } }
       @media (prefers-reduced-motion: reduce){
         .site-nav .nav-links.open,
         .site-nav .nav-links.open li{ animation:none } }
@@ -270,17 +294,21 @@
     /* בלוק IBI (בית) */
     .ibi-band{ padding-block:clamp(46px,6vw,78px) }
     .ibi-card{ position:relative; overflow:hidden; display:grid; grid-template-columns:1.1fr .9fr; gap:clamp(24px,4vw,48px);
-      align-items:center; border-radius:var(--r-xl); padding:clamp(28px,4vw,46px); color:#fff;
-      background:linear-gradient(150deg,var(--indigo-700),var(--indigo-900)) }
+      align-items:center; border-radius:var(--r-xl); padding:clamp(28px,4vw,46px); color:var(--ink);
+      background:linear-gradient(150deg,#fff,var(--indigo-50)); border:1px solid var(--line); box-shadow:var(--sh-md) }
     .ibi-card::before{ content:""; position:absolute; inset:0; pointer-events:none;
-      background:radial-gradient(60% 90% at 90% 10%,rgba(28,205,168,.18),transparent 55%) }
+      background:radial-gradient(60% 90% at 90% 10%,rgba(28,205,168,.12),transparent 55%) }
     .ibi-card > *{ position:relative; z-index:1 }
     .ibi-badge{ display:inline-flex; align-items:center; gap:7px; font-family:var(--font-head); font-weight:600; font-size:12.5px;
-      color:#9fe7d6; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); padding:6px 13px; border-radius:var(--r-pill); margin-bottom:14px }
+      color:var(--teal-700); background:var(--surface); border:1px solid var(--teal-200); padding:6px 13px; border-radius:var(--r-pill); margin-bottom:14px }
     .ibi-card h2{ font-family:var(--font-head); font-weight:700; font-size:clamp(22px,3vw,30px); line-height:1.2 }
-    .ibi-card p{ color:#cdd2ec; font-size:clamp(15px,1.6vw,17px); margin:12px 0 22px; max-width:46ch }
+    .ibi-card p{ color:var(--muted); font-size:clamp(15px,1.6vw,17px); margin:12px 0 22px; max-width:46ch }
     .ibi-visual{ display:flex; justify-content:center }
     .ibi-visual img{ width:100%; max-width:300px; height:auto }
+    /* לוגו השותף (בית ההשקעות IBI) בתוך כרטיס ה-IBI */
+    .ibi-partner{ display:flex; align-items:center; gap:13px; margin:2px 0 24px }
+    .ibi-partner span{ font-size:13px; font-weight:600; color:var(--muted) }
+    .ibi-partner img{ height:42px; width:auto; display:block }
     @media(max-width:760px){ .ibi-card{ grid-template-columns:1fr } .ibi-visual{ display:none } }
 
     /* רקע דקורטיבי עדין לסקשני "כאב" בבית */
@@ -298,6 +326,90 @@
       pointer-events:none; transition:opacity .7s var(--ease) }
     .treemap-lab.treemap-ready .treemap-bg{ opacity:1 }
     @media (prefers-reduced-motion: reduce){ .treemap-lab .treemap-bg{ transition:none } }
+
+    /* === ויזואליזציה: "שני תיקים, 15 שנה" — עמוד ליווי אישי ===
+       רקע גריד משבצות חשבון בהיר (נראה לכל אורך הסקשן). הקנבס מלא-רוחב; שני גרפים
+       מצוירים לאט בזמן אמת משמאל לימין: תיק מלווה (ירוק) שמנצח מול תיק פזיז (אדום).
+       נקודות הציון הקטנות הן צ'יפים ב‑DOM; ציר השנים והגריד הראשי מצוירים על הקנבס. */
+    .growth-race{ position:relative; overflow:hidden; padding-block:clamp(46px,6vw,84px);
+      /* משבצות חשבון בגוון תכלת — נראות בבירור גם מאחורי הגרף (משבצות דקות + קו-על כל 5) */
+      background-color:#f7f9ff;
+      background-image:
+        linear-gradient(rgba(67,67,219,.085) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(67,67,219,.085) 1px, transparent 1px),
+        linear-gradient(rgba(67,67,219,.14) 1.2px, transparent 1.2px),
+        linear-gradient(90deg, rgba(67,67,219,.14) 1.2px, transparent 1.2px);
+      background-size:23px 23px, 23px 23px, 115px 115px, 115px 115px; background-position:center; }
+    .growth-race::after{ content:""; position:absolute; inset:0; pointer-events:none;
+      /* וינייטה עדינה בקצוות בלבד — לא מסתירה את הגריד במרכז */
+      background:radial-gradient(140% 100% at 50% 45%, transparent 68%, rgba(247,249,255,.45) 100%); }
+    .growth-race .wrap{ position:relative; z-index:1 }
+    /* פרופילי המשקיעים */
+    .growth-profiles{ display:grid; grid-template-columns:repeat(2,1fr); gap:clamp(14px,2vw,22px);
+      margin-top:clamp(22px,3vw,32px) }
+    @media (max-width:640px){ .growth-profiles{ grid-template-columns:1fr } }
+    .gp-card{ background:var(--surface); border:1px solid var(--line); border-inline-start-width:4px;
+      border-radius:var(--r-lg); box-shadow:var(--sh-sm); padding:clamp(15px,1.8vw,20px) }
+    .gp-card.calm{ border-inline-start-color:var(--positive) }
+    .gp-card.wild{ border-inline-start-color:var(--danger) }
+    .gp-head{ display:flex; align-items:center; gap:11px; margin-bottom:13px }
+    .gp-ava{ width:36px; height:36px; border-radius:50%; flex:none; display:grid; place-items:center; font-size:18px }
+    .gp-card.calm .gp-ava{ background:color-mix(in srgb, var(--positive) 16%, #fff) }
+    .gp-card.wild .gp-ava{ background:color-mix(in srgb, var(--danger) 16%, #fff) }
+    .gp-head b{ font-family:var(--font-head); font-size:15.5px; color:var(--ink); display:block }
+    .gp-head small{ font-size:12px; color:var(--muted) }
+    .gp-card dl{ display:grid; grid-template-columns:auto 1fr; gap:8px 14px; margin:0 }
+    .gp-card dt{ font-size:12px; color:var(--muted); font-weight:600; white-space:nowrap }
+    .gp-card dd{ font-size:12.5px; color:var(--ink); margin:0; font-weight:500; line-height:1.45 }
+    .gp-card.calm dd b{ color:var(--positive) }
+    .gp-card.wild dd b{ color:var(--danger) }
+    /* קנבס מלא-רוחב */
+    .growth-chart{ position:relative; width:100%; margin-top:clamp(24px,3.4vw,38px);
+      height:clamp(380px,42vw,560px) }
+    @media (max-width:640px){ .growth-chart{ height:clamp(420px,84vw,520px) } }
+    .growth-chart canvas{ position:absolute; inset:0; width:100%; height:100%; display:block }
+    /* מקרא */
+    .growth-legend{ display:flex; flex-wrap:wrap; gap:10px 22px; justify-content:center;
+      margin-top:clamp(20px,2.6vw,30px) }
+    .growth-legend .lg{ display:inline-flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; color:var(--ink) }
+    .growth-legend .swatch{ width:26px; height:0; border-top:3px solid currentColor; border-radius:2px; flex:none }
+    .growth-legend .lg.calm{ color:var(--positive) }
+    .growth-legend .lg.wild{ color:var(--danger) }
+    .growth-legend .lg b{ color:inherit }
+    .growth-legend .lg span{ color:var(--muted); font-weight:500 }
+    /* נקודות ציון (צ'יפים) — מלאות בצבע (ירוק/אדום) עם טקסט לבן; מופיעות לכמה שניות ונעלמות */
+    .growth-pin{ position:absolute; transform:translate(-50%,-50%) scale(.9); z-index:3;
+      display:flex; align-items:center; gap:5px; max-width:none; white-space:nowrap;
+      border-radius:var(--r-pill);
+      padding:4px 10px 4px 8px; box-shadow:var(--sh-md); font-size:10.5px; font-weight:600; color:#fff;
+      opacity:0; transition:opacity .5s var(--ease), transform .5s var(--ease) }
+    .growth-pin .emo{ font-size:11px; line-height:1 }
+    .growth-pin.calm{ background:var(--positive) }
+    .growth-pin.wild{ background:var(--danger) }
+    .growth-pin::after{ content:""; position:absolute; width:7px; height:7px; border-radius:50%;
+      border:2px solid #fff; bottom:-12px; left:50%; transform:translateX(-50%); box-shadow:var(--sh-sm) }
+    .growth-pin.calm::after{ background:var(--positive) }
+    .growth-pin.wild::after{ background:var(--danger) }
+    .growth-pin.below::after{ bottom:auto; top:-12px }
+    .growth-pin.show{ opacity:1; transform:translate(-50%,-50%) scale(1) }
+    /* תגי סיום — ערך התיק בקצה הימני */
+    .growth-end{ position:absolute; transform:translateY(-50%); z-index:4; right:clamp(8px,1.4vw,20px);
+      display:flex; flex-direction:column; gap:1px; align-items:flex-start;
+      background:var(--surface); border:1.5px solid var(--line); border-radius:var(--r-md);
+      padding:6px 10px; box-shadow:var(--sh-md); opacity:0; transition:opacity .5s var(--ease) .2s;
+      font-weight:700; line-height:1.15 }
+    .growth-end.show{ opacity:1 }
+    .growth-end .v{ font-family:var(--font-head); font-size:clamp(15px,1.8vw,19px) }
+    .growth-end .t{ font-size:10.5px; font-weight:600; color:var(--muted) }
+    .growth-end.calm{ border-color:color-mix(in srgb, var(--positive) 55%, var(--line)) }
+    .growth-end.calm .v{ color:var(--positive) }
+    .growth-end.wild{ border-color:color-mix(in srgb, var(--danger) 55%, var(--line)) }
+    .growth-end.wild .v{ color:var(--danger) }
+    @media (max-width:640px){
+      .growth-pin{ font-size:9.5px; padding:3px 8px } .growth-pin .emo{ font-size:10px }
+      .growth-pin[data-sm="hide"]{ display:none } }
+    @media (prefers-reduced-motion: reduce){
+      .growth-pin, .growth-end{ transition:none } }
   </style>
 </head>
 <body>
@@ -308,7 +420,8 @@
     <div class="wrap">
       <nav class="site-nav" aria-label="ניווט ראשי">
         <a class="logo" href="#/" data-link aria-label="Influ Capital — דף הבית">
-          <img src="media/brand-logos/logo/lockup-horizontal/influ-capital-logo-horizontal-white.png" alt="Influ Capital" width="111" height="30">
+          <img class="logo-light" src="media/brand-logos/logo/lockup-horizontal/influ-capital-logo-horizontal-white.png" alt="Influ Capital" width="111" height="30">
+          <img class="logo-color" src="media/brand-logos/logo/lockup-horizontal/influ-capital-logo-horizontal-color.png" alt="Influ Capital" width="121" height="30">
         </a>
         <ul class="nav-links" id="nav-links">
           <li><a href="#/" data-link>בית</a></li>
@@ -342,8 +455,8 @@
           <div class="hero-grid">
             <div class="hero-copy">
               <span class="hero-pill"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg> בעל רישיון שיווק השקעות · רשות ני״ע</span>
-              <h1 data-typewriter>השקעות בשוק ההון הן <span class="accent">מקצוע</span>. אין סיבה לעשות אותן לבד.</h1>
-              <p class="hook">ליווי אישי, אנושי ושוטף — להשקיע עם שיטה, לא עם תחושת בטן. ישירות בוואטסאפ, בלי התחייבות.</p>
+              <h1 data-typewriter><span class="hero-h1-line">ליווי השקעות פרטי,</span><span class="hero-h1-line">עם <span class="accent">אצבע על הדופק</span>,</span><span class="hero-h1-line">ויד על ההגה.</span></h1>
+              <p class="hook">בונים יחד תיק שמתאים לך, לא לכותרת של היום — עם שיטה מסודרת, מעקב שוטף וזמינות ישירה כשצריך לקבל החלטות.</p>
               <div class="hero-cta">
                 <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg> תיאום שיחת היכרות</a>
                 <a class="btn btn-wa btn-lg" data-wa-link href="#">
@@ -359,8 +472,8 @@
             </div>
             <div class="hero-portrait">
               <picture>
-                <source type="image/avif" srcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.avif 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.avif 800w, media/adam/web/cutouts/adam-navy-suit-smiling-1200.avif 1200w" sizes="(max-width:820px) 280px, 380px">
-                <source type="image/webp" srcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.webp 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.webp 800w, media/adam/web/cutouts/adam-navy-suit-smiling-1200.webp 1200w" sizes="(max-width:820px) 280px, 380px">
+                <source type="image/avif" srcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.avif 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.avif 800w, media/adam/web/cutouts/adam-navy-suit-smiling-1200.avif 1200w" sizes="(max-width:820px) 280px, 480px">
+                <source type="image/webp" srcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.webp 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.webp 800w, media/adam/web/cutouts/adam-navy-suit-smiling-1200.webp 1200w" sizes="(max-width:820px) 280px, 480px">
                 <img src="media/adam/web/cutouts/adam-navy-suit-smiling-800.webp" alt="אדם ויינשטיין — בעל רישיון שיווק השקעות" width="380" height="491" decoding="async">
               </picture>
             </div>
@@ -376,25 +489,40 @@
             <h2>שלוש דרכים לעבוד יחד</h2>
             <p>בחרו את המסלול שמתאים לכם — מליווי אישי שוטף, דרך קורס 1:1, ועד הרצאה מעוררת מחשבה לארגון.</p>
           </div>
-          <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:8px">
-            <div class="svc">
-              <div class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
-              <h3>ליווי השקעות אישי</h3>
-              <p>קו פתוח, תיק מסודר, ומפגש חודשי שמחזיק את התהליך. בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת.</p>
-              <a href="#/ליווי-אישי" data-link>לפרטים על הליווי <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></a>
-            </div>
-            <div class="svc">
-              <div class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></div>
-              <h3>קורס השקעות ערך 1:1</h3>
-              <p>לא עוד קורס דיגיטלי. לומדים בלייב, שואלים בזמן אמת ומבינים איך לחשוב — לא לשנן מושגים.</p>
-              <a href="#/קורס" data-link>לפרטים על הקורס <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></a>
-            </div>
-            <div class="svc">
-              <div class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><path d="M16 3.128a4 4 0 0 1 0 7.744"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><circle cx="9" cy="7" r="4"/></svg></div>
-              <h3>הרצאות לחברות וארגונים</h3>
-              <p>להפוך את שוק ההון לנגיש, מצחיק ומעשי. שעה אחת שיכולה לשנות את הדרך שבה אנשים מסתכלים על כסף.</p>
-              <a href="#/הרצאות" data-link>לפרטים על ההרצאות <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg></a>
-            </div>
+          <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-top:8px">
+            <a class="svc" href="#/ליווי-אישי" data-link>
+              <div class="svc-body">
+                <h3>ליווי השקעות אישי</h3>
+                <p>קו פתוח, תיק מסודר ומפגש חודשי שמחזיק את התהליך.</p>
+              </div>
+              <picture class="svc-media">
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-stage-two-people-1079.avif">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-stage-two-people-1079.webp">
+                <img src="media/adam/web/lectures/lecture-stage-two-people-1079.jpg" alt="אדם ויינשטיין בשיחה על הבמה — ליווי השקעות אישי" width="160" height="160" loading="lazy" decoding="async">
+              </picture>
+            </a>
+            <a class="svc" href="#/קורס" data-link>
+              <div class="svc-body">
+                <h3>קורס השקעות ערך 1:1</h3>
+                <p>לומדים בלייב, שואלים בזמן אמת ומבינים איך לחשוב — לא לשנן.</p>
+              </div>
+              <picture class="svc-media">
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-hall-buffett-749.avif">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-hall-buffett-749.webp">
+                <img src="media/adam/web/lectures/lecture-hall-buffett-749.jpg" alt="הרצאה על השקעות ערך בהשראת וורן באפט — קורס 1:1" width="160" height="160" loading="lazy" decoding="async">
+              </picture>
+            </a>
+            <a class="svc" href="#/הרצאות" data-link>
+              <div class="svc-body">
+                <h3>הרצאות לחברות וארגונים</h3>
+                <p>שוק ההון בגובה העיניים — נגיש, מצחיק ומעשי.</p>
+              </div>
+              <picture class="svc-media">
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-presenting-782.avif">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-presenting-782.webp">
+                <img src="media/adam/web/lectures/lecture-presenting-782.jpg" alt="אדם ויינשטיין מרצה על במה — הרצאות לחברות וארגונים" width="160" height="160" loading="lazy" decoding="async">
+              </picture>
+            </a>
           </div>
         </div>
       </section>
@@ -423,19 +551,6 @@
         </div>
       </section>
 
-      <!-- מניות מובילות (טיקר) -->
-      <section class="ticker-band">
-        <div class="wrap">
-          <div class="section-head center">
-            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg> השוק שאנחנו חוקרים</span>
-            <h2>החברות שמזיזות את השוק</h2>
-            <p>השקעות ערך מתחילות בהבנת עסקים אמיתיים — כמה מהחברות המובילות בשוק האמריקאי.</p>
-          </div>
-        </div>
-        <div class="ticker" aria-hidden="true"><div class="ticker-track" data-ticker></div></div>
-        <div class="wrap"><p class="ticker-note"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> להמחשה ולעיצוב בלבד — אינו ציטוט שוק אמיתי ואינו המלצה לרכישה או מכירה.</p></div>
-      </section>
-
       <!-- המלצות -->
       <section class="testi">
         <div class="wrap">
@@ -449,12 +564,13 @@
       </section>
 
       <!-- טופס יצירת קשר -->
-      <section class="band soft">
+      <section class="band soft contact-section">
         <div class="wrap">
           <div class="section-head center">
             <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> נדבר?</span>
             <h2>השאירו פרטים לשיחת היכרות</h2>
             <p>נחזור אליכם בוואטסאפ או בטלפון. ללא התחייבות.</p>
+            <span class="hero-pill on-light" style="margin-top:6px"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m9 12 2 2 4-4"/></svg> בעל רישיון שיווק השקעות · רשות ני״ע</span>
           </div>
           <div class="lead-split">
             <figure class="lead-figure">
@@ -490,66 +606,11 @@
               <span class="ibi-badge"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg> יישום בפועל</span>
               <h2>פותחים חשבון מסחר ומתחילים ליישם</h2>
               <p>רוצים להתחיל ליישם את מה שבונים יחד? אני מלווה גם בפתיחת חשבון מסחר נוח בבית השקעות, כדי שתתחילו את המסע בסביבה אמינה ומסודרת.</p>
+              <div class="ibi-partner"><span>בשיתוף בית ההשקעות</span><img src="media/partners/ibi-investments-logo.png" alt="IBI בית השקעות" width="231" height="145" loading="lazy" decoding="async"></div>
               <a class="btn btn-accent btn-lg" href="https://ibiinvestments.co.il/lp/adam_vainshtein/" target="_blank" rel="noopener"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg> לפתיחת חשבון מסחר</a>
             </div>
             <div class="ibi-visual">
-              <img src="media/assets/3d-bold-items/trading-app-card.webp" alt="פתיחת חשבון מסחר" loading="lazy" decoding="async" width="300" height="300">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA סוף עמוד — ורטיקל וואטסאפ אינטראקטיבי -->
-      <section class="band soft">
-        <div class="wrap">
-          <div class="wa-vert">
-            <div class="section-head" style="margin-bottom:0">
-              <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> בוא נתחיל את המסע</span>
-              <h2>יד על ההגה, <span class="accent" style="color:var(--brand)">אצבע על הדופק</span>.</h2>
-              <p>כשיש שיטה, מעקב וזמינות — משקיעים אחרת. קו פתוח, תיק מסודר, ומפגש חודשי שמחזיק את התהליך: יש שיטה, יש מעקב, ויש עם מי לדבר.</p>
-              <ul class="wa-points">
-                <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span><b>קו פתוח בוואטסאפ</b> — שאלה, התלבטות, או רק לוודא? תמיד יש למי לכתוב.</span></li>
-                <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg><span><b>מעקב יזום</b> — אני פונה כשיש סיבה אמיתית, לא מציף בהודעות סתם.</span></li>
-                <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span><b>נאמנים לתוכנית</b> — בלי רדיפה אחרי כותרות; מחליטים בראש שקט ובצורה מסודרת.</span></li>
-              </ul>
-            </div>
-            <div class="wa-chat" id="wa-chat">
-              <a class="wa-head" id="wa-head-link" data-wa-link target="_blank" rel="noopener">
-                <span class="wa-ava">א</span>
-                <div class="wa-id"><div class="wa-name">אדם ויינשטיין</div><div class="wa-status">מקוון</div></div>
-                <div class="wa-actions"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></div>
-                <span class="visually-hidden">— פתיחת שיחה בוואטסאפ</span>
-              </a>
-              <div class="wa-body" id="wa-body" aria-live="polite" aria-label="הדמיית שיחת וואטסאפ עם אדם"><span class="wa-day">היום</span></div>
-              <form class="wa-compose" id="wa-compose" onsubmit="return false">
-                <input id="wa-input" type="text" autocomplete="off" placeholder="הקלידו הודעה…" aria-label="הקלדת הודעה לאדם">
-                <button type="submit" aria-label="שליחה"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- שאלות נפוצות -->
-      <section class="band">
-        <div class="wrap">
-          <div class="section-head center">
-            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> שאלות נפוצות</span>
-            <h2>שאלות נפוצות</h2>
-            <p>כמה דברים שטוב לדעת לפני שמתחילים.</p>
-          </div>
-          <div class="accordion" style="max-width:760px;margin-inline:auto">
-            <div class="acc-item open">
-              <button class="acc-head" type="button" onclick="toggleAcc(this)">האם יש התחייבות לתשואה? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
-              <div class="acc-body"><div class="inner">אין התחייבות לתשואה, יש התחייבות לתהליך מקצועי. כל החלטה צריכה לעמוד במבחן ההיגיון, לא במבחן ההייפ — בלי רעש, בלי הבטחות, בלי קיצורי דרך.</div></div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-head" type="button" onclick="toggleAcc(this)">איך עובד הליווי האישי? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
-              <div class="acc-body"><div class="inner">קו פתוח בוואטסאפ, תיק מסודר, ומפגש חודשי שמחזיק את התהליך. בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת — יש שיטה, יש מעקב, ויש עם מי לדבר.</div></div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-head" type="button" onclick="toggleAcc(this)">מה ההבדל בין הליווי לקורס? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
-              <div class="acc-body"><div class="inner">בליווי בונים ומנהלים יחד תיק אמיתי לאורך זמן. בקורס 1:1 לומדים בלייב איך לחשוב, להבין דוחות וחברות ולקבל החלטות — ידע שנשאר אתכם.</div></div>
+              <img src="media/assets/3d-bold-items/trading-app-card.webp" alt="פתיחת חשבון מסחר" class="flip-x" loading="lazy" decoding="async" width="300" height="300">
             </div>
           </div>
         </div>
@@ -600,21 +661,8 @@
             <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> דברו איתי בוואטסאפ</a>
           </div>
         </div>
-            <div class="hero-page-visual"><img src="media/assets/3d-bold-items/guidance-chat-bubbles.webp" alt="איור ליווי אישי — בועות שיחה ומצפן" width="300" height="300" loading="lazy" decoding="async"></div>
+            <div class="hero-page-visual"><img src="media/assets/3d-bold-items/guidance-chat-bubbles.webp" alt="איור ליווי אישי — בועות שיחה ומצפן" class="flip-x" width="300" height="300" loading="lazy" decoding="async"></div>
           </div>
-        </div>
-      </section>
-
-      <!-- ניסוי עיצובי: סקשן ריק עם מפת-חום מניות הנחשפת סביב העכבר (חד יותר במרכז, מטושטש בקצוות) -->
-      <section class="treemap-lab" data-treemap-lab>
-        <canvas class="treemap-bg" aria-hidden="true"></canvas>
-        <div class="wrap">
-          <div class="section-head center">
-            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg> מפת השוק</span>
-            <h2>החברות שמזיזות את השוק.</h2>
-            <p>השקעות ערך מתחילות בהבנת עסקים אמיתיים — כמה מהחברות המובילות בשוק האמריקאי.</p>
-          </div>
-          <p class="treemap-note">להמחשה ולעיצוב בלבד — אינו ציטוט שוק אמיתי ואינו המלצה לרכישה או מכירה.</p>
         </div>
       </section>
 
@@ -632,6 +680,67 @@
             <div class="pain-item"><div class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 14 4 4-4 4"/><path d="m18 2 4 4-4 4"/><path d="M2 18h1.973a4 4 0 0 0 3.3-1.7l5.454-8.6a4 4 0 0 1 3.3-1.7H22"/><path d="M2 6h1.972a4 4 0 0 1 3.6 2.2"/><path d="M22 18h-6.041a4 4 0 0 1-3.3-1.8l-.359-.45"/></svg></div><h3>בלי מערכת</h3><p>פעולות בודדות בלי אסטרטגיה, בלי מעקב ובלי מישהו לחשוב איתו בקול. כל החלטה מתחילה מאפס.</p></div>
           </div>
           <div class="pain-resolve"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><p>במקום זה — <b>יש שיטה, יש מעקב, ויש עם מי לדבר.</b></p></div>
+        </div>
+      </section>
+
+      <!-- ניסוי עיצובי: סקשן ריק עם מפת-חום מניות הנחשפת סביב העכבר (חד יותר במרכז, מטושטש בקצוות) -->
+      <section class="treemap-lab" data-treemap-lab>
+        <canvas class="treemap-bg" aria-hidden="true"></canvas>
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg> מפת השוק</span>
+            <h2>החברות שמזיזות את השוק.</h2>
+            <p>השקעות ערך מתחילות בהבנת עסקים אמיתיים — כמה מהחברות המובילות בשוק האמריקאי.</p>
+          </div>
+          <p class="treemap-note">להמחשה ולעיצוב בלבד — אינו ציטוט שוק אמיתי ואינו המלצה לרכישה או מכירה.</p>
+        </div>
+      </section>
+
+      <!-- ויזואליזציה: שני תיקים לאורך 15 שנה — תיק מלווה רגוע מול תיק פזיז -->
+      <section class="growth-race" data-growth-race aria-labelledby="race-title">
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg> אותו הון התחלתי · 15 שנה</span>
+            <h2 id="race-title">שתי דרכים להשקיע. רק אחת גדלה לאורך זמן.</h2>
+            <p>שני משקיעים, אותו סכום בכניסה. אחד רודף כותרות ומהמר על הטיפ הבא; השני בנוי על שיטה, מעקב וסבלנות — וחושב גם על העמלות. בהתחלה ההבדל קטן. אחרי 15 שנה הפער עצום.</p>
+          </div>
+
+          <!-- פרופיל כל משקיע -->
+          <div class="growth-profiles">
+            <div class="gp-card calm">
+              <div class="gp-head"><span class="gp-ava" aria-hidden="true">🧭</span><span><b>תיק מלווה</b><small>מקבל החלטות עם שיטה</small></span></div>
+              <dl>
+                <dt>הון עצמי</dt><dd><b>₪200,000</b></dd>
+                <dt>מטרות ויעדים</dt><dd>חופש כלכלי וצמיחה לטווח ארוך</dd>
+                <dt>פרופיל סיכון</dt><dd>מותאם אישית, מדוד</dd>
+                <dt>אסטרטגיה</dt><dd>השקעות ערך · פיזור · איזון · התחשבות בעמלות</dd>
+              </dl>
+            </div>
+            <div class="gp-card wild">
+              <div class="gp-head"><span class="gp-ava" aria-hidden="true">🎢</span><span><b>תיק פזיז</b><small>מקבל החלטות מהבטן</small></span></div>
+              <dl>
+                <dt>הון עצמי</dt><dd><b>₪200,000</b></dd>
+                <dt>מטרות ויעדים</dt><dd>להכפיל. מהר. ☄️</dd>
+                <dt>פרופיל סיכון</dt><dd>"אני חזק על זה" 🎲</dd>
+                <dt>אסטרטגיה</dt><dd>אין — מה שחם היום בטלגרם 🤷</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- קנבס מלא-רוחב: שני הגרפים + ציר השנים -->
+        <div class="growth-chart" data-race-chart>
+          <canvas aria-hidden="true"></canvas>
+          <p class="visually-hidden">הדמיה של שני תיקי השקעות לאורך 15 שנים, מאותו הון התחלתי של 200,000 ש"ח. התיק המלווה — החלטות שקולות, מעקב, איזון תקופתי והתחשבות בעמלות — צומח במתינות אך בעקביות ומסיים גבוה — כ‑800,000 ש"ח, פי 4 מההתחלה. התיק הפזיז — החלטות אימפולסיביות בעקבות כותרות, טיפים והימורים, ללא אסטרטגיה — מזנק וצונח שוב ושוב, לעיתים מצליח בגדול אך התוחלת שלילית, ובשקלול עמלות מסיים מתחת לנקודת ההתחלה, כ‑130,000 ש"ח (כ‑35%- ).</p>
+        </div>
+
+        <div class="wrap">
+          <div class="growth-legend">
+            <span class="lg calm"><span class="swatch"></span><b>תיק מלווה</b> <span>· שיטה, מעקב וסבלנות</span></span>
+            <span class="lg wild"><span class="swatch"></span><b>תיק פזיז</b> <span>· כותרות, טיפים והימורים</span></span>
+          </div>
+
+          <p class="treemap-note">להמחשת הרעיון בלבד — אינו ציטוט שוק אמיתי, אינו נתון תשואה ואינו המלצה לרכישה או מכירה. תוצאות עבר אינן מבטיחות תשואה עתידית.</p>
         </div>
       </section>
 
@@ -673,6 +782,70 @@
         <div class="wrap">
           <div class="section-head center"><span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></svg> מה אומרים</span><h2>לקוחות הליווי</h2></div>
           <div class="testi-wall" data-testi-wall></div>
+        </div>
+      </section>
+
+      <!-- שאלות נפוצות -->
+      <section class="band">
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> שאלות נפוצות</span>
+            <h2>שאלות נפוצות</h2>
+            <p>כמה דברים שטוב לדעת לפני שמתחילים בליווי.</p>
+          </div>
+          <div class="accordion" style="max-width:760px;margin-inline:auto">
+            <div class="acc-item open">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">האם יש התחייבות לתשואה? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">אין התחייבות לתשואה, יש התחייבות לתהליך מקצועי. כל החלטה צריכה לעמוד במבחן ההיגיון, לא במבחן ההייפ — בלי רעש, בלי הבטחות, בלי קיצורי דרך.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">איך עובד הליווי האישי? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">קו פתוח בוואטסאפ, תיק מסודר, ומפגש חודשי שמחזיק את התהליך. בונים אסטרטגיה שמתאימה לחיים שלך, לא למצגת — יש שיטה, יש מעקב, ויש עם מי לדבר.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">למי הליווי מתאים? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">למי שרוצה להפסיק לפעול לבד מול השוק ולעבוד עם שיטה, סדר וזמינות. בין אם אתם בתחילת הדרך ובין אם כבר משקיעים ורוצים תהליך מסודר יותר.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">מה ההבדל בין הליווי לקורס? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">בליווי בונים ומנהלים יחד תיק אמיתי לאורך זמן, עם מעקב וזמינות שוטפת. בקורס 1:1 לומדים בלייב איך לחשוב, להבין דוחות וחברות ולקבל החלטות — ידע שנשאר אתכם.</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA סוף עמוד — ורטיקל וואטסאפ אינטראקטיבי -->
+      <section class="band soft">
+        <div class="wrap">
+          <div class="wa-vert cta-final">
+            <div class="section-head" style="margin-bottom:0">
+              <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> בוא נתחיל את המסע</span>
+              <h2>יד על ההגה, <span class="accent" style="color:var(--brand)">אצבע על הדופק</span>.</h2>
+              <p>כשיש שיטה, מעקב וזמינות — משקיעים אחרת. קו פתוח, תיק מסודר, ומפגש חודשי שמחזיק את התהליך: יש שיטה, יש מעקב, ויש עם מי לדבר.</p>
+              <ul class="wa-points">
+                <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span><b>קו פתוח בוואטסאפ</b> — שאלה, התלבטות, או רק לוודא? תמיד יש למי לכתוב.</span></li>
+                <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg><span><b>מעקב יזום</b> — אני פונה כשיש סיבה אמיתית, לא מציף בהודעות סתם.</span></li>
+                <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span><b>נאמנים לתוכנית</b> — בלי רדיפה אחרי כותרות; מחליטים בראש שקט ובצורה מסודרת.</span></li>
+              </ul>
+              <div class="cta-actions">
+                <a class="btn btn-primary btn-md" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg> תיאום שיחת היכרות</a>
+                <a class="btn btn-wa btn-md" data-wa-link href="#"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.43-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.3-1.39a9.86 9.86 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.43 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2zm0 18.04c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.37c0-4.54 3.7-8.23 8.25-8.23 2.2 0 4.27.86 5.83 2.42a8.2 8.2 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23z"/></svg> דברו בוואטסאפ</a>
+              </div>
+              </div>
+            <div class="wa-chat" id="wa-chat">
+              <a class="wa-head" id="wa-head-link" data-wa-link target="_blank" rel="noopener">
+                <span class="wa-ava">א</span>
+                <div class="wa-id"><div class="wa-name">אדם ויינשטיין</div><div class="wa-status">מקוון</div></div>
+                <div class="wa-actions"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></div>
+                <span class="visually-hidden">— פתיחת שיחה בוואטסאפ</span>
+              </a>
+              <div class="wa-body" id="wa-body" aria-live="polite" aria-label="הדמיית שיחת וואטסאפ עם אדם"><span class="wa-day">היום</span></div>
+              <form class="wa-compose" id="wa-compose" onsubmit="return false">
+                <input id="wa-input" type="text" autocomplete="off" placeholder="הקלידו הודעה…" aria-label="הקלדת הודעה לאדם">
+                <button type="submit" aria-label="שליחה"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></button>
+              </form>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -788,6 +961,49 @@
         </div>
       </section>
 
+      <!-- סקשן "דופק השוק" — מספרי אחוזים רנדומליים צפים (אדום/ירוק). הלוגיקה ב-marketPulse() -->
+      <section class="band soft market-pulse" data-market-pulse aria-label="המחשת תנועת השוק">
+        <div class="mp-stage" data-mp-stage aria-hidden="true"></div>
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> השוק חי, כל רגע</span>
+            <h2>השוק זז כל הזמן — השאלה היא איך קוראים אותו</h2>
+            <p>מספרים מהבהבים מכל כיוון, בלי הפסקה. בקורס לומדים לסנן את הרעש, להבין מה באמת חשוב, ולהחליט בראש שקט — לא לרדוף אחרי כל ירוק ואדום.</p>
+            <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg> לפרטים והרשמה</a>
+          </div>
+          <p class="mp-note"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> המספרים להמחשה בלבד — אינם ציטוט שוק אמיתי ואינם המלצה לרכישה או מכירה.</p>
+        </div>
+      </section>
+
+      <!-- שאלות נפוצות -->
+      <section class="band">
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> שאלות נפוצות</span>
+            <h2>שאלות נפוצות</h2>
+            <p>כמה דברים שטוב לדעת לפני שנרשמים לקורס.</p>
+          </div>
+          <div class="accordion" style="max-width:760px;margin-inline:auto">
+            <div class="acc-item open">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">צריך ידע מוקדם כדי להצטרף? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">לא. מתחילים מהיסודות ובונים הבנה צעד אחרי צעד — מה זו מניה, איך עובד השוק, ועד קריאת דוחות וקבלת החלטות.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">הקורס בלייב או מוקלט? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">לא עוד קורס דיגיטלי. לומדים בלייב, 1:1, שואלים בזמן אמת ומבינים איך לחשוב — לא לשנן מושגים.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">מה ההבדל בין הקורס לליווי? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">בקורס לומדים לחשוב ולהחליט לבד — ידע שנשאר אתכם. בליווי בונים ומנהלים יחד תיק אמיתי לאורך זמן, עם מעקב וזמינות שוטפת.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">כמה זמן נמשך המסלול? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">מסלול אישי בקצב שמתאים לכם; היקף המפגשים נקבע יחד לפי הרקע והמטרות שלכם.</div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- CTA -->
       <section class="band soft">
         <div class="wrap">
@@ -860,6 +1076,19 @@
         </div>
       </section>
 
+      <!-- מניות מובילות (טיקר) -->
+      <section class="ticker-band">
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg> השוק שאנחנו חוקרים</span>
+            <h2>החברות שמזיזות את השוק</h2>
+            <p>השקעות ערך מתחילות בהבנת עסקים אמיתיים — כמה מהחברות המובילות בשוק האמריקאי.</p>
+          </div>
+        </div>
+        <div class="ticker" aria-hidden="true"><div class="ticker-track" data-ticker></div></div>
+        <div class="wrap"><p class="ticker-note"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg> להמחשה ולעיצוב בלבד — אינו ציטוט שוק אמיתי ואינו המלצה לרכישה או מכירה.</p></div>
+      </section>
+
       <!-- בידול -->
       <section class="edge">
         <div class="wrap">
@@ -881,6 +1110,35 @@
         <div class="wrap">
           <div class="section-head center"><span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 10a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 14.286V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/><path d="M20 9a2 2 0 0 1 2 2v10.286a.71.71 0 0 1-1.212.502l-2.202-2.202A2 2 0 0 0 17.172 19H10a2 2 0 0 1-2-2v-1"/></svg> מה אומרים</span><h2>ארגונים שאירחו</h2></div>
           <div class="testi-wall" data-testi-wall></div>
+        </div>
+      </section>
+
+      <!-- שאלות נפוצות -->
+      <section class="band">
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg> שאלות נפוצות</span>
+            <h2>שאלות נפוצות</h2>
+            <p>כמה דברים שטוב לדעת לפני שמזמינים הרצאה.</p>
+          </div>
+          <div class="accordion" style="max-width:760px;margin-inline:auto">
+            <div class="acc-item open">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">למי מיועדות ההרצאות? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">לחברות, ארגונים וימי גיבוש — לעובדים בכל רמת ידע. המטרה להפוך את שוק ההון לנגיש, מצחיק ומעשי.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">אפשר להתאים את התוכן לארגון? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">כן. מתאימים את הדוגמאות, הדגשים והאורך לקהל ולמטרות של הארגון.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">כמה זמן נמשכת הרצאה? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">בדרך כלל כשעה, וניתן להתאים את המתכונת — כולל מפגש ארוך יותר או סדרת מפגשים.</div></div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" onclick="toggleAcc(this)">ההרצאה פרונטלית או מקוונת? <span class="chev"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></span></button>
+              <div class="acc-body"><div class="inner">שתי האפשרויות זמינות — פרונטלי במשרדי הארגון או אונליין.</div></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1315,6 +1573,7 @@
       if(window.syncHeader) window.syncHeader();
       if(typeof heroTypewriter !== 'undefined') heroTypewriter.activate();
       if(path === '/ליווי-אישי' && typeof treemapHero !== 'undefined') treemapHero.ensure();
+      if(path === '/ליווי-אישי' && typeof growthRace !== 'undefined') growthRace.ensure();
     }
     if(window.trackPageView) window.trackPageView(full);
   }
@@ -1325,11 +1584,25 @@
   // ----- תפריט מובייל -----
   const navList = document.getElementById('nav-links');
   const hamburger = document.getElementById('hamburger');
-  function closeNav(){ if(!navList) return; navList.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); hamburger.setAttribute('aria-label','פתיחת תפריט'); }
+  function closeNav(){
+    if(!navList) return;
+    hamburger.setAttribute('aria-expanded','false'); hamburger.setAttribute('aria-label','פתיחת תפריט');
+    if(!navList.classList.contains('open')) return;
+    const instant = matchMedia('(prefers-reduced-motion:reduce)').matches || matchMedia('(min-width:821px)').matches;
+    if(instant){ navList.classList.remove('open','closing'); return; }
+    navList.classList.add('closing');
+    navList.addEventListener('animationend', e=>{
+      if(e.target!==navList || e.animationName!=='nav-up') return;
+      navList.classList.remove('open','closing');
+    }, {once:true});
+  }
+  function openNav(){
+    if(!navList) return;
+    navList.classList.remove('closing'); navList.classList.add('open');
+    hamburger.setAttribute('aria-expanded','true'); hamburger.setAttribute('aria-label','סגירת תפריט');
+  }
   if(hamburger){ hamburger.addEventListener('click', ()=>{
-    const open = navList.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', String(open));
-    hamburger.setAttribute('aria-label', open ? 'סגירת תפריט' : 'פתיחת תפריט');
+    if(navList.classList.contains('open') && !navList.classList.contains('closing')) closeNav(); else openNav();
   }); }
 
   // ----- אקורדיון (סילבוס) -----
@@ -1386,7 +1659,8 @@
       const items = [...cf.querySelectorAll('.vcf-item')];
       const n = items.length; if(!n) return;
       const dots = cf.parentElement.querySelector('.vcf-dots');
-      let active = Math.floor(n/2), armed = false;
+      let active = Math.floor(n/2), armed = false, mediaTimer = 0;
+      const mq = window.matchMedia('(max-width:640px)');  // מובייל: סליידר snap נייטיב במקום coverflow
       function ensureMedia(){
         if(!armed) return;
         items.forEach((it,i) => {
@@ -1407,46 +1681,77 @@
           }
         });
       }
+      // טעינת/החלפת הנגן רק אחרי שהתנועה נחה — מונע הבהוב iframe בזמן מעבר
+      function scheduleMedia(){ clearTimeout(mediaTimer); mediaTimer = setTimeout(ensureMedia, 470); }
       function layout(){
+        if(mq.matches){  // מובייל: כל הכרטיסים זורמים בסליידר, ללא coverflow/הסתרה
+          items.forEach(it => { it.dataset.pos = 'm'; it.tabIndex = 0; it.setAttribute('aria-hidden','false'); });
+          if(dots) [...dots.children].forEach((d,i) => d.setAttribute('aria-current', String(i === active)));
+          return;
+        }
         items.forEach((it,i) => {
-          let p = i - active;
-          if(p >  n/2) p -= n;
-          if(p < -n/2) p += n;
-          it.dataset.pos = Math.abs(p) > 2 ? 'hidden' : String(p);
+          const p = i - active;   // ללא גלישה מעגלית — מונע "קפיצת" כרטיס מקצה לקצה
+          it.dataset.pos = Math.abs(p) > 1 ? 'hidden' : String(p);   // מקס׳ 3 גלויים: מרכז + 1 מכל צד
           it.tabIndex = (p === 0) ? 0 : -1;
-          it.setAttribute('aria-hidden', String(Math.abs(p) > 2));
+          it.setAttribute('aria-hidden', String(Math.abs(p) > 1));
         });
         if(dots) [...dots.children].forEach((d,i) => d.setAttribute('aria-current', String(i === active)));
       }
-      function go(idx){ active = (idx % n + n) % n; armed = true; layout(); ensureMedia(); }
+      function go(idx){
+        const next = Math.max(0, Math.min(n - 1, idx));   // קלאמפ לקצוות — בלי גלישה
+        if(next === active) return;
+        active = next; armed = true; layout(); scheduleMedia();
+      }
       if(dots){
         dots.innerHTML = '';
         items.forEach((it,i) => {
           const b = document.createElement('button');
           b.type = 'button'; b.setAttribute('aria-label','וידאו ' + (i+1));
-          b.addEventListener('click', () => go(i));
+          b.addEventListener('click', () => { if(mq.matches){ active = i; layout(); items[i].scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'}); } else { go(i); } });
           dots.appendChild(b);
         });
       }
       items.forEach((it,i) => it.addEventListener('click', e => {
         if(cf.dataset.swiping === '1'){ e.preventDefault(); return; }
         if(i !== active){ e.preventDefault(); go(i); }
-        else if(!it.dataset.loaded){ armed = true; ensureMedia(); }
+        else if(!it.dataset.loaded){ armed = true; ensureMedia(); }   // לחיצה על המרכז → טעינה מיידית
       }));
-      let sx = 0, dx = 0, down = false;
-      cf.addEventListener('pointerdown', e => { down = true; sx = e.clientX; dx = 0; cf.dataset.swiping = ''; });
-      cf.addEventListener('pointermove', e => { if(down){ dx = e.clientX - sx; if(Math.abs(dx) > 8) cf.dataset.swiping = '1'; } });
-      function endSwipe(){ if(!down) return; down = false;
-        if(Math.abs(dx) > 45) go(active + (dx < 0 ? 1 : -1));   /* RTL: החלקה שמאלה = הבא */
-        setTimeout(() => { cf.dataset.swiping = ''; }, 0);
+      // החלקה במצביע — עם תפיסת מצביע בעכבר/עט כדי שלא יקפוץ באמצע גרירה (במגע: גלילה נייטיב)
+      let sx = 0, dx = 0, down = false, pid = null;
+      cf.addEventListener('pointerdown', e => {
+        down = true; sx = e.clientX; dx = 0; cf.dataset.swiping = '';
+        if(e.pointerType !== 'touch'){ pid = e.pointerId; try{ cf.setPointerCapture(pid); }catch(_){} }
+      });
+      cf.addEventListener('pointermove', e => { if(down){ dx = e.clientX - sx; if(Math.abs(dx) > 10) cf.dataset.swiping = '1'; } });
+      function endSwipe(){
+        if(!down) return; down = false;
+        if(pid != null){ try{ cf.releasePointerCapture(pid); }catch(_){} pid = null; }
+        if(!mq.matches && Math.abs(dx) > 40) go(active + (dx < 0 ? 1 : -1));   /* RTL: החלקה שמאלה = הבא */
+        const moved = Math.abs(dx) > 10;
+        setTimeout(() => { cf.dataset.swiping = ''; }, moved ? 60 : 0);
       }
       cf.addEventListener('pointerup', endSwipe);
       cf.addEventListener('pointercancel', endSwipe);
-      cf.addEventListener('pointerleave', endSwipe);
       cf.addEventListener('keydown', e => {
         if(e.key === 'ArrowLeft'){ e.preventDefault(); go(active + 1); }
         else if(e.key === 'ArrowRight'){ e.preventDefault(); go(active - 1); }
       });
+      // מובייל: עדכון הנקודה הפעילה לפי הכרטיס שבמרכז הסליידר
+      let scrollT;
+      cf.addEventListener('scroll', () => {
+        if(!mq.matches) return;
+        clearTimeout(scrollT);
+        scrollT = setTimeout(() => {
+          const mid = cf.getBoundingClientRect().left + cf.clientWidth / 2;
+          let best = active, bestD = Infinity;
+          items.forEach((it,i) => {
+            const r = it.getBoundingClientRect();
+            const d = Math.abs((r.left + r.width/2) - mid);
+            if(d < bestD){ bestD = d; best = i; }
+          });
+          if(best !== active){ active = best; if(dots) [...dots.children].forEach((d,i) => d.setAttribute('aria-current', String(i === best))); }
+        }, 90);
+      }, {passive:true});
       if('IntersectionObserver' in window){
         const io = new IntersectionObserver(ents => {
           ents.forEach(en => { if(en.isIntersecting && !armed){ armed = true; ensureMedia(); io.disconnect(); } });
@@ -1454,6 +1759,37 @@
         io.observe(cf);
       } else { armed = true; }
       layout(); ensureMedia();
+    });
+  })();
+
+  // ----- "דופק השוק": מספרי אחוזים רנדומליים צפים (מיקום/ערך/צבע/תזמון רנדומליים) -----
+  (function marketPulse(){
+    const UP   = '<svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg>';
+    const DOWN = '<svg class="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 17h6v-6"/><path d="m22 17-8.5-8.5-5 5L2 7"/></svg>';
+    const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    document.querySelectorAll('[data-market-pulse]').forEach(sec => {
+      const stage = sec.querySelector('[data-mp-stage]');
+      if(!stage || reduce) return;   // כיבוד prefers-reduced-motion
+      let active = 0, timer = 0, running = false;
+      function spawn(){
+        if(active > 6) return;
+        const up  = Math.random() < 0.5;                       // אדום/ירוק רנדומלי
+        const val = (Math.random() * 8 + 0.1).toFixed(Math.random() < 0.5 ? 1 : 2);
+        const el  = document.createElement('span');
+        el.className = 'mp-badge ' + (up ? 'up' : 'down');
+        el.style.setProperty('--mp-dur', (2.4 + Math.random() * 1.8) + 's');   // משך רנדומלי
+        el.style.left = (5 + Math.random() * 84) + '%';                        // מיקום אופקי רנדומלי
+        el.style.top  = (Math.random() < 0.5 ? (8 + Math.random() * 22) : (62 + Math.random() * 26)) + '%';  // בפסים עליון/תחתון, לא על הכותרת
+        el.innerHTML  = (up ? UP : DOWN) + '<span>' + (up ? '+' : '\u2212') + val + '%</span>';
+        stage.appendChild(el); active++;
+        el.addEventListener('animationend', () => { el.remove(); active--; });
+      }
+      function loop(){ if(!running) return; spawn(); timer = setTimeout(loop, 650 + Math.random() * 1700); }  // תזמון רנדומלי
+      function start(){ if(running) return; running = true; loop(); }
+      function stop(){ running = false; clearTimeout(timer); }
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(es => es.forEach(e => e.isIntersecting ? start() : stop()), {threshold:.2}).observe(sec);
+      } else { start(); }
     });
   })();
 
@@ -1707,7 +2043,13 @@
     function run(h1){
       if(!h1 || h1.dataset.twReady) return;
       h1.dataset.twReady = '1';
-      if(reduce) return;                           // ללא תנועה — הטקסט מוצג מלא ע״י ה-CSS
+      const heroMain = h1.closest('.hero-main');
+      if(heroMain) heroMain.classList.add('intro-portrait-go'); // פורטרט + typewriter ביחד
+      if(reduce){
+        if(heroMain) heroMain.classList.add('intro-go');
+        const hdrEl = document.querySelector('.site-header'); if(hdrEl) hdrEl.classList.add('intro-in');
+        return;                                    // ללא תנועה — הטקסט מוצג מלא ע״י ה-CSS
+      }
       h1.setAttribute('aria-label', h1.textContent.trim()); // קורא מסך שומע את הכותרת המלאה
       const chars = [];
       const src = h1.cloneNode(true);              // מקור לקריאה
@@ -1730,7 +2072,7 @@
       h1.classList.add('tw-typing');
       // רשת ביטחון: אם ההקלדה תיקטע, חושפים את תוכן ההירו אחרי 6 שניות בכל מקרה (idempotent).
       const heroMainEl = h1.closest('.hero-main');
-      if(heroMainEl) setTimeout(()=>{ heroMainEl.classList.add('intro-go');
+      if(heroMainEl) setTimeout(()=>{ heroMainEl.classList.add('intro-portrait-go','intro-go');
         const hdrEl = document.querySelector('.site-header'); if(hdrEl) hdrEl.classList.add('intro-in'); }, 6000);
       // הנעה ב-rAF (מסונכרן לפריימים). הקארט הוא מחלקה (.tw-cursor) על התו האחרון —
       // ::after אבסולוטי שאינו תופס מקום, כך שאין דחיפה/רעד של הטקסט.
@@ -1943,6 +2285,208 @@
     return { ensure };
   })();
 
+  // ----- ויזואליזציה: "שני תיקים, 15 שנה" — שני גרפים מצוירים בזמן אמת על גריד נייר‑מילימטר -----
+  // תיק מלווה (ירוק) צומח במתינות ובעקביות ומנצח; תיק פזיז (אדום) מזנק וצונח עם תוחלת שלילית.
+  const growthRace = (function(){
+    let host, chart, canvas, ctx, inited=false, played=false;
+    let W=0, H=0, dpr=1, raf=0, t0=0, curP=0;
+    let endCalm, endWild;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const N=170, DUR=13000;                              // נקודות לכל סדרה · משך הציור איטי (ms)
+    const PIN_WIN=0.16;                                  // משך הופעת כל תגית (ביחס להתקדמות) — מופיעה ונעלמת
+    const PAD={ t:0.12, b:0.18, l:0.06, r:0.10 };        // שוליים יחסיים (b — תוויות שנים; l — תוויות שווי; r מותאם בריסייז)
+    let baseYear=2011;                                   // שנת הבסיס (ציר X) — מחושב מהשנה הנוכחית בריסייז
+    let calm=[], wild=[];                                // ערכי y מנורמלים 0..1 (0=תחתית, 1=ראש)
+
+    // נקודות ציון הומוריסטיות — מופיעות כשראש הקו חולף על‑פניהן (t=מיקום יחסי בציר הזמן)
+    const PINS=[
+      { s:'wild', t:0.15, emo:'📰', txt:'טיפ חם מטלגרם',       dir:'up'   },
+      { s:'wild', t:0.34, emo:'🚀', txt:'הכול על מניית מם',     dir:'up',   sm:'hide' },
+      { s:'wild', t:0.50, emo:'😱', txt:'פאניקה — מכרתי הכול',  dir:'down' },
+      { s:'wild', t:0.74, emo:'🎰', txt:'עוד ניסיון להכפיל',    dir:'up',   sm:'hide' },
+      { s:'wild', t:0.92, emo:'💸', txt:'ועוד עמלה… ועוד עמלה', dir:'down' },
+      { s:'calm', t:0.24, emo:'☕', txt:'מתייעצים עם אדם',      dir:'up'   },
+      { s:'calm', t:0.46, emo:'🛒', txt:'קונים עוד בירידה',     dir:'down', sm:'hide' },
+      { s:'calm', t:0.68, emo:'⚖️', txt:'איזון תיק שנתי',       dir:'up'   },
+      { s:'calm', t:0.90, emo:'🧭', txt:'ממשיכים בתוכנית',      dir:'up',   sm:'hide' },
+    ];
+
+    function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0;
+      let t=Math.imul(seed^seed>>>15, 1|seed); t=t+Math.imul(t^t>>>7, 61|t)^t;
+      return ((t^t>>>14)>>>0)/4294967296; }; }
+    function clamp(v,a,b){ return v<a?a:v>b?b:v; }
+    function gauss(t,c,w){ const d=(t-c)/w; return Math.exp(-d*d); }
+    function hex2rgb(h){ h=(h||'').replace('#',''); if(h.length===3) h=h.replace(/./g,'$&$&');
+      const n=parseInt(h||'000000',16); return {r:(n>>16)&255, g:(n>>8)&255, b:n&255}; }
+    function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+
+    function buildSeries(){
+      calm=[]; wild=[]; const rc=rng(7), rw=rng(91);
+      // יחידות הציר: y מנורמל ×1000 = אלפי ₪ (0.20=₪200K נקודת הפתיחה המשותפת)
+      // תיק מלווה: צמיחה מתונה ועקבית מ‑₪200K ל‑₪800K, עם תיקון קצר באמצע
+      for(let i=0;i<=N;i++){ const t=i/N;
+        let y = 0.20 + 0.60*Math.pow(t,0.92);
+        y -= 0.085*gauss(t,0.42,0.07);
+        y -= 0.05*gauss(t,0.70,0.05);
+        y += (rc()-0.5)*0.018;
+        calm.push(clamp(y,0.06,0.94));
+      }
+      // תיק פזיז: תנודתיות פראית, זינוק "מזל" שמתרסק, מגמה כללית שלילית (עמלות)
+      let walk=0;
+      for(let i=0;i<=N;i++){ const t=i/N;
+        let y = 0.22 - 0.06*t;
+        walk += (rw()-0.5)*0.11; walk*=0.86;
+        y += walk;
+        y += 0.40*gauss(t,0.34,0.035);   // הימור שהצליח בגדול
+        y -= 0.30*gauss(t,0.44,0.045);   // …ואז התרסק
+        y += 0.22*gauss(t,0.62,0.03);    // עוד זינוק קצר
+        y -= 0.18*gauss(t,0.80,0.05);    // פאניקה/מימוש
+        y += Math.sin(t*46)*0.02;        // רעידות גבוהות-תדר
+        wild.push(clamp(y,0.05,0.96));
+      }
+      calm[0]=0.20; wild[0]=0.20;         // אותה נקודת פתיחה — ₪200K
+      calm[N]=0.80;                       // סיום: ₪800K (פי 4)
+      wild[N]=0.13;                       // סיום: ₪130K — מתחת לנקודת ההתחלה
+    }
+
+    function px(t){ return (PAD.l + t*(1-PAD.l-PAD.r))*W; }
+    function py(y){ return (PAD.t + (1-y)*(1-PAD.t-PAD.b))*H; }
+    function valAt(arr,t){ const f=clamp(t,0,1)*N, k=Math.floor(f), fr=f-k;
+      return k>=N ? arr[N] : arr[k]+(arr[k+1]-arr[k])*fr; }
+
+    function pathPoints(series, upto){
+      const k=Math.floor(upto), fr=upto-k, pts=[];
+      for(let i=0;i<=Math.min(k,N);i++) pts.push([px(i/N), py(series[i])]);
+      if(k<N && fr>0){ const y=series[k]+(series[k+1]-series[k])*fr; pts.push([px((k+fr)/N), py(y)]); }
+      return pts;
+    }
+
+    function drawSeries(pts, hex, isCalm){
+      if(pts.length<2) return;
+      const c=hex2rgb(hex), baseY=(1-PAD.b)*H;
+      ctx.beginPath(); ctx.moveTo(pts[0][0], baseY);
+      for(const p of pts) ctx.lineTo(p[0], p[1]);
+      ctx.lineTo(pts[pts.length-1][0], baseY); ctx.closePath();
+      const grd=ctx.createLinearGradient(0, PAD.t*H, 0, baseY);
+      grd.addColorStop(0, 'rgba('+c.r+','+c.g+','+c.b+','+(isCalm?0.20:0.13)+')');
+      grd.addColorStop(1, 'rgba('+c.r+','+c.g+','+c.b+',0)');
+      ctx.fillStyle=grd; ctx.fill();
+      ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
+      for(let i=1;i<pts.length;i++) ctx.lineTo(pts[i][0], pts[i][1]);
+      ctx.lineWidth=isCalm?3:2.4; ctx.strokeStyle=hex; ctx.lineJoin='round'; ctx.lineCap='round';
+      ctx.stroke();
+      const tip=pts[pts.length-1];
+      ctx.save(); ctx.shadowColor='rgba('+c.r+','+c.g+','+c.b+',.55)'; ctx.shadowBlur=12;
+      ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(tip[0],tip[1], isCalm?5.5:4.5, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle=hex; ctx.beginPath(); ctx.arc(tip[0],tip[1], isCalm?3.4:2.8, 0, Math.PI*2); ctx.fill();
+      ctx.restore();
+    }
+
+    function drawGrid(){
+      const yt=PAD.t*H, yb=(1-PAD.b)*H, x0=px(0), x1=px(1), sm=W<560;
+      // ציר Y — קווי שווי אופקיים + תוויות בשקלים (₪200K..₪800K)
+      ctx.textAlign='right'; ctx.textBaseline='middle';
+      ctx.font='600 '+(sm?9:10.5)+'px "IBM Plex Sans Hebrew", system-ui, sans-serif';
+      [200,400,600,800].forEach(k=>{
+        const y=py(k/1000);
+        ctx.beginPath(); ctx.moveTo(x0,y); ctx.lineTo(x1,y);
+        ctx.lineWidth=1; ctx.strokeStyle='rgba(67,67,219,.07)'; ctx.stroke();
+        ctx.fillStyle='rgba(90,95,122,.92)'; ctx.fillText('₪'+k+'K', x0-7, y);
+      });
+      for(let yr=0;yr<=15;yr++){                          // קווי שנים אנכיים
+        const x=px(yr/15);
+        ctx.beginPath(); ctx.moveTo(x,yt); ctx.lineTo(x,yb);
+        ctx.lineWidth=1; ctx.strokeStyle='rgba(67,67,219,'+(yr%5===0?0.15:0.055)+')'; ctx.stroke();
+      }
+      ctx.beginPath(); ctx.moveTo(x0,yb); ctx.lineTo(x1,yb); // קו בסיס (ציר X)
+      ctx.lineWidth=1.5; ctx.strokeStyle='rgba(14,19,48,.2)'; ctx.stroke();
+      // ציר X — תוויות שנים בפורמט מלא (2011, 2012…)
+      ctx.fillStyle='rgba(90,95,122,.92)'; ctx.textAlign='center'; ctx.textBaseline='top';
+      ctx.font='600 '+(sm?9:10.5)+'px "IBM Plex Sans Hebrew", system-ui, sans-serif';
+      for(let yr=0;yr<=15;yr+=(sm?3:1)) ctx.fillText(String(baseYear+yr), px(yr/15), yb+8);
+    }
+
+    function draw(p){
+      curP=p;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      ctx.clearRect(0,0,W,H);
+      drawGrid();
+      const upto=p*N;
+      const calmHex=cssVar('--positive')||'#12a594', wildHex=cssVar('--danger')||'#e0564a';
+      drawSeries(pathPoints(wild,upto), wildHex, false);   // פזיז מאחור
+      drawSeries(pathPoints(calm,upto), calmHex, true);    // מלווה מקדימה (הגיבור)
+      // תגיות מופיעות כשראש הקו חולף עליהן, נשארות ~PIN_WIN ואז נעלמות — סיום נקי ללא תגיות
+      PINS.forEach(o=>{ if(o.el) o.el.classList.toggle('show', p>=o.t && p<o.t+PIN_WIN && p<0.985); });
+      const done = p>=0.995;
+      if(endCalm) endCalm.classList.toggle('show', done);
+      if(endWild) endWild.classList.toggle('show', done);
+    }
+
+    function place(){
+      if(!W||!H) return;
+      PINS.forEach(o=>{ if(!o.el) return;
+        o.el.style.left=(px(o.t)/W*100)+'%';
+        const topPct=py(valAt(o.s==='calm'?calm:wild, o.t))/H*100;
+        o.el.style.top='calc('+topPct+'% '+(o.dir==='down'?'+ 26px':'- 26px')+')';
+      });
+      if(endCalm) endCalm.style.top=(py(calm[N])/H*100)+'%';
+      if(endWild) endWild.style.top=(py(wild[N])/H*100)+'%';
+    }
+
+    function createPins(){
+      const frag=document.createDocumentFragment();
+      PINS.forEach(o=>{
+        const el=document.createElement('div');
+        el.className='growth-pin '+o.s+(o.dir==='down'?' below':'');
+        if(o.sm) el.dataset.sm=o.sm;
+        el.setAttribute('aria-hidden','true');
+        el.innerHTML='<span class="emo">'+o.emo+'</span><span>'+o.txt+'</span>';
+        o.el=el; frag.appendChild(el);
+      });
+      endCalm=document.createElement('div'); endCalm.className='growth-end calm'; endCalm.setAttribute('aria-hidden','true');
+      endCalm.innerHTML='<span class="v">₪800K</span><span class="t">פי 4 מההתחלה</span>';
+      endWild=document.createElement('div'); endWild.className='growth-end wild'; endWild.setAttribute('aria-hidden','true');
+      endWild.innerHTML='<span class="v">₪130K</span><span class="t">−35% אחרי עמלות</span>';
+      frag.appendChild(endCalm); frag.appendChild(endWild);
+      chart.appendChild(frag);
+    }
+
+    function frame(ts){
+      if(!t0) t0=ts;
+      const p = reduce ? 1 : Math.min(1, (ts-t0)/DUR);
+      draw(p);
+      if(p<1) raf=requestAnimationFrame(frame); else raf=0;
+    }
+    function play(){ if(played) return; played=true; t0=0; raf=requestAnimationFrame(frame); }
+
+    function resize(){
+      const r=chart.getBoundingClientRect();
+      if(r.width<2 || r.height<2) return;                  // עדיין לא נראה (display:none)
+      dpr=Math.min(window.devicePixelRatio||1, 2);
+      W=Math.round(r.width); H=Math.round(r.height);
+      PAD.r = W<560 ? 0.17 : 0.10;                         // מקום לתגי הסיום — רחב יותר במובייל
+      PAD.l = W<560 ? 0.15 : 0.07;                         // מקום לתוויות השווי (ציר Y)
+      canvas.width=W*dpr; canvas.height=H*dpr;
+      place(); draw(played?curP:0);
+    }
+
+    function ensure(){
+      host=document.querySelector('[data-growth-race]'); if(!host) return;
+      chart=host.querySelector('[data-race-chart]'); canvas=chart&&chart.querySelector('canvas'); if(!canvas) return;
+      if(!inited){
+        ctx=canvas.getContext('2d');
+        try{ baseYear=new Date().getFullYear()-15; }catch(e){}  // 15 השנים האחרונות עד היום
+        buildSeries(); createPins();
+        window.addEventListener('resize', ()=>requestAnimationFrame(resize), {passive:true});
+        const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ play(); io.disconnect(); } }), {threshold:0.35});
+        io.observe(chart);
+        inited=true;
+      }
+      requestAnimationFrame(resize);
+    }
+    return { ensure };
+  })();
+
   function init(){
     wireContacts();
     renderTestiWall();
@@ -1952,20 +2496,18 @@
     setTimeout(()=>{
       const hm = document.querySelector('.page[data-page="/"] .hero-main');
       if(hm && !hm.classList.contains('intro-go')){
-        hm.classList.add('intro-go');
+        hm.classList.add('intro-portrait-go','intro-go');
         const h = document.querySelector('.site-header'); if(h) h.classList.add('intro-in');
       }
     }, 6000);
     const hdr = document.querySelector('.site-header');
     if(hdr){
+      // ההידר נעוץ ותמיד נוכח. רק הרקע/הצבעים מתחלפים לפי הגלילה — בלי הופעה/היעלמות.
       const syncHeader=()=>{
         const page = document.querySelector('.page.active');
         const hero = page && page.querySelector('.hero-main, .hero-page');
-        if(!hero){ hdr.classList.add('revealed'); hdr.classList.remove('over-light'); return; }
-        const out = hero.getBoundingClientRect().bottom <= 0;   // ההירו יצא מהפריים
-        hdr.classList.toggle('revealed', out);
-        // מעל הירו בהיר ועדיין בפריים — שומרים רקע כהה לטובת ניגודיות
-        hdr.classList.toggle('over-light', !out && hero.classList.contains('light'));
+        const out = hero ? (hero.getBoundingClientRect().bottom <= 0) : true;   // ההירו יצא מהפריים
+        hdr.classList.toggle('over-light', !out && hero && hero.classList.contains('light'));
       };
       window.syncHeader = syncHeader;
       syncHeader();
