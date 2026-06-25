@@ -143,6 +143,27 @@ h1,h2,h3,h4{font-family:var(--font-head);line-height:1.18;letter-spacing:-.01em}
 .svc-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s var(--ease)}
 .svc:hover .svc-media img{transform:scale(1.05)}
 @media(prefers-reduced-motion:reduce){.svc{transition:none}.svc:hover{transform:none}.svc:active{transform:none}.svc:hover .svc-media img{transform:none}}
+
+/* ===== תמונה אותנטית ממוסגרת (רגעים אמיתיים מהבמה/לייב) ===== */
+.media-split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,52px);align-items:center}
+.media-frame{margin:0;line-height:0;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--sh-md);border:1px solid var(--line)}
+.media-frame img{width:100%;height:auto;display:block}
+.media-frame.tall img{aspect-ratio:4/5;object-fit:cover}
+.media-cap{margin-top:12px;font-size:12.5px;color:var(--muted);text-align:center}
+.lecture-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:clamp(14px,2vw,20px)}
+.lecture-gallery .media-frame img{aspect-ratio:4/5;object-fit:cover}
+@media(max-width:760px){.media-split{grid-template-columns:1fr}}
+
+/* ===== פאנל עם גזיר אדם (cutout · ללא רקע) — יושב על "רצפת" הפאנל ===== */
+.adam-panel{position:relative;display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(20px,3vw,44px);align-items:end;
+  background:linear-gradient(180deg,var(--indigo-50),var(--surface));border:1px solid var(--line);
+  border-radius:var(--r-xl);box-shadow:var(--sh-sm);padding:clamp(26px,4vw,44px);padding-bottom:0;overflow:hidden}
+.adam-figure{margin:0;align-self:end;line-height:0}
+.adam-figure img{width:100%;max-width:300px;height:auto;display:block;margin-inline:auto}
+.adam-panel .adam-copy{padding-bottom:clamp(28px,4.5vw,46px)}
+@media(max-width:760px){.adam-panel{grid-template-columns:1fr;align-items:stretch}
+  .adam-figure{order:2;max-width:260px;margin-inline:auto}.adam-panel .adam-copy{order:1;padding-bottom:clamp(18px,4vw,28px)}}
+
 .stat{padding:22px;border-radius:var(--r-lg);background:var(--ink);color:#fff}
 .stat .k{font-size:13px;opacity:.7;margin-bottom:6px}
 .stat .v{font-family:var(--font-head);font-size:34px;font-weight:700;line-height:1}

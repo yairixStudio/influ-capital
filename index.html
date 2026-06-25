@@ -162,7 +162,7 @@
 
     /* ניתוב עמודים (SPA) */
     .page{ display:none }
-    .page.active{ display:block; animation:page-fade .28s var(--ease) }
+    .page.active{ display:block }
     @keyframes page-fade{ from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
 
     /* רצועת תוכן כללית בין סקשנים (עוטפת סקשני אתר) */
@@ -814,6 +814,26 @@
         </div>
       </section>
 
+      <!-- רגע אמיתי מהשטח -->
+      <section class="band soft">
+        <div class="wrap">
+          <div class="media-split">
+            <div class="section-head" style="margin-bottom:0">
+              <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/></svg> מהשטח</span>
+              <h2>פיזור, שיטה וסבלנות — לא טיפים חמים</h2>
+              <p>אותה גישה שאני מלמד מהבמה היא בדיוק זו שמלווה את התיק שלך: השקעות ערך, פיזור נכון ומעקב שוטף — בלי לרדוף אחרי כותרות.</p>
+            </div>
+            <figure class="media-frame">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-hall-podium-400.avif 400w, media/adam/web/lectures/lecture-hall-podium-800.avif 800w, media/adam/web/lectures/lecture-hall-podium-1111.avif 1111w" sizes="(max-width:760px) 92vw, 46vw">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-hall-podium-400.webp 400w, media/adam/web/lectures/lecture-hall-podium-800.webp 800w, media/adam/web/lectures/lecture-hall-podium-1111.webp 1111w" sizes="(max-width:760px) 92vw, 46vw">
+                <img src="media/adam/web/lectures/lecture-hall-podium-800.jpg" alt="אדם ויינשטיין מרצה על פיזור תיק השקעות מול קהל באולם הרצאות" width="800" height="498" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <!-- המלצות -->
       <section class="testi">
         <div class="wrap">
@@ -899,16 +919,25 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- CTA אישי -->
       <section class="band soft">
         <div class="wrap">
-          <div class="cta-band">
-            <span class="hero-pill"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> מוכנים להתחיל?</span>
-            <h2>להשקיע עם שיטה, לא עם תחושת בטן.</h2>
-            <p>שיחת היכרות קצרה, בלי התחייבות — נבין מאיפה אתם מגיעים ואיך אפשר לעבוד יחד.</p>
-            <div class="hero-cta">
-              <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg> תיאום שיחת היכרות</a>
-              <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> דברו איתי בוואטסאפ</a>
+          <div class="adam-panel">
+            <figure class="adam-figure">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/cutouts/adam-cutout-transparent-400.avif 400w, media/adam/web/cutouts/adam-cutout-transparent-800.avif 800w" sizes="300px">
+                <source type="image/webp" srcset="media/adam/web/cutouts/adam-cutout-transparent-400.webp 400w, media/adam/web/cutouts/adam-cutout-transparent-800.webp 800w" sizes="300px">
+                <img src="media/adam/web/cutouts/adam-cutout-transparent-800.webp" alt="אדם ויינשטיין — בעל רישיון שיווק השקעות" width="800" height="1095" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="adam-copy">
+              <span class="hero-pill on-light"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> מוכנים להתחיל?</span>
+              <h2>להשקיע עם שיטה, לא עם תחושת בטן.</h2>
+              <p>שיחת היכרות קצרה, בלי התחייבות — נבין מאיפה אתם מגיעים ואיך אפשר לעבוד יחד.</p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg> תיאום שיחת היכרות</a>
+                <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> דברו איתי בוואטסאפ</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1016,6 +1045,26 @@
         </div>
       </section>
 
+      <!-- רגע אמיתי מהלייב -->
+      <section class="band">
+        <div class="wrap">
+          <div class="media-split">
+            <figure class="media-frame tall">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-mic-rules-400.avif 400w, media/adam/web/lectures/lecture-mic-rules-766.avif 766w" sizes="(max-width:760px) 92vw, 46vw">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-mic-rules-400.webp 400w, media/adam/web/lectures/lecture-mic-rules-766.webp 766w" sizes="(max-width:760px) 92vw, 46vw">
+                <img src="media/adam/web/lectures/lecture-mic-rules-766.jpg" alt="אדם ויינשטיין מלמד את הכלל הראשון של השקעות ערך — &quot;לעולם אל תפסיד כסף&quot;" width="766" height="1082" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="section-head" style="margin-bottom:0">
+              <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg> ככה זה נראה</span>
+              <h2>לומדים לחשוב, בדיוק כמו מהבמה</h2>
+              <p>הכלל הראשון של השקעות ערך: לא להפסיד כסף. בקורס לוקחים את עקרונות החשיבה האלה ומתרגלים אותם 1:1, על חברות אמיתיות ובקצב שמתאים לך.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- המלצות -->
       <section class="testi">
         <div class="wrap">
@@ -1067,16 +1116,25 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- CTA אישי -->
       <section class="band soft">
         <div class="wrap">
-          <div class="cta-band">
-            <span class="hero-pill"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> רוצים לשמוע עוד?</span>
-            <h2>ללמוד להשקיע כמו תהליך, לא כמו טריק.</h2>
-            <p>שיחה קצרה ונבין יחד אם המסלול האישי מתאים לכם.</p>
-            <div class="hero-cta">
-              <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg> דברו איתי על הקורס</a>
-              <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> וואטסאפ</a>
+          <div class="adam-panel">
+            <figure class="adam-figure">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/cutouts/adam-black-suit-seated-400.avif 400w, media/adam/web/cutouts/adam-black-suit-seated-800.avif 800w" sizes="300px">
+                <source type="image/webp" srcset="media/adam/web/cutouts/adam-black-suit-seated-400.webp 400w, media/adam/web/cutouts/adam-black-suit-seated-800.webp 800w" sizes="300px">
+                <img src="media/adam/web/cutouts/adam-black-suit-seated-800.webp" alt="אדם ויינשטיין — מלווה ומרצה להשקעות ערך" width="800" height="1071" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="adam-copy">
+              <span class="hero-pill on-light"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> רוצים לשמוע עוד?</span>
+              <h2>ללמוד להשקיע כמו תהליך, לא כמו טריק.</h2>
+              <p>שיחה קצרה ונבין יחד אם המסלול האישי מתאים לכם.</p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg> דברו איתי על הקורס</a>
+                <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> וואטסאפ</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1155,6 +1213,40 @@
         </div>
       </section>
 
+      <!-- רגעים מהבמה -->
+      <section class="band">
+        <div class="wrap">
+          <div class="section-head center">
+            <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg> רגעים מהבמה</span>
+            <h2>איך זה נראה באולם</h2>
+            <p>קהל מחובר, דוגמאות מהחיים ושוק הון שמרגיש פתאום נגיש — מתוך הרצאות אמיתיות.</p>
+          </div>
+          <div class="lecture-gallery">
+            <figure class="media-frame">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-presenting-400.avif 400w, media/adam/web/lectures/lecture-presenting-782.avif 782w" sizes="(max-width:760px) 92vw, 31vw">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-presenting-400.webp 400w, media/adam/web/lectures/lecture-presenting-782.webp 782w" sizes="(max-width:760px) 92vw, 31vw">
+                <img src="media/adam/web/lectures/lecture-presenting-782.jpg" alt="אדם ויינשטיין מרצה על במה מול מסך מצגת" width="782" height="991" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <figure class="media-frame">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-hall-buffett-400.avif 400w, media/adam/web/lectures/lecture-hall-buffett-749.avif 749w" sizes="(max-width:760px) 92vw, 31vw">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-hall-buffett-400.webp 400w, media/adam/web/lectures/lecture-hall-buffett-749.webp 749w" sizes="(max-width:760px) 92vw, 31vw">
+                <img src="media/adam/web/lectures/lecture-hall-buffett-749.jpg" alt="אדם ויינשטיין מרצה באולם מלא קהל על השקעות ערך בהשראת וורן באפט" width="749" height="960" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <figure class="media-frame">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/lectures/lecture-panel-four-400.avif 400w, media/adam/web/lectures/lecture-panel-four-727.avif 727w" sizes="(max-width:760px) 92vw, 31vw">
+                <source type="image/webp" srcset="media/adam/web/lectures/lecture-panel-four-400.webp 400w, media/adam/web/lectures/lecture-panel-four-727.webp 727w" sizes="(max-width:760px) 92vw, 31vw">
+                <img src="media/adam/web/lectures/lecture-panel-four-727.jpg" alt="אדם ויינשטיין משתתף בפאנל שוק ההון על הבמה" width="727" height="749" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+          </div>
+        </div>
+      </section>
+
       <!-- המלצות -->
       <section class="testi">
         <div class="wrap">
@@ -1205,16 +1297,25 @@
         </div>
       </section>
 
-      <!-- CTA -->
+      <!-- CTA אישי -->
       <section class="band soft">
         <div class="wrap">
-          <div class="cta-band">
-            <span class="hero-pill"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> רוצים הרצאה לארגון שלכם?</span>
-            <h2>שעה אחת שיכולה לשנות את היחס לכסף.</h2>
-            <p>ספרו לי על הארגון והאירוע, ונתאים הרצאה שמדברת בדיוק לקהל שלכם.</p>
-            <div class="hero-cta">
-              <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg> להזמנת הרצאה</a>
-              <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> וואטסאפ</a>
+          <div class="adam-panel">
+            <figure class="adam-figure">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/cutouts/adam-navy-suit-seated-400.avif 400w, media/adam/web/cutouts/adam-navy-suit-seated-800.avif 800w" sizes="300px">
+                <source type="image/webp" srcset="media/adam/web/cutouts/adam-navy-suit-seated-400.webp 400w, media/adam/web/cutouts/adam-navy-suit-seated-800.webp 800w" sizes="300px">
+                <img src="media/adam/web/cutouts/adam-navy-suit-seated-800.webp" alt="אדם ויינשטיין — מרצה להשקעות ערך לארגונים" width="800" height="1086" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="adam-copy">
+              <span class="hero-pill on-light"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/><path d="M20 2v4"/><path d="M22 4h-4"/><circle cx="4" cy="20" r="2"/></svg> רוצים הרצאה לארגון שלכם?</span>
+              <h2>שעה אחת שיכולה לשנות את היחס לכסף.</h2>
+              <p>ספרו לי על הארגון והאירוע, ונתאים הרצאה שמדברת בדיוק לקהל שלכם.</p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-lg" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h20"/><path d="M21 3v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V3"/><path d="m7 21 5-5 5 5"/></svg> להזמנת הרצאה</a>
+                <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> וואטסאפ</a>
+              </div>
             </div>
           </div>
         </div>
@@ -1252,6 +1353,29 @@
                 <li style="display:flex;gap:11px;align-items:flex-start;font-size:14.5px;color:var(--gray-700)"><svg class="lucide icon" style="color:var(--brand);flex:none;margin-top:3px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> גישת השקעות ערך — סבלנות, שיטה ומעקב.</li>
               </ul>
             </div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- אני, במשפט -->
+      <section class="band soft">
+        <div class="wrap">
+          <div class="adam-panel">
+            <figure class="adam-figure">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/cutouts/adam-black-suit-hand-on-chin-400.avif 400w, media/adam/web/cutouts/adam-black-suit-hand-on-chin-800.avif 800w" sizes="300px">
+                <source type="image/webp" srcset="media/adam/web/cutouts/adam-black-suit-hand-on-chin-400.webp 400w, media/adam/web/cutouts/adam-black-suit-hand-on-chin-800.webp 800w" sizes="300px">
+                <img src="media/adam/web/cutouts/adam-black-suit-hand-on-chin-800.webp" alt="אדם ויינשטיין — בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך" width="800" height="1000" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="adam-copy">
+              <span class="hero-pill on-light"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> העיקרון שלי</span>
+              <h2>פחות רעש, יותר תהליך.</h2>
+              <p>אני לא מאמין בקיצורי דרך ובהבטחות. אני מאמין בשיטה, בסבלנות ובמעקב — ובלהנגיש את שוק ההון בגובה העיניים, כדי שכל אחד יוכל לקבל החלטות בראש שקט.</p>
+              <div class="hero-cta">
+                <a class="btn btn-primary btn-md" href="#" data-open-modal="modal-lead"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg> בואו נכיר</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1343,6 +1467,29 @@
               <a class="channel" data-call-link href="#"><span class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></span><div><b>שיחת טלפון</b><small>053-3384114</small></div></a>
               <a class="channel" data-email-link href="#"><span class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span><div><b>אימייל</b><small>info@influ-capital.co.il</small></div></a>
             </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- מי שעונה -->
+      <section class="band soft">
+        <div class="wrap">
+          <div class="adam-panel">
+            <figure class="adam-figure">
+              <picture>
+                <source type="image/avif" srcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.avif 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.avif 800w" sizes="300px">
+                <source type="image/webp" srcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.webp 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.webp 800w" sizes="300px">
+                <img src="media/adam/web/cutouts/adam-navy-suit-smiling-800.webp" alt="אדם ויינשטיין — בעל רישיון שיווק השקעות, מחייך" width="800" height="1034" loading="lazy" decoding="async">
+              </picture>
+            </figure>
+            <div class="adam-copy">
+              <span class="hero-pill on-light"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg> נעים להכיר</span>
+              <h2>אני זה שעונה לכם.</h2>
+              <p>אין מוקד ואין נציגים — ההודעה מגיעה ישירות אליי, ואני חוזר אליכם באופן אישי. שיחת היכרות קצרה, בגובה העיניים ובלי התחייבות.</p>
+              <div class="hero-cta">
+                <a class="btn btn-wa btn-lg" data-wa-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> דברו איתי בוואטסאפ</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
