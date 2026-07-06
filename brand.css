@@ -564,7 +564,8 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
   display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.show{display:flex;animation:modal-fade var(--dur) var(--ease)}
 .modal{position:relative;width:100%;max-width:440px;background:var(--surface);color:var(--ink);
-  border-radius:var(--r-xl);box-shadow:var(--sh-lg);padding:30px 28px 28px}
+  border-radius:var(--r-xl);box-shadow:var(--sh-lg);padding:30px 28px 28px;
+  max-height:calc(100dvh - 40px);overflow-y:auto;-webkit-overflow-scrolling:touch}
 .modal-overlay.show .modal{animation:modal-pop .26s var(--ease)}
 .modal .modal-close{position:absolute;inset-inline-end:14px;top:14px;width:34px;height:34px;border:none;
   border-radius:50%;background:var(--gray-100);color:var(--muted);display:grid;place-items:center;
@@ -588,6 +589,20 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
   background:var(--indigo-50);color:var(--brand)}
 .modal-contact .channel b{color:var(--ink)}
 .modal-contact .channel small{color:var(--muted)}
+/* מפריד "או" בין הטופס לערוצי הקשר המהירים */
+.modal-or{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--muted);font-size:12px}
+.modal-or::before,.modal-or::after{content:"";flex:1;height:1px;background:var(--line)}
+.modal-or span{flex:none}
+/* ערוצי קשר קומפקטיים — שורת כפתורים קטנים (וואטסאפ · טלפון · אימייל) */
+.modal-channels-compact{display:flex;gap:8px}
+.modal-channels-compact .channel-mini{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:11px 6px;background:var(--gray-100);border:1px solid var(--line);border-radius:var(--r-md);
+  text-decoration:none;color:var(--ink);font-family:var(--font-head);font-size:12.5px;font-weight:600;
+  transition:var(--dur) var(--ease)}
+.modal-channels-compact .channel-mini:hover{background:var(--indigo-50);border-color:var(--teal-200);transform:translateY(-1px)}
+.modal-channels-compact .channel-mini .icon{width:20px;height:20px;color:var(--brand)}
+.modal-channels-compact .channel-mini[data-wa-link] .icon{color:var(--whatsapp)}
+.modal-channels-compact .channel-mini:focus-visible{outline:3px solid var(--indigo-200);outline-offset:2px}
 /* במה לתצוגת מסמך — מציגה מודאל סטטי על רקע מעומעם (לא fixed) */
 .modal-stage{position:relative;display:grid;place-items:center;padding:clamp(28px,4vw,46px) 20px;
   border-radius:var(--r-lg);background:rgba(14,19,48,.55);
@@ -676,36 +691,42 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
 .pod-card h4{font-family:var(--font-head);font-size:15.5px;font-weight:600;margin-bottom:4px;line-height:1.3}
 .pod-card small{color:var(--muted);font-size:12.5px}
 
-/* — גלריית וידאו פודקאסט: סרטון אחד גלוי + חיצי ניווט; לחיצה על הסרטון → יוטיוב בטאב חדש — */
-.pod-carousel{display:flex;align-items:center;gap:clamp(10px,2vw,18px);margin-top:26px;max-width:720px;margin-inline:auto}
-.pod-carousel-viewport{flex:1;min-width:0;overflow:hidden}
-.pod-carousel-track{position:relative;margin:0}
-.pod-carousel-slide{display:none;text-decoration:none;color:inherit;border-radius:var(--r-lg);outline-offset:4px}
-.pod-carousel-slide.active{display:block}
-.pod-carousel-frame{position:relative;display:block;width:100%;padding-top:56.25%;border-radius:var(--r-lg);overflow:hidden;
+/* — גלריית וידאו פודקאסט "coverflow": מרכז גדול + צדדים מציצים · ניווט בלחיצה/החלקה/נקודות; לחיצה על המרכז → נגן יוטיוב (nocookie) inline. הלוגיקה ב-index.html (vidCoverflow) — */
+.vid-cf{position:relative;margin-top:26px;height:clamp(170px,30vw,280px);overflow:hidden;
+  touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.vcf-item{position:absolute;top:50%;left:50%;width:min(420px,54%);border:0;padding:0;background:none;
+  cursor:pointer;transform:translate(-50%,-50%);will-change:transform;
+  transition:transform .42s var(--ease),opacity .42s var(--ease)}
+.vcf-frame{position:relative;display:block;width:100%;padding-top:56.25%;border-radius:var(--r-lg);overflow:hidden;
   box-shadow:var(--sh-lg);background:linear-gradient(150deg,var(--indigo-700),var(--indigo-900))}
-.pod-carousel-frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.pod-carousel-play{position:absolute;inset:0;margin:auto;width:62px;height:62px;border-radius:50%;
+.vcf-frame img,.vcf-frame iframe{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.vcf-play{position:absolute;inset:0;margin:auto;width:62px;height:62px;border-radius:50%;
   background:rgba(255,255,255,.92);color:var(--brand);display:grid;place-items:center;
   box-shadow:var(--sh-md);transition:transform var(--dur) var(--ease),background var(--dur) var(--ease)}
-.pod-carousel-play .icon{width:27px;height:27px;margin-inline-start:3px}
-.pod-carousel-slide:hover .pod-carousel-play,.pod-carousel-slide:focus-visible .pod-carousel-play{transform:scale(1.08);background:#fff}
-.pod-carousel-slide:focus-visible .pod-carousel-frame{outline:3px solid var(--indigo-200);outline-offset:3px}
-.pod-carousel-btn{flex:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);
-  color:var(--gray-700);display:grid;place-items:center;cursor:pointer;padding:0;box-shadow:var(--sh-sm);
-  transition:var(--dur) var(--ease)}
-.pod-carousel-btn:hover:not(:disabled){border-color:var(--indigo-300);color:var(--brand);transform:translateY(-1px)}
-.pod-carousel-btn:focus-visible{outline:3px solid var(--indigo-200);outline-offset:2px}
-.pod-carousel-btn:disabled{opacity:.35;cursor:not-allowed;box-shadow:none}
-.pod-carousel-btn .icon{width:20px;height:20px}
-@media(prefers-reduced-motion:reduce){.pod-carousel-btn{transition:none}}
+.vcf-play .icon{width:27px;height:27px;margin-inline-start:3px}
+.vcf-item:hover .vcf-play{transform:scale(1.08);background:#fff}
+.vcf-item:focus-visible{outline:none}
+.vcf-item:focus-visible .vcf-frame{outline:3px solid var(--indigo-200);outline-offset:3px}
+/* מצבי מיקום (data-pos נקבע ב-JS) — RTL: pos חיובי = הפריטים הבאים, משמאל */
+.vcf-item[data-pos="0"]{z-index:5;opacity:1}
+.vcf-item[data-pos="1"],.vcf-item[data-pos="-1"]{z-index:3;opacity:.6}
+.vcf-item[data-pos="2"],.vcf-item[data-pos="-2"]{z-index:2;opacity:.32}
+.vcf-item[data-pos="1"]{transform:translate(-50%,-50%) translateX(58%) scale(.62)}
+.vcf-item[data-pos="-1"]{transform:translate(-50%,-50%) translateX(-58%) scale(.62)}
+.vcf-item[data-pos="hidden"]{opacity:0;pointer-events:none;z-index:1;transform:translate(-50%,-50%) scale(.4)}
+.vcf-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
+/* יעד מגע 24px (WCAG 2.5.8) — הנקודה הויזואלית קטנה דרך ::after */
+.vcf-dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;display:grid;place-items:center}
+.vcf-dots button::after{content:"";width:8px;height:8px;border-radius:var(--r-pill);background:var(--gray-300);transition:var(--dur) var(--ease)}
+.vcf-dots button[aria-current="true"]::after{background:var(--brand);width:22px}
+.vcf-dots button:focus-visible{outline:2px solid var(--indigo-200);outline-offset:2px;border-radius:var(--r-pill)}
+@media(prefers-reduced-motion:reduce){.vcf-item{transition:none}}
 /* מובייל — סקשן פודקאסט: הגלריה מעל, ואז לוגואים בסטאק אנכי (כמו הגדרות iOS) · והקרוסלה הופכת לסליידר snap-center */
 @media(max-width:640px){
   .podcast .wrap{display:flex;flex-direction:column}
   .podcast .section-head{order:1}
-  .podcast .pod-carousel{order:2;margin-top:20px;gap:8px}
-  .pod-carousel-btn{width:38px;height:38px}
-  .pod-carousel-btn .icon{width:18px;height:18px}
+  .podcast .vid-cf{order:2}
+  .podcast .vcf-dots{order:3}
   /* כפתורי הפלטפורמות במובייל — דבוקה אחת רחבה בסגנון iOS: מסגרת+פינות לקבוצה, שורות עם divider, ואייקון פתיחה-חיצונית בקצה */
   .podcast .pod-logos{order:4;margin-top:24px;flex-direction:column;align-items:stretch;gap:0;
     max-width:none;margin-inline:0;border:1px solid var(--line);border-radius:var(--r-lg);
@@ -718,6 +739,12 @@ h1[data-typewriter].tw-done .tw-c{opacity:1}
   .podcast .pod-chip::after{content:"";flex:none;margin-inline-start:auto;width:15px;height:15px;background:var(--muted);
     -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E") center/contain no-repeat;
     mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6'/%3E%3Cpath d='M10 14 21 3'/%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3C/svg%3E") center/contain no-repeat}
+  /* סליידר נייטיב עם snap למרכז במקום ה-coverflow */
+  .vid-cf{height:auto;overflow:visible;overflow-x:auto;display:flex;gap:14px;padding-block:6px;padding-inline:11%;
+    scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;touch-action:pan-x;scrollbar-width:none}
+  .vid-cf::-webkit-scrollbar{display:none}
+  .vid-cf .vcf-item{position:static;flex:0 0 78%;width:78%;scroll-snap-align:center;
+    transform:none!important;opacity:1!important;filter:none!important;z-index:auto!important;pointer-events:auto!important}
 }
 
 /* — סקשן "דופק השוק": מספרי אחוזים רנדומליים צפים (אדום/ירוק) ברקע · הלוגיקה ב-index.html — */
