@@ -63,9 +63,7 @@
     "sameAs": [
       "https://www.youtube.com/@AdamVainshtein",
       "https://www.instagram.com/adamv_96/",
-      "https://www.facebook.com/adam.vainshtein",
-      "https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5",
-      "https://podcasts.apple.com/gb/podcast/id1789951765"
+      "https://www.facebook.com/adam.vainshtein"
     ],
     "founder": {
       "@type": "Person",
@@ -317,6 +315,7 @@
     .toast.show{ display:block; animation:page-fade .25s var(--ease) }
 
     .visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); border:0 }
+    .hp-field{ position:absolute; inset-inline-start:-9999px; width:1px; height:1px; overflow:hidden; opacity:0; pointer-events:none }
 
     /* פורטרט ההירו — picture רספונסיבי */
     .hero-portrait picture{ display:contents }
@@ -597,8 +596,8 @@
           <div class="wa-vert">
             <div class="section-head" style="margin-bottom:0">
               <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> המציאות בשוק</span>
-              <h2>למה רוב המשקיעים הקטנים לא באמת מצליחים</h2>
-              <p>רוב המשקיעים הקטנים לא נכשלים מחוסר ידע — אלא מחוסר שיטה, סדר ומישהו לחשוב איתו. פחות רעש, יותר תהליך.</p>
+              <h2>למה רוב המשקיעים הפרטיים לא באמת מצליחים</h2>
+              <p>רוב המשקיעים הפרטיים לא נכשלים מחוסר ידע — אלא מחוסר שיטה, סדר ומישהו לחשוב איתו. פחות רעש, יותר תהליך.</p>
               <ul class="wa-points">
                 <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg><span><b>רעש אינסופי</b> — כותרות, "טיפים חמים" והמלצות סותרות מכל כיוון.</span></li>
                 <li><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.409 5.824c-.702.792-1.15 1.496-1.415 2.166l2.153 2.156a.5.5 0 0 1 0 .707l-2.293 2.293a.5.5 0 0 0 0 .707L12 15"/><path d="M13.508 20.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5a5.5 5.5 0 0 1 9.591-3.677.6.6 0 0 0 .818.001A5.5 5.5 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5z"/></svg><span><b>החלטות רגשיות</b> — פחד ותאוות בצע מנהלים את התיק במקום שיטה.</span></li>
@@ -646,6 +645,7 @@
             </figure>
           <div class="form-card">
             <form class="lead-form" data-leadform aria-label="טופס יצירת קשר — דף הבית">
+              <div class="hp-field" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
               <div class="form-row">
                 <div class="field"><label for="h-name">שם מלא</label><input id="h-name" class="inp" name="name" type="text" autocomplete="name" placeholder="ישראל ישראלי"></div>
                 <div class="field"><label for="h-phone">טלפון <span aria-hidden="true" style="color:var(--danger)">*</span></label><input id="h-phone" class="inp" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="050-0000000"></div>
@@ -689,29 +689,18 @@
             <p>שיחות על שוק ההון, השקעות ערך ופסיכולוגיה של כסף — בגובה העיניים. זמין בפלטפורמות:</p>
           </div>
           <div class="pod-logos">
-            <a class="pod-chip" href="https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5" target="_blank" rel="noopener"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> Spotify</a>
-            <a class="pod-chip" href="https://podcasts.apple.com/gb/podcast/id1789951765" target="_blank" rel="noopener"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 17a1 1 0 1 0-2 0l.5 4.5a0.5 0.5 0 0 0 1 0z" fill="currentColor"/><path d="M16.85 18.58a9 9 0 1 0-9.7 0"/><path d="M8 14a5 5 0 1 1 8 0"/><circle cx="12" cy="11" r="1" fill="currentColor"/></svg> Apple Podcasts</a>
             <a class="pod-chip" href="https://www.youtube.com/@AdamVainshtein" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg> YouTube</a>
           </div>
 
-          <!-- קרוסלת וידאו: סרטון אחד גלוי + חיצים (ניווט + ערוץ יוטיוב) · לחיצה על הסרטון → צפייה ביוטיוב -->
-          <div class="pod-carousel" data-pod-carousel role="region" aria-label="סרטונים מהיוטיוב">
-            <button type="button" class="pod-carousel-btn" data-pod-prev aria-label="סרטון קודם">
-              <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-            <div class="pod-carousel-viewport" aria-live="polite">
-              <div class="pod-carousel-track">
-                <a class="pod-carousel-slide active" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" aria-label="צפייה ביוטיוב: וידאו 1"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 2"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 3"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 4"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 5"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-              </div>
-            </div>
-            <button type="button" class="pod-carousel-btn" data-pod-next aria-label="סרטון הבא">
-              <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
+          <!-- גלריית וידאו "coverflow": מרכז גדול + צדדים מציצים · לחיצה/החלקה → מעבר · לחיצה על המרכז → נגן יוטיוב (nocookie). מזהי דמו — להחליף בסרטונים האמיתיים של אדם. -->
+          <div class="vid-cf" role="group" aria-roledescription="גלריית וידאו" aria-label="סרטונים והופעות וידאו">
+            <button class="vcf-item" type="button" data-yt="9bZkp7q19f0" data-title="וידאו 1" aria-label="נגן וידאו 1"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="kJQP7kiw5Fk" data-title="וידאו 2" aria-label="נגן וידאו 2"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="aqz-KE-bpKQ" data-title="וידאו 3" aria-label="נגן וידאו 3"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="OPf0YbXqDm0" data-title="וידאו 4" aria-label="נגן וידאו 4"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="jNQXAC9IVRw" data-title="וידאו 5" aria-label="נגן וידאו 5"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
           </div>
+          <div class="vcf-dots" aria-label="בחירת וידאו"></div>
         </div>
       </section>
     </article>
@@ -744,7 +733,7 @@
           <div class="section-head">
             <span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> למה ליווי אישי</span>
             <h2>השקעה לבד היא בעיקר רעש והחלטות רגשיות</h2>
-            <p>רוב המשקיעים הקטנים לא נכשלים מחוסר ידע — אלא מחוסר שיטה, סדר ומישהו לחשוב איתו. ככה זה נראה כשעושים את זה לבד:</p>
+            <p>רוב המשקיעים הפרטיים לא נכשלים מחוסר ידע — אלא מחוסר שיטה, סדר ומישהו לחשוב איתו. ככה זה נראה כשעושים את זה לבד:</p>
           </div>
           <div class="pain-grid">
             <div class="pain-item"><div class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg></div><h3>רעש אינסופי</h3><p>כותרות, "טיפים חמים" והמלצות סותרות מכל כיוון. קשה לדעת למי להקשיב ומה באמת רלוונטי אליך.</p></div>
@@ -1389,29 +1378,18 @@
             <p>שיחות על שוק ההון, השקעות ערך ופסיכולוגיה של כסף — בגובה העיניים. זמין בפלטפורמות:</p>
           </div>
           <div class="pod-logos">
-            <a class="pod-chip" href="https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5" target="_blank" rel="noopener"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></svg> Spotify</a>
-            <a class="pod-chip" href="https://podcasts.apple.com/gb/podcast/id1789951765" target="_blank" rel="noopener"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 17a1 1 0 1 0-2 0l.5 4.5a0.5 0.5 0 0 0 1 0z" fill="currentColor"/><path d="M16.85 18.58a9 9 0 1 0-9.7 0"/><path d="M8 14a5 5 0 1 1 8 0"/><circle cx="12" cy="11" r="1" fill="currentColor"/></svg> Apple Podcasts</a>
             <a class="pod-chip" href="https://www.youtube.com/@AdamVainshtein" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg> YouTube</a>
           </div>
 
-          <!-- קרוסלת וידאו: סרטון אחד גלוי + חיצים (ניווט + ערוץ יוטיוב) · לחיצה על הסרטון → צפייה ביוטיוב -->
-          <div class="pod-carousel" data-pod-carousel role="region" aria-label="סרטונים מהיוטיוב">
-            <button type="button" class="pod-carousel-btn" data-pod-prev aria-label="סרטון קודם">
-              <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-            <div class="pod-carousel-viewport" aria-live="polite">
-              <div class="pod-carousel-track">
-                <a class="pod-carousel-slide active" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" aria-label="צפייה ביוטיוב: וידאו 1"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 2"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 3"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 4"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-                <a class="pod-carousel-slide" href="https://www.youtube.com/watch?v=w2yOV8BgiBI" target="_blank" rel="noopener" hidden aria-label="צפייה ביוטיוב: וידאו 5"><span class="pod-carousel-frame"><img src="https://i.ytimg.com/vi/w2yOV8BgiBI/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async"><span class="pod-carousel-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></a>
-              </div>
-            </div>
-            <button type="button" class="pod-carousel-btn" data-pod-next aria-label="סרטון הבא">
-              <svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
+          <!-- גלריית וידאו "coverflow": מרכז גדול + צדדים מציצים · לחיצה/החלקה → מעבר · לחיצה על המרכז → נגן יוטיוב (nocookie). מזהי דמו — להחליף בסרטונים האמיתיים של אדם. -->
+          <div class="vid-cf" role="group" aria-roledescription="גלריית וידאו" aria-label="סרטונים והופעות וידאו">
+            <button class="vcf-item" type="button" data-yt="9bZkp7q19f0" data-title="וידאו 1" aria-label="נגן וידאו 1"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/9bZkp7q19f0/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="kJQP7kiw5Fk" data-title="וידאו 2" aria-label="נגן וידאו 2"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/kJQP7kiw5Fk/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="aqz-KE-bpKQ" data-title="וידאו 3" aria-label="נגן וידאו 3"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/aqz-KE-bpKQ/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="OPf0YbXqDm0" data-title="וידאו 4" aria-label="נגן וידאו 4"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/OPf0YbXqDm0/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
+            <button class="vcf-item" type="button" data-yt="jNQXAC9IVRw" data-title="וידאו 5" aria-label="נגן וידאו 5"><span class="vcf-frame"><img src="https://i.ytimg.com/vi/jNQXAC9IVRw/hqdefault.jpg" alt="" loading="lazy" width="480" height="270" decoding="async" onerror="this.remove()"><span class="vcf-play" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 4.5v15l13-7.5z"/></svg></span></span></button>
           </div>
+          <div class="vcf-dots" aria-label="בחירת וידאו"></div>
         </div>
       </section>
 
@@ -1421,6 +1399,7 @@
           <div class="section-head center"><span class="eyebrow"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> נדבר?</span><h2>השאירו פרטים ונחזור אליכם</h2></div>
           <div class="form-card" style="margin-inline:auto">
             <form class="lead-form" data-leadform aria-label="טופס יצירת קשר — אודות">
+              <div class="hp-field" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
               <div class="form-row">
                 <div class="field"><label for="a-name">שם מלא</label><input id="a-name" class="inp" name="name" type="text" autocomplete="name" placeholder="ישראל ישראלי"></div>
                 <div class="field"><label for="a-phone">טלפון <span aria-hidden="true" style="color:var(--danger)">*</span></label><input id="a-phone" class="inp" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="050-0000000"></div>
@@ -1453,6 +1432,7 @@
               <h3>השאירו פרטים</h3>
               <p class="lead">נחזור אליכם בהקדם. ללא התחייבות.</p>
               <form class="lead-form" data-leadform aria-label="טופס יצירת קשר — צור קשר">
+                <div class="hp-field" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
                 <div class="field"><label for="c-name">שם מלא</label><input id="c-name" class="inp" name="name" type="text" autocomplete="name" placeholder="ישראל ישראלי"></div>
                 <div class="field"><label for="c-phone">טלפון <span aria-hidden="true" style="color:var(--danger)">*</span></label><input id="c-phone" class="inp" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="050-0000000"></div>
                 <div class="field"><label for="c-msg">הודעה (אופציונלי)</label><textarea id="c-msg" class="inp" name="message" rows="3" placeholder="קצת על מה שמעניין אתכם…"></textarea></div>
@@ -1592,7 +1572,6 @@
             <a href="https://www.youtube.com/@AdamVainshtein" target="_blank" rel="noopener" aria-label="יוטיוב"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg></a>
             <a href="https://www.instagram.com/adamv_96/" target="_blank" rel="noopener" aria-label="אינסטגרם"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 1.8.25 2.2.42.6.22 1 .48 1.4.9.43.4.7.82.91 1.4.17.42.36 1.05.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.06 1.18-.25 1.8-.42 2.23-.22.56-.48 1-.9 1.4-.41.43-.83.7-1.4.91-.42.17-1.05.36-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.18-.06-1.8-.25-2.23-.42a3.8 3.8 0 0 1-1.4-.9 3.8 3.8 0 0 1-.91-1.4c-.17-.42-.36-1.05-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.06-1.18.25-1.8.42-2.23.22-.56.48-1 .9-1.4.41-.43.83-.7 1.4-.91.42-.17 1.05-.36 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 1.8c-3.14 0-3.51.01-4.75.07-.9.04-1.39.2-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71C3.21 8.49 3.2 8.86 3.2 12s.01 3.51.07 4.75c.04.9.2 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.2 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.2-1.39-.32-1.71a2.85 2.85 0 0 0-.69-1.06 2.85 2.85 0 0 0-1.06-.69c-.32-.13-.81-.28-1.71-.32C15.51 4.01 15.14 4 12 4zm0 3.06A4.94 4.94 0 1 0 12 17a4.94 4.94 0 0 0 0-9.88zm0 8.14A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4zm6.3-8.34a1.15 1.15 0 1 1-2.3 0 1.15 1.15 0 0 1 2.3 0z"/></svg></a>
             <a href="https://www.facebook.com/adam.vainshtein" target="_blank" rel="noopener" aria-label="פייסבוק"><svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg></a>
-            <a href="https://open.spotify.com/show/7tCt83gL46JXu6V4k6y5a5" target="_blank" rel="noopener" aria-label="פודקאסט בספוטיפיי"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 17a1 1 0 1 0-2 0l.5 4.5a0.5 0.5 0 0 0 1 0z" fill="currentColor"/><path d="M16.85 18.58a9 9 0 1 0-9.7 0"/><path d="M8 14a5 5 0 1 1 8 0"/><circle cx="12" cy="11" r="1" fill="currentColor"/></svg></a>
           </div>
         </div>
         <nav class="footer-col" aria-label="ניווט ראשי — פוטר">
@@ -1618,6 +1597,7 @@
         <div class="footer-col">
           <h3>יצירת קשר מהירה</h3>
           <form class="lead-form" data-leadform aria-label="טופס יצירת קשר — פוטר">
+            <div class="hp-field" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
             <div class="field" style="margin-bottom:10px"><label for="f-name" style="color:#fff;font-size:12.5px">שם מלא</label><input id="f-name" class="inp" name="name" type="text" autocomplete="name" placeholder="ישראל ישראלי"></div>
             <div class="field" style="margin-bottom:10px"><label for="f-phone" style="color:#fff;font-size:12.5px">טלפון <span aria-hidden="true" style="color:var(--teal-300)">*</span></label><input id="f-phone" class="inp" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="050-0000000"></div>
             <label class="choice" style="margin-bottom:10px;font-size:12px;color:#c2c8e4"><input type="checkbox" name="consent" required> אישור יצירת קשר ומדיניות הפרטיות</label>
@@ -1688,6 +1668,7 @@
       <h3 id="modal-lead-title">להשקיע עם שיטה, לא עם תחושת בטן.</h3>
       <p class="modal-sub">השאירו פרטים לשיחת היכרות קצרה — נחזור אליכם בוואטסאפ או בטלפון. ללא התחייבות.</p>
       <form class="lead-form" data-leadform aria-label="טופס לכידת ליד">
+        <div class="hp-field" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
         <div class="field"><label for="m-name">שם מלא</label><input id="m-name" class="inp" name="name" type="text" autocomplete="name" placeholder="ישראל ישראלי"></div>
         <div class="field"><label for="m-phone">טלפון <span aria-hidden="true" style="color:var(--danger)">*</span></label><input id="m-phone" class="inp" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="050-0000000"></div>
         <label class="choice" style="margin-bottom:16px;font-size:13px"><input type="checkbox" name="consent" required> אני מאשר/ת יצירת קשר ושמירת הפרטים</label>
@@ -1700,13 +1681,21 @@
   <div class="modal-overlay" id="modal-contact" role="presentation">
     <div class="modal modal-contact" role="dialog" aria-modal="true" aria-labelledby="modal-contact-title">
       <button class="modal-close" type="button" data-close-modal aria-label="סגירה"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
-      <span class="modal-pill"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> מדברים ישירות</span>
-      <h3 id="modal-contact-title">איך נוח לכם לדבר?</h3>
-      <p class="modal-sub">זמין בערוצים שנוחים לכם — בלי טפסים, בלי המתנה.</p>
-      <div class="modal-channels">
-        <a class="channel" data-wa-link href="#" target="_blank" rel="noopener"><span class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg></span><div><b>וואטסאפ</b><small>מענה אישי ומהיר</small></div></a>
-        <a class="channel" data-call-link href="#"><span class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></span><div><b>שיחת טלפון</b><small>053-3384114</small></div></a>
-        <a class="channel" data-email-link href="#"><span class="ic-wrap"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></span><div><b>אימייל</b><small>info@influ-capital.co.il</small></div></a>
+      <span class="modal-pill"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="m9 16 2 2 4-4"/></svg> תיאום שיחה</span>
+      <h3 id="modal-contact-title">השאירו פרטים ונחזור אליכם</h3>
+      <p class="modal-sub">שיחת היכרות קצרה — נחזור אליכם בוואטסאפ או בטלפון. ללא התחייבות.</p>
+      <form class="lead-form" data-leadform aria-label="טופס תיאום שיחה">
+        <div class="hp-field" aria-hidden="true"><input name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="field"><label for="mc-name">שם מלא</label><input id="mc-name" class="inp" name="name" type="text" autocomplete="name" placeholder="ישראל ישראלי"></div>
+        <div class="field"><label for="mc-phone">טלפון <span aria-hidden="true" style="color:var(--danger)">*</span></label><input id="mc-phone" class="inp" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="050-0000000"></div>
+        <label class="choice" style="margin-bottom:16px;font-size:13px"><input type="checkbox" name="consent" required> אני מאשר/ת יצירת קשר ושמירת הפרטים</label>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">תיאום שיחת היכרות</button>
+      </form>
+      <div class="modal-or"><span>או דברו איתי ישירות</span></div>
+      <div class="modal-channels-compact">
+        <a class="channel-mini" data-wa-link href="#" target="_blank" rel="noopener"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg><span>וואטסאפ</span></a>
+        <a class="channel-mini" data-call-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg><span>טלפון</span></a>
+        <a class="channel-mini" data-email-link href="#"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg><span>אימייל</span></a>
       </div>
       <p class="modal-note"><svg class="lucide icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> זמינים בימים א׳–ה׳, 9:00–18:00</p>
     </div>
@@ -1729,11 +1718,36 @@
     email:    'info@influ-capital.co.il',
     waMessage:'היי אדם, הגעתי דרך האתר ואשמח לשמוע על ליווי השקעות אישי',
     ga4Id:    '',   // מזהה Google Analytics 4 — ריק = כבוי (פרטיות). למלא בעת חיבור אנליטיקס.
-    formEndpoint: '', // נקודת קצה לטופס (למשל Formspree). ריק = הדגמה מקומית.
+    // Wix HTTP Function — חובה www (ל-apex יש רדירקט שמאבד את גוף ה-POST). לבדיקות: /_functions-dev/submitLead
+    formEndpoint: 'https://www.adamvainshtein.co.il/_functions/submitLead',
     quotesUrl: '',   // JSON עם ציטוטי מניות אמת ({SYMBOL: changePercent}). ריק = סימולציה חיה.
     youtube:  'https://www.youtube.com/@AdamVainshtein'
   };
   const WA_LINK = 'https://wa.me/' + SITE_CONFIG.whatsapp + '?text=' + encodeURIComponent(SITE_CONFIG.waMessage);
+
+  // ----- אטריבוציה — נלכדת פעם אחת בכניסה לאתר ונשמרת לסשן (ניווט hash לא דורס) -----
+  const ATTRIBUTION_KEY = 'influ_attribution';
+  (function captureAttribution(){
+    try{
+      if(sessionStorage.getItem(ATTRIBUTION_KEY)) return; // לא לדרוס את מקור ההגעה המקורי
+      const q = new URLSearchParams(location.search);
+      sessionStorage.setItem(ATTRIBUTION_KEY, JSON.stringify({
+        utmSource:   q.get('utm_source')   || '',
+        utmMedium:   q.get('utm_medium')   || '',
+        utmCampaign: q.get('utm_campaign') || '',
+        utmTerm:     q.get('utm_term')     || '',
+        utmContent:  q.get('utm_content')  || '',
+        gclid:       q.get('gclid')        || '',
+        fbclid:      q.get('fbclid')       || '',
+        referrer:    document.referrer     || '',
+        landingPage: location.pathname + location.hash,
+        enteredAt:   new Date().toISOString()
+      }));
+    }catch(err){}
+  })();
+  function getAttribution(){
+    try{ return JSON.parse(sessionStorage.getItem(ATTRIBUTION_KEY)) || {}; }catch(err){ return {}; }
+  }
 
   // ----- המלצות מוטמעות סטטית ב-HTML (מקור: testimonials.json — דמה לפיתוח) -----
 
@@ -1860,7 +1874,12 @@
       if(lastFocus && lastFocus.focus) lastFocus.focus();
     }
     window.__openModal = open; window.__closeModal = close;
-    document.querySelectorAll('[data-open-modal]').forEach(btn=>btn.addEventListener('click', e=>{ e.preventDefault(); open(btn.getAttribute('data-open-modal')); }));
+    window.__leadCtaSource = ''; // מקור ה-CTA שפתח את המודאל האחרון — מצורף לליד כ-ctaSource
+    document.querySelectorAll('[data-open-modal]').forEach(btn=>btn.addEventListener('click', e=>{
+      e.preventDefault();
+      window.__leadCtaSource = 'cta:' + (btn.textContent||'').trim().replace(/\s+/g,' ');
+      open(btn.getAttribute('data-open-modal'));
+    }));
     document.querySelectorAll('[data-close-modal]').forEach(btn=>btn.addEventListener('click', close));
     document.querySelectorAll('.modal-overlay').forEach(ov=>ov.addEventListener('mousedown', e=>{ if(e.target===ov) close(); }));
     document.addEventListener('keydown', e=>{
@@ -2021,7 +2040,25 @@
   let toastT;
   function toast(msg){ toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(()=>toastEl.classList.remove('show'), 3500); }
 
-  // ----- טפסי לידים -----
+  // ----- טפסי לידים — שליחה ל-Backend (Wix HTTP Function) + אטריבוציה -----
+  // מיפוי aria-label של כל טופס → מזהה source יציב באנגלית (טופס עתידי → slug מה-aria-label)
+  const LEAD_FORM_SOURCES = {
+    'טופס יצירת קשר — דף הבית': 'home_hero',
+    'טופס יצירת קשר — אודות':   'about_page',
+    'טופס יצירת קשר — צור קשר': 'contact_page',
+    'טופס יצירת קשר — פוטר':    'footer',
+    'טופס לכידת ליד':           'exit_popup',
+    'טופס תיאום שיחה':          'header_call'
+  };
+  const LEAD_ERRORS = {
+    email_or_phone_required: 'נא למלא טלפון',
+    rate_limited: 'יותר מדי ניסיונות, נסה שוב בעוד רגע'
+  };
+  // טלפון ישראלי: נייד 05X/07X (10 ספרות) או קווי (9 ספרות), כולל קידומת +972
+  function isValidILPhone(v){
+    const d = v.replace(/[\s\-().]/g,'').replace(/^\+?972/, '0');
+    return /^0(?:[57]\d{8}|[23489]\d{7})$/.test(d);
+  }
   document.querySelectorAll('[data-leadform]').forEach(form=>{
     form.addEventListener('submit', async e=>{
       e.preventDefault();
@@ -2033,14 +2070,65 @@
         if(!valid) ok = false;
       });
       if(!ok){ toast('נא למלא את שדות החובה'); return; }
-      const data = Object.fromEntries(new FormData(form).entries());
-      if(window.trackEvent) window.trackEvent('lead_submit', {interest:data.interest||''});
-      if(SITE_CONFIG.formEndpoint){
-        try{ await fetch(SITE_CONFIG.formEndpoint,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)}); }catch(err){}
+      const phoneInp = form.querySelector('[name="phone"]');
+      if(phoneInp && !isValidILPhone(phoneInp.value)){
+        phoneInp.classList.add('bad');
+        toast('נא להזין מספר טלפון ישראלי תקין');
+        return;
       }
-      form.reset();
-      if(window.__closeModal) window.__closeModal();
-      toast('תודה! נחזור אליכם בהקדם 🙌');
+      const data = Object.fromEntries(new FormData(form).entries());
+      const label = form.getAttribute('aria-label') || '';
+      const source = LEAD_FORM_SOURCES[label] || label.trim().replace(/\s+/g,'_');
+      const fullName = (data.name||'').trim();
+      const nameParts = fullName ? fullName.split(/\s+/) : [];
+      const attr = getAttribution();
+      const payload = {
+        firstName:   nameParts[0] || '',
+        lastName:    nameParts.slice(1).join(' '),
+        email:       '',
+        phone:       (data.phone||'').trim(),
+        message:     (data.message||'').trim(),
+        website:     data.website || '',   // honeypot — השרת מסנן לפיו
+        source:      source,
+        interest:    data.interest || '',
+        consent:     !!(form.querySelector('[name="consent"]') && form.querySelector('[name="consent"]').checked),
+        pagePath:    location.pathname + location.hash,
+        referrer:    attr.referrer    || '',
+        landingPage: attr.landingPage || '',
+        utmSource:   attr.utmSource   || '',
+        utmMedium:   attr.utmMedium   || '',
+        utmCampaign: attr.utmCampaign || '',
+        utmTerm:     attr.utmTerm     || '',
+        utmContent:  attr.utmContent  || '',
+        gclid:       attr.gclid       || '',
+        fbclid:      attr.fbclid      || '',
+        ctaSource:   form.closest('.modal-overlay') ? (window.__leadCtaSource || '') : ''
+      };
+      if(window.trackEvent) window.trackEvent('lead_submit', {interest:payload.interest, source:source});
+      // נטרול הכפתור למניעת שליחה כפולה
+      const btn = form.querySelector('[type="submit"]');
+      const btnText = btn ? btn.textContent : '';
+      if(btn){ btn.disabled = true; btn.textContent = 'שולח…'; }
+      try{
+        const res = await fetch(SITE_CONFIG.formEndpoint, {
+          method: 'POST',
+          headers: {'Content-Type':'application/json', 'Accept':'application/json'},
+          body: JSON.stringify(payload)
+        });
+        let out = null;
+        try{ out = await res.json(); }catch(err){}
+        if(res.ok && out && out.ok){
+          form.reset();
+          if(window.__closeModal) window.__closeModal();
+          toast('תודה! נחזור אליכם בהקדם 🙌');
+        }else{
+          toast(LEAD_ERRORS[out && out.error] || 'משהו השתבש בשליחה, נסו שוב או דברו איתנו בוואטסאפ');
+        }
+      }catch(err){
+        toast('אין חיבור לרשת כרגע — נסו שוב, או דברו איתנו בוואטסאפ');
+      }finally{
+        if(btn){ btn.disabled = false; btn.textContent = btnText; }
+      }
     });
   });
 
@@ -2112,15 +2200,15 @@
     let armed=false;             // טריגרים מזוינים רק אחרי שהות מינימלית בעמוד
     let scrolled=false;          // exit-intent ידרוש שהגולש כבר גלל מעט (סימן מעורבות)
     setTimeout(()=>{ armed=true; }, MIN_DWELL_MS);
-    function fire(){ if(!armed || shown()) return; sessionStorage.setItem(KEY,'1'); if(window.__openModal) window.__openModal('modal-lead'); }
+    function fire(trigger){ if(!armed || shown()) return; sessionStorage.setItem(KEY,'1'); window.__leadCtaSource = trigger; if(window.__openModal) window.__openModal('modal-lead'); }
     // exit-intent: רק אחרי השהיה + רק אם הגולש כבר גלל (לא קפיצה מיידית)
-    document.addEventListener('mouseout', e=>{ if(armed && scrolled && e.clientY<=0 && !e.relatedTarget) fire(); });
+    document.addEventListener('mouseout', e=>{ if(armed && scrolled && e.clientY<=0 && !e.relatedTarget) fire('exit_intent'); });
     let scrollFired=false;
     window.addEventListener('scroll', ()=>{
       if(window.scrollY>200) scrolled=true;
       if(scrollFired) return;
       const denom=document.body.scrollHeight - window.innerHeight;
-      if(denom>0 && (window.scrollY/denom)>SCROLL_PCT){ scrollFired=true; fire(); }
+      if(denom>0 && (window.scrollY/denom)>SCROLL_PCT){ scrollFired=true; fire('scroll_depth'); }
     }, {passive:true});
   })();
 
