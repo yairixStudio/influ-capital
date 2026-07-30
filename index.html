@@ -1498,16 +1498,17 @@
 
           <div class="tab-panel active" role="tabpanel" data-doc="פרטיות">
             <div class="legal-doc" style="margin-inline:auto">
-              <p class="updated">עודכן לאחרונה: יוני 2026</p>
+              <p class="updated">עודכן לאחרונה: יולי 2026</p>
               <h3>מדיניות פרטיות</h3>
               <p>אנו מכבדים את פרטיותכם ואוספים מינימום מידע הנחוץ ליצירת קשר ולמתן השירות. מסמך זה מסביר אילו נתונים נאספים, כיצד נעשה בהם שימוש, וכיצד אתם יכולים לממש את זכויותיכם.</p>
               <h3>אילו נתונים נאספים</h3>
               <ul>
                 <li>פרטי קשר שאתם מוסרים מרצונכם בטופס (שם, טלפון, אימייל).</li>
-                <li>נתוני שימוש אנונימיים לשיפור האתר (בכפוף להסכמתכם, ללא טראקרים פולשניים).</li>
+                <li>נתוני שימוש אנונימיים לשיפור האתר (בכפוף להסכמתכם).</li>
+                <li>נתוני גלישה לצורכי מדידת קמפיינים והתאמת פרסום באמצעות Meta Pixel — אך ורק בכפוף להסכמתכם המפורשת בבאנר העוגיות.</li>
               </ul>
               <h3>השימוש בנתונים</h3>
-              <p>הנתונים משמשים אך ורק ליצירת קשר חוזר ולמתן השירות המבוקש. איננו מוכרים או מעבירים מידע לצדדים שלישיים למטרות שיווק.</p>
+              <p>פרטי הקשר שמסרתם משמשים אך ורק ליצירת קשר חוזר ולמתן השירות המבוקש, ואינם נמכרים או מועברים למפרסמים. בכפוף להסכמתכם בלבד, כלי מדידה ושיווק (כגון Meta Pixel של חברת Meta) אוספים נתוני גלישה ואירועי שימוש באתר לצורך מדידת אפקטיביות קמפיינים והתאמת פרסום; ניתן לבטל הסכמה זו בכל עת דרך ניהול הסכמת העוגיות.</p>
               <h3>זכויותיכם</h3>
               <p>תוכלו לפנות אלינו בכל עת בבקשה לעיין, לתקן או למחוק את המידע שנשמר עליכם.</p>
               <p class="updated" style="border:none;margin-top:18px"><em>הנוסח להמחשה — מומלץ לאמת מול עורך דין לפני פרסום.</em></p>
@@ -1542,13 +1543,14 @@
 
           <div class="tab-panel" role="tabpanel" data-doc="עוגיות">
             <div class="legal-doc" style="margin-inline:auto">
-              <p class="updated">עודכן לאחרונה: יוני 2026</p>
+              <p class="updated">עודכן לאחרונה: יולי 2026</p>
               <h3>מדיניות עוגיות (Cookies)</h3>
               <p>האתר עושה שימוש מצומצם בעוגיות הנחוצות לתפעולו התקין ולשיפור חוויית הגלישה.</p>
               <h3>סוגי עוגיות</h3>
               <ul>
                 <li>עוגיות חיוניות — נדרשות לתפקוד בסיסי של האתר ולשמירת העדפות נגישות.</li>
                 <li>עוגיות מדידה אנונימיות — נטענות רק בכפוף להסכמתכם, לשיפור הביצועים והתוכן.</li>
+                <li>עוגיות שיווק ופרסום (Meta Pixel) — נטענות רק בכפוף להסכמתכם, למדידת אפקטיביות קמפיינים ולהתאמת פרסום ברשתות חברתיות.</li>
               </ul>
               <h3>ניהול העדפות</h3>
               <p>ניתן לשנות את הסכמת העוגיות בכל עת:</p>
@@ -1652,7 +1654,7 @@
   <!-- ===================== Cookie banner ===================== -->
   <div class="cookie" id="cookie" role="region" aria-label="הסכמה לעוגיות">
     <div class="wrap">
-      <p>אנחנו משתמשים בעוגיות חיוניות, ובכפוף להסכמתכם גם בעוגיות מדידה אנונימיות כדי לשפר את האתר. <a href="#/רגולציה/עוגיות" data-link>למדיניות העוגיות</a>.</p>
+      <p>אנחנו משתמשים בעוגיות חיוניות, ובכפוף להסכמתכם גם בעוגיות מדידה אנונימיות ובעוגיות שיווק (Meta Pixel) לשיפור האתר ולמדידת קמפיינים. <a href="#/רגולציה/עוגיות" data-link>למדיניות העוגיות</a>.</p>
       <div class="cookie-actions">
         <button class="btn btn-ghost btn-sm" id="cookie-decline" type="button">רק הכרחיות</button>
         <button class="btn btn-primary btn-sm" id="cookie-accept" type="button">אישור הכל</button>
@@ -1718,6 +1720,7 @@
     email:    'info@influ-capital.co.il',
     waMessage:'היי אדם, הגעתי דרך האתר ואשמח לשמוע על ליווי השקעות אישי',
     ga4Id:    '',   // מזהה Google Analytics 4 — ריק = כבוי (פרטיות). למלא בעת חיבור אנליטיקס.
+    fbPixelId:'',   // מזהה Meta (Facebook) Pixel — ריק = כבוי. נטען רק בהסכמת עוגיות "שיווק" (ראה loadMarketing).
     // Wix HTTP Function — חובה www (ל-apex יש רדירקט שמאבד את גוף ה-POST). לבדיקות: /_functions-dev/submitLead
     formEndpoint: 'https://www.adamvainshtein.co.il/_functions/submitLead',
     quotesUrl: '',   // JSON עם ציטוטי מניות אמת ({SYMBOL: changePercent}). ריק = סימולציה חיה.
@@ -1749,15 +1752,38 @@
     try{ return JSON.parse(sessionStorage.getItem(ATTRIBUTION_KEY)) || {}; }catch(err){ return {}; }
   }
 
+  // ----- מעקב מרכזי (GA4 + Meta Pixel) — facade אחד לכל האתר. כל כלי נורה רק אם נטען, וכל כלי נטען רק בהסכמה -----
+  // מיפוי אירועי האתר לאירועי Meta: סטנדרטיים (Lead/Contact — מזינים אופטימיזציית קמפיינים) או מותאמים (trackCustom)
+  const FB_EVENTS = {
+    lead_success:  ['track','Lead'],          // ליד שנקלט בהצלחה בשרת — אירוע ההמרה המרכזי לקמפיינים
+    contact_click: ['track','Contact'],       // לחיצה על וואטסאפ / טלפון / אימייל
+    lead_submit:   ['trackCustom','LeadSubmit'],  // ניסיון שליחת טופס (לפני אישור שרת)
+    modal_open:    ['trackCustom','ModalOpen']    // פתיחת מודאל ליד/תיאום — מדד כוונה
+  };
+  let fbLastPath = null;  // מניעת PageView כפול — loadMarketing וה-route הראשוני עלולים לירות על אותו נתיב
+  function fbPageView(path){
+    if(!window.fbq || path === fbLastPath) return;
+    fbLastPath = path; fbq('track','PageView');
+  }
+  window.trackPageView = p => {
+    if(window.gtag) gtag('event','page_view',{page_path:p});
+    fbPageView(p);
+  };
+  window.trackEvent = (n,p) => {
+    if(window.gtag) gtag('event',n,p||{});
+    const m = FB_EVENTS[n];
+    if(window.fbq && m) fbq(m[0], m[1], p||{});
+  };
+
   // ----- המלצות מוטמעות סטטית ב-HTML (מקור: testimonials.json — דמה לפיתוח) -----
 
   // ----- חיווט כפתורי חיוג / וואטסאפ / אימייל -----
   function wireContacts(){
     const tel  = 'tel:' + SITE_CONFIG.phoneIntl;
     const mail = 'mailto:' + SITE_CONFIG.email;
-    document.querySelectorAll('[data-call-link]').forEach(a=>a.setAttribute('href', tel));
-    document.querySelectorAll('[data-wa-link]').forEach(a=>{ a.setAttribute('href', WA_LINK); a.target='_blank'; a.rel='noopener'; });
-    document.querySelectorAll('[data-email-link]').forEach(a=>a.setAttribute('href', mail));
+    document.querySelectorAll('[data-call-link]').forEach(a=>{ a.setAttribute('href', tel); a.addEventListener('click', ()=>trackEvent('contact_click',{channel:'phone'})); });
+    document.querySelectorAll('[data-wa-link]').forEach(a=>{ a.setAttribute('href', WA_LINK); a.target='_blank'; a.rel='noopener'; a.addEventListener('click', ()=>trackEvent('contact_click',{channel:'whatsapp'})); });
+    document.querySelectorAll('[data-email-link]').forEach(a=>{ a.setAttribute('href', mail); a.addEventListener('click', ()=>trackEvent('contact_click',{channel:'email'})); });
   }
 
   // ----- שנה נוכחית -----
@@ -1878,6 +1904,7 @@
     document.querySelectorAll('[data-open-modal]').forEach(btn=>btn.addEventListener('click', e=>{
       e.preventDefault();
       window.__leadCtaSource = 'cta:' + (btn.textContent||'').trim().replace(/\s+/g,' ');
+      trackEvent('modal_open', {modal: btn.getAttribute('data-open-modal')});
       open(btn.getAttribute('data-open-modal'));
     }));
     document.querySelectorAll('[data-close-modal]').forEach(btn=>btn.addEventListener('click', close));
@@ -2118,6 +2145,7 @@
         let out = null;
         try{ out = await res.json(); }catch(err){}
         if(res.ok && out && out.ok){
+          trackEvent('lead_success', {interest:payload.interest, source:source});  // הליד נקלט בשרת — אירוע ההמרה (Meta: Lead)
           form.reset();
           if(window.__closeModal) window.__closeModal();
           toast('תודה! נחזור אליכם בהקדם 🙌');
@@ -2164,15 +2192,19 @@
     document.getElementById('a11y-reset').addEventListener('click', ()=>{ state={}; localStorage.removeItem(KEY); apply(state); });
   })();
 
-  // ----- הסכמת עוגיות -----
+  // ----- הסכמת עוגיות (v2 — קטגוריות: הכרחיות / מדידה / שיווק) -----
   (function cookies(){
-    const KEY='influ_consent_v1';
+    const KEY='influ_consent_v2';   // v2: נוספה קטגוריית "שיווק" (Meta Pixel). הסכמות v1 ישנות לא נמשכות בכוונה — המשתמש נשאל מחדש
     const bar=document.getElementById('cookie');
     const get=()=>{ try{ return JSON.parse(localStorage.getItem(KEY)); }catch{ return null; } };
     const set=o=>localStorage.setItem(KEY, JSON.stringify(o));
     const show=()=>bar.classList.add('show');
     const hide=()=>bar.classList.remove('show');
-    function applyConsent(c){ if(c && c.analytics) loadAnalytics(); }
+    function applyConsent(c){
+      if(c && c.analytics) loadAnalytics();
+      if(c && c.marketing) loadMarketing();
+      else if(window.fbq) fbq('consent','revoke');   // הפיקסל כבר נטען בסשן והמשתמש חזר בו — עצירת איסוף
+    }
     let analyticsLoaded=false;
     function loadAnalytics(){
       if(analyticsLoaded) return; analyticsLoaded=true;
@@ -2181,12 +2213,24 @@
         document.head.appendChild(s);
         window.dataLayer=window.dataLayer||[]; window.gtag=function(){ dataLayer.push(arguments); };
         gtag('js', new Date()); gtag('config', SITE_CONFIG.ga4Id);
-        window.trackPageView=p=>{ if(window.gtag) gtag('event','page_view',{page_path:p}); };
-        window.trackEvent=(n,p)=>{ if(window.gtag) gtag('event',n,p||{}); };
       }
     }
-    document.getElementById('cookie-accept').addEventListener('click', ()=>{ const c={necessary:true,analytics:true,ts:Date.now()}; set(c); hide(); applyConsent(c); });
-    document.getElementById('cookie-decline').addEventListener('click', ()=>{ set({necessary:true,analytics:false,ts:Date.now()}); hide(); });
+    // Meta Pixel — נטען אך ורק בהסכמת "שיווק". בלי noscript-fallback בכוונה (תמונת noscript הייתה עוקפת את מנגנון ההסכמה).
+    let marketingLoaded=false;
+    function loadMarketing(){
+      if(marketingLoaded) return; marketingLoaded=true;
+      if(SITE_CONFIG.fbPixelId && !/X{3,}/.test(SITE_CONFIG.fbPixelId)){
+        !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
+          if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
+          t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('consent','grant');
+        fbq('init', SITE_CONFIG.fbPixelId);
+        fbPageView(decodeURIComponent(location.hash.replace(/^#/,'')) || '/');  // צפיית העמוד הנוכחי (מנוע-כפילויות מול route)
+      }
+    }
+    document.getElementById('cookie-accept').addEventListener('click', ()=>{ const c={necessary:true,analytics:true,marketing:true,ts:Date.now()}; set(c); hide(); applyConsent(c); });
+    document.getElementById('cookie-decline').addEventListener('click', ()=>{ const c={necessary:true,analytics:false,marketing:false,ts:Date.now()}; set(c); hide(); applyConsent(c); });
     const reopen=document.getElementById('reopen-cookies'); if(reopen) reopen.addEventListener('click', show);
     const c=get(); if(c){ applyConsent(c); } else { setTimeout(show, 900); }
   })();
