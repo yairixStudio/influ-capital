@@ -10,6 +10,8 @@
 - [ ] **ביצועי מובייל ≥90**: עם gzip/brotli בהוסטינג = **92** (אומת 2026-06-21 אחרי תיקון רגרסיית הלוגו). לוודא שהדחיסה מופעלת בהוסטינג. בשרת הבדיקה הלא-דחוס = 82 (הפער = דחיסת ה-HTML 230KB→42KB). הזרקת עמודים עצלה — אופציונלי בלבד, כבר לא חוסם. ראה qa/results/2026-06-21.md
 - [ ] (אופציונלי) לחבר נתוני מניות אמת לטיקר: להעמיד proxy/Edge-Function (Cloudflare Worker / Vercel) שמחזיק מפתח API (Finnhub/Twelve Data) ומחזיר `{SYMBOL: changePercent}`, ולהזין את כתובתו ל-`SITE_CONFIG.quotesUrl`. אסור מפתח API בצד-לקוח.
 - [ ] לחבר את האתר ל-Google Search Console (נכס Domain, אימות TXT ב-JetDNS) ולהגיש את `sitemap.xml`
+- [ ] CLS מעבדה בדף הבית במובייל: Lighthouse על האתר החי נותן 0.168 (הסקשן "השירותים שלי" זז) רק במצבי simulate/provided; ב-devtools throttling ובגלישה אמיתית (Playwright, עם ובלי האטה) = 0. חשוד: `fonts/fonts.css` נטען אסינכרונית (preload→onload) ומחליף פונט אחרי הציור הראשון. לבדוק ולתקן (2026-10-20)
+- [ ] עמודים סטטיים רזים: להסיר מכל עמוד שנוצר את ה-`<article>` הלא-פעילים (כפילות תוכן לגוגל + HTML ~250KB מול KPI 90KB)
 - [ ] לחלץ את הלוגיקה ה-inline שב-`index.html` למודול `js/site-utils.js` כדי לאפשר בדיקות יחידה אמיתיות (ראה `qa/tests/unit/README.md`)
 
 ## הושלמו

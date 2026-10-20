@@ -1514,7 +1514,7 @@
           <div class="tab-panel active" role="tabpanel" data-doc="פרטיות" data-title="מדיניות פרטיות | Influ Capital" data-desc="מדיניות הפרטיות של אתר Influ Capital — אילו נתונים נאספים, איך משתמשים בהם ואילו זכויות יש לכם.">
             <div class="legal-doc" style="margin-inline:auto">
               <p class="updated">עודכן לאחרונה: יולי 2026</p>
-              <h3>מדיניות פרטיות</h3>
+              <h2>מדיניות פרטיות</h2>
               <p>אנו מכבדים את פרטיותכם ואוספים מינימום מידע הנחוץ ליצירת קשר ולמתן השירות. מסמך זה מסביר אילו נתונים נאספים, כיצד נעשה בהם שימוש, וכיצד אתם יכולים לממש את זכויותיכם.</p>
               <h3>אילו נתונים נאספים</h3>
               <ul>
@@ -1533,7 +1533,7 @@
           <div class="tab-panel" role="tabpanel" data-doc="נגישות" data-title="הצהרת נגישות | Influ Capital" data-desc="הצהרת הנגישות של אתר Influ Capital — התאמות הנגישות באתר ודרכי פנייה בנושא נגישות.">
             <div class="legal-doc" style="margin-inline:auto">
               <p class="updated">עודכן לאחרונה: יוני 2026</p>
-              <h3>הצהרת נגישות</h3>
+              <h2>הצהרת נגישות</h2>
               <p>האתר נבנה בהתאם לעקרונות נגישות (WCAG 2.1 רמה AA) ושואף לאפשר שימוש נוח לכלל המשתמשים, לרבות אנשים עם מוגבלות.</p>
               <h3>אמצעי נגישות</h3>
               <ul>
@@ -1549,7 +1549,7 @@
           <div class="tab-panel" role="tabpanel" data-doc="תנאי-שימוש" data-title="תנאי שימוש | Influ Capital" data-desc="תנאי השימוש באתר Influ Capital.">
             <div class="legal-doc" style="margin-inline:auto">
               <p class="updated">עודכן לאחרונה: יוני 2026</p>
-              <h3>תנאי שימוש וגילוי נאות</h3>
+              <h2>תנאי שימוש וגילוי נאות</h2>
               <p>השימוש באתר כפוף לתנאים המפורטים להלן. התוכן באתר הינו מידע כללי בלבד ואינו מהווה ייעוץ השקעות ואינו תחליף לייעוץ אישי המתחשב בנתוניו של כל אדם.</p>
               <h3>גילוי נאות</h3>
               <p>אדם ויינשטיין הוא בעל רישיון שיווק השקעות מטעם הרשות לניירות ערך (ואינו יועץ השקעות). אין התחייבות לתשואה, יש התחייבות לתהליך מקצועי. השקעה בשוק ההון כרוכה בסיכון, לרבות אובדן חלק או כל סכום ההשקעה, וכל החלטת השקעה היא באחריות המשתמש בלבד.</p>
@@ -1559,7 +1559,7 @@
           <div class="tab-panel" role="tabpanel" data-doc="עוגיות" data-title="מדיניות עוגיות | Influ Capital" data-desc="מדיניות העוגיות של אתר Influ Capital — אילו עוגיות בשימוש, למה, ואיך לנהל את ההעדפות.">
             <div class="legal-doc" style="margin-inline:auto">
               <p class="updated">עודכן לאחרונה: יולי 2026</p>
-              <h3>מדיניות עוגיות (Cookies)</h3>
+              <h2>מדיניות עוגיות (Cookies)</h2>
               <p>האתר עושה שימוש מצומצם בעוגיות הנחוצות לתפעולו התקין ולשיפור חוויית הגלישה.</p>
               <h3>סוגי עוגיות</h3>
               <ul>
@@ -1770,6 +1770,10 @@
   // ----- מעקב מרכזי (GA4 + Meta Pixel) — facade אחד לכל האתר -----
   // GA4 עם Google Consent Mode v2: נטען תמיד, אך ברירת המחדל denied — פינגים בסיסיים ללא עוגיות וללא מזהה קבוע.
   // הסכמת "מדידה" → analytics_storage=granted (מדידה מלאה); "שיווק" → ad_*. Meta Pixel נטען אך ורק בהסכמת "שיווק".
+  // מדידה רק בדומיין האמיתי — localhost / בדיקות E2E / תצוגות מקדימות לא מזהמים את נתוני GA4 ו-Meta.
+  // הדומיין נגזר מ-og:url (נוצר מ-CNAME); www נחשב אותו אתר. לבדיקה מקומית: ‎?track=1
+  const SITE_HOST = (()=>{ try{ return new URL(document.querySelector('meta[property="og:url"]').content).hostname.replace(/^www\./,''); }catch(err){ return ''; } })();
+  const TRACKING_ON = location.hostname.replace(/^www\./,'') === SITE_HOST || new URLSearchParams(location.search).has('track');
   const CONSENT_KEY = 'influ_consent_v2';
   const storedConsent = (()=>{ try{ return JSON.parse(localStorage.getItem(CONSENT_KEY)) || {}; }catch(err){ return {}; } })();
   const consentState = c => ({
@@ -1778,7 +1782,7 @@
     ad_user_data:       c.marketing ? 'granted' : 'denied',
     ad_personalization: c.marketing ? 'granted' : 'denied'
   });
-  if(SITE_CONFIG.ga4Id && !/X{3,}/.test(SITE_CONFIG.ga4Id)){
+  if(TRACKING_ON && SITE_CONFIG.ga4Id && !/X{3,}/.test(SITE_CONFIG.ga4Id)){
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ dataLayer.push(arguments); };
     gtag('consent', 'default', consentState(storedConsent));   // מצב התחלתי לפי הסכמה שמורה — כדי שה-page_view הראשון יישלח במצב הנכון
@@ -2286,7 +2290,7 @@
     let marketingLoaded=false;
     function loadMarketing(){
       if(marketingLoaded) return; marketingLoaded=true;
-      if(SITE_CONFIG.fbPixelId && !/X{3,}/.test(SITE_CONFIG.fbPixelId)){
+      if(TRACKING_ON && SITE_CONFIG.fbPixelId && !/X{3,}/.test(SITE_CONFIG.fbPixelId)){
         !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){ n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments); };
           if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[];
           t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
