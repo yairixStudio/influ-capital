@@ -1505,7 +1505,7 @@
               <h3>אילו נתונים נאספים</h3>
               <ul>
                 <li>פרטי קשר שאתם מוסרים מרצונכם בטופס (שם, טלפון, אימייל).</li>
-                <li>נתוני שימוש אנונימיים לשיפור האתר באמצעות Google Analytics (בכפוף להסכמתכם).</li>
+                <li>נתוני שימוש לשיפור האתר באמצעות Google Analytics: ללא הסכמה — אותות מדידה בסיסיים בלבד, ללא עוגיות וללא מזהים; בכפוף להסכמתכם — מדידה מלאה הכוללת עוגיות מדידה.</li>
                 <li>נתוני גלישה לצורכי מדידת קמפיינים והתאמת פרסום באמצעות Meta Pixel — אך ורק בכפוף להסכמתכם המפורשת בבאנר העוגיות.</li>
               </ul>
               <h3>השימוש בנתונים</h3>
@@ -1550,7 +1550,7 @@
               <h3>סוגי עוגיות</h3>
               <ul>
                 <li>עוגיות חיוניות — נדרשות לתפקוד בסיסי של האתר ולשמירת העדפות נגישות.</li>
-                <li>עוגיות מדידה אנונימיות (Google Analytics) — נטענות רק בכפוף להסכמתכם, לשיפור הביצועים והתוכן.</li>
+                <li>עוגיות מדידה (Google Analytics) — נשמרות רק בכפוף להסכמתכם, לשיפור הביצועים והתוכן. ללא הסכמה נשלחים ל-Google אותות מדידה בסיסיים בלבד, ללא עוגיות וללא מזהים (Google Consent Mode).</li>
                 <li>עוגיות שיווק ופרסום (Meta Pixel) — נטענות רק בכפוף להסכמתכם, למדידת אפקטיביות קמפיינים ולהתאמת פרסום ברשתות חברתיות.</li>
               </ul>
               <h3>ניהול העדפות</h3>
@@ -1655,7 +1655,7 @@
   <!-- ===================== Cookie banner ===================== -->
   <div class="cookie" id="cookie" role="region" aria-label="הסכמה לעוגיות">
     <div class="wrap">
-      <p>אנחנו משתמשים בעוגיות חיוניות, ובכפוף להסכמתכם גם בעוגיות מדידה אנונימיות (Google Analytics) ובעוגיות שיווק (Meta Pixel) לשיפור האתר ולמדידת קמפיינים. <a href="#/רגולציה/עוגיות" data-link>למדיניות העוגיות</a>.</p>
+      <p>אנחנו משתמשים בעוגיות חיוניות ובמדידת שימוש בסיסית ללא עוגיות, ובכפוף להסכמתכם גם בעוגיות מדידה (Google Analytics) ובעוגיות שיווק (Meta Pixel) לשיפור האתר ולמדידת קמפיינים. <a href="#/רגולציה/עוגיות" data-link>למדיניות העוגיות</a>.</p>
       <div class="cookie-actions">
         <button class="btn btn-ghost btn-sm" id="cookie-decline" type="button">רק הכרחיות</button>
         <button class="btn btn-primary btn-sm" id="cookie-accept" type="button">אישור הכל</button>
@@ -1753,7 +1753,30 @@
     try{ return JSON.parse(sessionStorage.getItem(ATTRIBUTION_KEY)) || {}; }catch(err){ return {}; }
   }
 
-  // ----- מעקב מרכזי (GA4 + Meta Pixel) — facade אחד לכל האתר. כל כלי נורה רק אם נטען, וכל כלי נטען רק בהסכמה -----
+  // ----- מעקב מרכזי (GA4 + Meta Pixel) — facade אחד לכל האתר -----
+  // GA4 עם Google Consent Mode v2: נטען תמיד, אך ברירת המחדל denied — פינגים בסיסיים ללא עוגיות וללא מזהים.
+  // הסכמת "מדידה" → analytics_storage=granted (מדידה מלאה); "שיווק" → ad_*. Meta Pixel נטען אך ורק בהסכמת "שיווק".
+  const CONSENT_KEY = 'influ_consent_v2';
+  const storedConsent = (()=>{ try{ return JSON.parse(localStorage.getItem(CONSENT_KEY)) || {}; }catch(err){ return {}; } })();
+  const consentState = c => ({
+    analytics_storage:  c.analytics ? 'granted' : 'denied',
+    ad_storage:         c.marketing ? 'granted' : 'denied',
+    ad_user_data:       c.marketing ? 'granted' : 'denied',
+    ad_personalization: c.marketing ? 'granted' : 'denied'
+  });
+  if(SITE_CONFIG.ga4Id && !/X{3,}/.test(SITE_CONFIG.ga4Id)){
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
+    gtag('consent', 'default', consentState(storedConsent));   // מצב התחלתי לפי הסכמה שמורה — כדי שה-page_view הראשון יישלח במצב הנכון
+    gtag('set', 'ads_data_redaction', true);
+    gtag('js', new Date());
+    gtag('config', SITE_CONFIG.ga4Id, {send_page_view:false});   // page_view ידני לכל עמוד (ניתוב SPA)
+    // gtag.js נטען אחרי load / ב-idle — לא מתחרה בתוכן על רוחב פס (Core Web Vitals). פקודות שנכנסו לתור נשמרות.
+    const loadGtag = ()=>{ const s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+SITE_CONFIG.ga4Id; document.head.appendChild(s); };
+    const idle = ()=> 'requestIdleCallback' in window ? requestIdleCallback(loadGtag, {timeout:3000}) : setTimeout(loadGtag, 1500);
+    if(document.readyState === 'complete') idle(); else addEventListener('load', idle, {once:true});
+  }
+  window.updateConsent = c => { if(window.gtag) gtag('consent', 'update', consentState(c||{})); };
   // מיפוי אירועי האתר לאירועי Meta: סטנדרטיים (Lead/Contact — מזינים אופטימיזציית קמפיינים) או מותאמים (trackCustom)
   const FB_EVENTS = {
     lead_success:  ['track','Lead'],          // ליד שנקלט בהצלחה בשרת — אירוע ההמרה המרכזי לקמפיינים
@@ -1766,7 +1789,7 @@
     if(!window.fbq || path === fbLastPath) return;
     fbLastPath = path; fbq('track','PageView');
   }
-  let gaLastPath = null;  // מניעת page_view כפול — loadAnalytics וה-route הראשוני עלולים לירות על אותו נתיב
+  let gaLastPath = null;  // מניעת page_view כפול על אותו נתיב (למשל מעבר בין טאבים באותו מסמך)
   window.gaPageView = p => {
     if(!window.gtag || p === gaLastPath) return;
     gaLastPath = p; gtag('event','page_view',{page_path:p, page_location:location.href, page_title:document.title});
@@ -2200,27 +2223,16 @@
 
   // ----- הסכמת עוגיות (v2 — קטגוריות: הכרחיות / מדידה / שיווק) -----
   (function cookies(){
-    const KEY='influ_consent_v2';   // v2: נוספה קטגוריית "שיווק" (Meta Pixel). הסכמות v1 ישנות לא נמשכות בכוונה — המשתמש נשאל מחדש
+    const KEY=CONSENT_KEY;   // v2: נוספה קטגוריית "שיווק" (Meta Pixel). הסכמות v1 ישנות לא נמשכות בכוונה — המשתמש נשאל מחדש
     const bar=document.getElementById('cookie');
     const get=()=>{ try{ return JSON.parse(localStorage.getItem(KEY)); }catch{ return null; } };
     const set=o=>localStorage.setItem(KEY, JSON.stringify(o));
     const show=()=>bar.classList.add('show');
     const hide=()=>bar.classList.remove('show');
     function applyConsent(c){
-      if(c && c.analytics) loadAnalytics();
+      updateConsent(c);   // GA4 Consent Mode — granted/denied לפי הבחירה (GA עצמו כבר נטען במצב בסיסי)
       if(c && c.marketing) loadMarketing();
       else if(window.fbq) fbq('consent','revoke');   // הפיקסל כבר נטען בסשן והמשתמש חזר בו — עצירת איסוף
-    }
-    let analyticsLoaded=false;
-    function loadAnalytics(){
-      if(analyticsLoaded) return; analyticsLoaded=true;
-      if(SITE_CONFIG.ga4Id && !/X{3,}/.test(SITE_CONFIG.ga4Id)){
-        const s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+SITE_CONFIG.ga4Id;
-        document.head.appendChild(s);
-        window.dataLayer=window.dataLayer||[]; window.gtag=function(){ dataLayer.push(arguments); };
-        gtag('js', new Date()); gtag('config', SITE_CONFIG.ga4Id, {send_page_view:false});   // page_view ידני לכל עמוד hash (ניתוב SPA)
-        gaPageView(decodeURIComponent(location.hash.replace(/^#/,'')) || '/');
-      }
     }
     // Meta Pixel — נטען אך ורק בהסכמת "שיווק". בלי noscript-fallback בכוונה (תמונת noscript הייתה עוקפת את מנגנון ההסכמה).
     let marketingLoaded=false;
