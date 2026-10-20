@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- נוצר אוטומטית ע"י tools/build-pages.py מתוך index.html — לא לערוך ידנית -->
+<!-- נוצר אוטומטית ע"י tools/build-pages.py מתוך _src/index.html — לא לערוך ידנית; עורכים את _src/index.html ומריצים python3 tools/build-pages.py -->
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -42,11 +42,11 @@
   <link rel="preload" href="fonts/rubik-700-hebrew.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/ibm-plex-sans-hebrew-400-hebrew.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" as="image" type="image/avif" imagesrcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.avif 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.avif 800w, media/adam/web/cutouts/adam-navy-suit-smiling-1200.avif 1200w" imagesizes="380px" media="(min-width:821px)" fetchpriority="high">
-  <link rel="preload" href="brand.css" as="style">
-  <link rel="stylesheet" href="brand.css">
+  <link rel="preload" href="brand.css?v=f40d8160da" as="style">
+  <link rel="stylesheet" href="brand.css?v=f40d8160da">
   <!-- fonts.css חוסם רינדור בכוונה (‎~0.6KB gzip, נטען במקביל ל-brand.css): ה-@font-face חייבים להיות מוגדרים לפני הציור
        הראשון — טעינה אסינכרונית גרמה להחלפת פונט אחרי הציור, שבירת שורות שונה בכותרת ההירו ו-CLS. -->
-  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="fonts/fonts.css?v=74b76ca9be">
 
   <!-- ============ Structured Data (SEO + GEO/AI search) ============ -->
   <script type="application/ld+json">
@@ -79,8 +79,8 @@
 
   <!-- Lucide icons (ISC, free for commercial use) -->
 
-  <link rel="stylesheet" href="site-chrome.css">
-  <script src="js/site.js" defer></script>
+  <link rel="stylesheet" href="site-chrome.css?v=c333d23fa0">
+  <script src="js/site.js?v=e399017a4c" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">דלג לתוכן הראשי</a>

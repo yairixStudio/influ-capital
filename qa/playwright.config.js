@@ -2,7 +2,7 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 /**
- * האתר הוא SPA (../index.html) עם ניתוב נתיבים (History API); לכל נתיב יש גם קובץ סטטי
+ * כל עמוד הוא קובץ HTML רזה שנוצר מ-../_src/index.html; לכל נתיב יש קובץ סטטי
  * (tools/build-pages.py). השרת המקומי tools/serve.py מחקה את GitHub Pages: ‎/קורס → קורס.html, ו-404.html.
  */
 const PORT = 4173;

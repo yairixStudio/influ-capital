@@ -4,7 +4,7 @@
 
 ## מצב נוכחי
 
-הלוגיקה (בניית קישורי וואטסאפ/טלפון, ניתוב hash, ולידציית טופס) כתובה כרגע **inline בתוך `index.html`**, ולכן לא ניתנת לייבוא ישיר לבדיקה.
+הלוגיקה (בניית קישורי וואטסאפ/טלפון, ניתוב, ולידציית טופס) נמצאת עכשיו בקובץ חיצוני **`js/site.js`** (סקריפט קלאסי, לא מודול), ולכן לא ניתנת לייבוא ישיר לבדיקה.
 
 ## צעד הבא לכיסוי אמיתי
 
@@ -16,7 +16,7 @@ export const telLink = (phone) => `tel:${phone}`;
 export const routeFromPath = (pathname) => decodeURIComponent(pathname).replace(/\.html$/, '').replace(/\/+$/, '') || '/';
 ```
 
-ואז `index.html` ייבא אותן, וכאן תיכתב `links.test.js`:
+ואז `js/site.js` ישתמש בהן, וכאן תיכתב `links.test.js`:
 
 ```js
 const { test } = require('node:test');

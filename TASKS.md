@@ -10,9 +10,10 @@
 - [ ] **ביצועי מובייל ≥90**: עם gzip/brotli בהוסטינג = **92** (אומת 2026-06-21 אחרי תיקון רגרסיית הלוגו). לוודא שהדחיסה מופעלת בהוסטינג. בשרת הבדיקה הלא-דחוס = 82 (הפער = דחיסת ה-HTML 230KB→42KB). הזרקת עמודים עצלה — אופציונלי בלבד, כבר לא חוסם. ראה qa/results/2026-06-21.md
 - [ ] (אופציונלי) לחבר נתוני מניות אמת לטיקר: להעמיד proxy/Edge-Function (Cloudflare Worker / Vercel) שמחזיק מפתח API (Finnhub/Twelve Data) ומחזיר `{SYMBOL: changePercent}`, ולהזין את כתובתו ל-`SITE_CONFIG.quotesUrl`. אסור מפתח API בצד-לקוח.
 - [ ] לחבר את האתר ל-Google Search Console (נכס Domain, אימות TXT ב-JetDNS) ולהגיש את `sitemap.xml`
-- [ ] לחלץ את הלוגיקה ה-inline שב-`index.html` למודול `js/site-utils.js` כדי לאפשר בדיקות יחידה אמיתיות (ראה `qa/tests/unit/README.md`)
+- [ ] לפצל פונקציות טהורות מ-`js/site.js` למודול `js/site-utils.js` כדי לאפשר בדיקות יחידה אמיתיות (ראה `qa/tests/unit/README.md`)
 
 ## הושלמו
+- [x] שיטת עבודה חדשה: מקור יחיד `_src/index.html` → כל עמודי ה-HTML נוצרים רזים (גם דף הבית); CSS/JS חולצו ל-`site-chrome.css` / `js/site.js` עם cache-busting אוטומטי; `serve.py` בונה לבד; pre-commit hook (2026-10-20)
 - [x] CLS בדף הבית במובייל (0.168 במעבדה): `fonts.css` נטען אסינכרונית והחליף פונט אחרי הציור הראשון → עכשיו stylesheet רגיל (2026-10-20)
 - [x] עמודים סטטיים רזים — כל עמוד שנוצר מכיל רק את ה-`<article>` שלו (~150KB במקום ~250KB, בלי כפילות תוכן); `/קורס/` מועבר ל-`/קורס` (2026-10-20)
 - [x] SEO: ניתוב נתיבים אמיתיים במקום `#` (History API) + עמוד סטטי לכל נתיב עם title/canonical משלו (`tools/build-pages.py`), `404.html`, `sitemap.xml`, `robots.txt`, noindex לעמודי הראווה; canonical → influ-capital.com (שני האתרים מתקיימים במקביל) (2026-10-20)

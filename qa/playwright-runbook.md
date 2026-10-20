@@ -14,7 +14,7 @@ npm run test:e2e -- --project=mobile    # מכשיר ספציפי
 npm run report                          # פתיחת דוח HTML
 ```
 
-ה‑config (`playwright.config.js`) מרים שרת סטטי מקומי על `../index.html` ומריץ על הפרויקטים: `desktop`, `mobile-iphone`, `mobile-pixel`, `tablet`.
+ה‑config (`playwright.config.js`) מרים את `../tools/serve.py` (מחקה GitHub Pages, בונה לבד מ‑`_src/index.html`) ומריץ על הפרויקטים: `desktop`, `mobile-iphone`, `mobile-pixel`, `tablet`.
 
 ---
 

@@ -22,24 +22,52 @@ test.describe('SEO — כל עמוד הוא URL נפרד', () => {
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://influ-capital.com/' + encodeURIComponent('קורס'));
   });
 
-  test('ניווט פנימי משנה נתיב ו-title בלי טעינה מחדש', async ({ page, isMobile }) => {
+  test('ניווט מהתפריט: כל עמוד הוא מסמך נפרד (טעינה מלאה) עם נתיב ו-title משלו; "אחורה" חוזר', async ({ page, isMobile }) => {
     await page.goto('/');
-    await page.evaluate(() => { window.__noReload = true; });
+    await expect(page.locator('article.page')).toHaveCount(1);   // גם דף הבית רזה
+    await page.evaluate(() => { window.__sameDoc = true; });
     if (isMobile) await page.locator('#hamburger').click();
     await page.locator('#nav-links a[href="/אודות"]').click();
     await expect(page).toHaveURL(/%D7%90%D7%95%D7%93%D7%95%D7%AA$/);
     await expect(page).toHaveTitle(/אודות/);
-    expect(await page.evaluate(() => window.__noReload)).toBe(true);
+    await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/אודות');
+    expect(await page.evaluate(() => window.__sameDoc)).toBeUndefined();   // מסמך חדש
     await page.goBack();
     await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/');
+  });
+
+  test('טאבי רגולציה מחליפים מסמך בלי טעינה מחדש', async ({ page }) => {
+    await page.goto('/פרטיות');
+    await page.evaluate(() => { window.__sameDoc = true; });
+    await page.locator('#reg-tabs a[href="/עוגיות"]').click();
+    await expect(page).toHaveURL(/%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA$/);
+    await expect(page.locator('#reg-tabs .tab.active')).toHaveAttribute('data-doc', 'עוגיות');
+    await expect(page).toHaveTitle(/מדיניות עוגיות/);
+    expect(await page.evaluate(() => window.__sameDoc)).toBe(true);
+  });
+
+  test('קובץ המקור ‎_src/ לא מתפרסם', async ({ request }) => {
+    expect((await request.get('/_src/index.html')).status()).toBe(404);
+  });
+
+  test('CSS/JS עם ‎?v=hash (cache-busting) ונטענים בהצלחה', async ({ page }) => {
+    const bad = [];
+    page.on('response', (r) => { if (/\.(css|js)(\?|$)/.test(r.url()) && new URL(r.url()).hostname === 'localhost' && r.status() !== 200) bad.push(r.url() + ' ' + r.status()); });
+    await page.goto('/קורס');
+    for (const sel of ['link[href^="brand.css?v="]', 'link[href^="site-chrome.css?v="]', 'link[href^="fonts/fonts.css?v="]', 'script[src^="js/site.js?v="]'])
+      await expect(page.locator(sel).first()).toBeAttached();
+    expect(bad).toEqual([]);
   });
 
   test('קישורים ישנים בפורמט hash מועברים לנתיב החדש', async ({ page }) => {
     await page.goto('/#/רגולציה/עוגיות');
     await expect(page).toHaveURL(/%D7%A2%D7%95%D7%92%D7%99%D7%95%D7%AA$/);
     await expect(page.locator('#reg-tabs .tab.active')).toHaveAttribute('data-doc', 'עוגיות');
+    // קישור ישן שנוחת על דף הבית (הרזה) — חייב להגיע לעמוד הקורס עצמו, לא להציג את הבית תחת /קורס
     await page.goto('/#/קורס');
+    await expect(page).toHaveURL(/%D7%A7%D7%95%D7%A8%D7%A1$/);
     await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/קורס');
+    await expect(page).toHaveTitle(/קורס השקעות ערך/);
   });
 
   test('עמוד סטטי רזה: רק התוכן שלו, וניווט לעמוד אחר בטעינה מלאה', async ({ page, isMobile }) => {
@@ -83,7 +111,7 @@ test.describe('בריאות בסיסית של האתר', () => {
     await page.waitForLoadState('networkidle');
     // ניווט פנימי (כמו קליק בתפריט) — בלי טעינה מחדש, כדי לא לבטל בקשות באמצע
     for (const route of ROUTES) {
-      await page.evaluate((r) => { history.pushState(null, '', r); dispatchEvent(new PopStateEvent('popstate')); }, route);
+      await page.goto(route, { waitUntil: 'networkidle' });
       // עמוד פעיל אחד בלבד מוצג
       const active = page.locator('article.page.active');
       await expect(active).toHaveCount(1);

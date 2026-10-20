@@ -47,7 +47,7 @@ npm run test:unit      # בדיקות יחידה
 npm run lighthouse     # ראה lighthouse-runbook.md לפירוט per-page
 ```
 
-> האתר הוא קובץ סטטי יחיד (`../index.html`) עם ניתוב hash. ה‑Playwright config מרים שרת סטטי מקומי אוטומטית.
+> כל עמוד הוא קובץ HTML רזה שנוצר מ‑`../_src/index.html` (`tools/build-pages.py`). ה‑Playwright config מרים אוטומטית את `tools/serve.py` (מחקה GitHub Pages ובונה לבד).
 
 ---
 

@@ -108,11 +108,14 @@ function wireContacts(){
 (function(){ const y=document.getElementById('year'); if(y) y.textContent = new Date().getFullYear(); })();
 
 // ----- Router מבוסס נתיבים (History API) -----
-// כל נתיב הוא גם קובץ סטטי עם meta משלו (tools/build-pages.py) — גוגל רואה כל עמוד כ-URL נפרד.
+// כל נתיב הוא קובץ סטטי רזה עם meta משלו (tools/build-pages.py) — ניווט בין עמודים = טעינה מלאה (CSS/JS במטמון);
+// בתוך מסמך (טאבי רגולציה) — בלי טעינה.
 // כותרת/תיאור לכל עמוד: data-title / data-desc על ה-article (ועל tab-panel במסמכי רגולציה) — מקור אחד לנתב ולמחולל.
 const pages = document.querySelectorAll('.page');
 const navLinks = document.querySelectorAll('a[data-link]');
 const REG_DOCS = [...document.querySelectorAll('#reg-tabs .tab')].map(t=>t.dataset.doc);
+// העמוד שהשרת הגיש (מסומן active סטטית ע"י tools/build-pages.py) — כל קובץ HTML מכיל רק את העמוד שלו
+const SERVED_PAGE = (document.querySelector('.page.active') || {dataset:{}}).dataset.page;
 const HOME_META = { title: document.title, desc: (document.querySelector('meta[name="description"]')||{}).content || '' };
 const canonicalEl = document.querySelector('link[rel="canonical"]');
 const SITE_ORIGIN = canonicalEl ? new URL(canonicalEl.href).origin : location.origin;   // מקור יחיד: ה-canonical הסטטי (CNAME)
@@ -170,8 +173,9 @@ function route(){
   if(missing){
     // "אחורה"/"קדימה" לעמוד שלא במסמך הזה — טוענים את הקובץ הסטטי שלו
     if(!firstRoute){ location.reload(); return; }
-    // כניסה ישירה לצורה לא-קנונית (‎/קורס/ מוגש כ-404.html) — מעבר לנתיב הנקי
-    if(location.pathname !== encodeURI(path)){ location.replace(encodeURI(path) + location.search); return; }
+    // השרת הגיש מסמך אחר מזה שהנתיב צריך: קישור ‎#/ ישן שנחת על דף הבית, או ‎/קורס/ שמוגש כ-404.html — טוענים את הקובץ הנכון.
+    // אין לולאה: אחרי המעבר המסמך תואם, או שהוא 404.html עם אותו נתיב (ואז מוצג עמוד 404).
+    if(location.pathname !== encodeURI(path) || SERVED_PAGE !== '/404'){ location.replace(encodeURI(path) + location.search); return; }
   }
   if(!target) return;
   const prevActive = document.querySelector('.page.active');

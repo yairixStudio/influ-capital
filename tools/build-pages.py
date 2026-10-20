@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""מחולל עמודים סטטיים לכל נתיב באתר — מקור יחיד: index.html.
+"""מחולל כל עמודי ה-HTML של האתר — מקור יחיד: _src/index.html.
 
-האתר הוא SPA בקובץ אחד (index.html). כדי שגוגל יראה כל עמוד כ-URL נפרד, נוצר לכל נתיב
-קובץ <slug>.html בשורש (GitHub Pages מגיש ‎/קורס מתוך ‎קורס.html), עם:
+_src/index.html מכיל את כל העמודים (<article class="page">) ואת המעטפת המשותפת. לכל נתיב נוצר
+קובץ בשורש — index.html לדף הבית ו-<slug>.html לשאר (GitHub Pages מגיש ‎/קורס מתוך ‎קורס.html), עם:
   - <title>, description, canonical, og/twitter משל העמוד (מ-data-title / data-desc ב-index.html)
   - העמוד הנכון מסומן active כבר ב-HTML (גם בלי JS), ניווט aria-current, טאב רגולציה פעיל
   - רק התוכן של העמוד עצמו (שאר ה-<article class="page"> מוסרים) — בלי כפילות תוכן בין URL-ים, HTML קטן יותר
-וכן 404.html (noindex) ו-sitemap.xml.
+וכן 404.html (noindex) ו-sitemap.xml. הפניות ל-CSS/JS מקבלות ‎?v=<hash> לפי התוכן (cache-busting אוטומטי).
 
-אסור לערוך את הקבצים שנוצרים — עורכים את index.html ומריצים שוב:
+_src/ לא מתפרסם (Jekyll של GitHub Pages מדלג על תיקיות שמתחילות ב-_) — לכן אסור להוסיף ‎.nojekyll.
+
+אסור לערוך את הקבצים שנוצרים — עורכים את _src/index.html (וגם site-chrome.css / js/site.js / brand.css) ומריצים:
     python3 tools/build-pages.py           # בנייה
     python3 tools/build-pages.py --check   # נכשל אם קובץ שנוצר לא מעודכן (לפני קומיט)
 """
@@ -20,9 +22,10 @@ import sys
 import urllib.parse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, 'index.html')
+SRC = os.path.join(ROOT, '_src', 'index.html')
+ASSETS = ['brand.css', 'fonts/fonts.css', 'site-chrome.css', 'js/site.js']   # מקבלים ‎?v=hash בכל עמוד
 SITE = 'https://' + open(os.path.join(ROOT, 'CNAME'), encoding='utf-8').read().strip()
-MARK = '<!-- נוצר אוטומטית ע"י tools/build-pages.py מתוך index.html — לא לערוך ידנית -->\n'
+MARK = '<!-- נוצר אוטומטית ע"י tools/build-pages.py מתוך _src/index.html — לא לערוך ידנית; עורכים את _src/index.html ומריצים python3 tools/build-pages.py -->\n'
 
 
 def url(path):
@@ -104,8 +107,18 @@ def keep_only(s, page_path):
     return s[:m0] + ''.join(out) + s[m1:]
 
 
+def cache_bust(s):
+    import hashlib
+    for a in ASSETS:
+        h = hashlib.sha1(open(os.path.join(ROOT, a), 'rb').read()).hexdigest()[:10]
+        s, n = re.subn(rf'((?:href|src)="){re.escape(a)}"', rf'\g<1>{a}?v={h}"', s)
+        if not n:
+            raise SystemExit(f'build-pages: {a} not referenced in _src/index.html')
+    return s
+
+
 def build():
-    src = open(SRC, encoding='utf-8').read()
+    src = cache_bust(open(SRC, encoding='utf-8').read())
     out = {}
     pages = re.findall(r'<article class="page(?: active)?" data-page="([^"]+)"[^>]*?data-title="([^"]+)" data-desc="([^"]+)"', src)
     docs = re.findall(r'<div class="tab-panel(?: active)?" role="tabpanel" data-doc="([^"]+)" data-title="([^"]+)" data-desc="([^"]+)"', src)
@@ -116,6 +129,10 @@ def build():
         routes.append((path, path, None, html.unescape(title), html.unescape(desc)))
     for doc, title, desc in docs:
         routes.append(('/' + doc, '/רגולציה', doc, html.unescape(title), html.unescape(desc)))
+
+    # דף הבית — רק העמוד שלו (ה-meta וה-FAQ schema של המקור שייכים לו)
+    s = keep_only(src, '/')
+    out['index.html'] = s.replace('<html lang="he" dir="rtl">', MARK + '<html lang="he" dir="rtl">', 1)
 
     for path, page_path, reg_doc, title, desc in routes:
         s = set_meta(src, path, title, desc)
@@ -166,7 +183,7 @@ def main():
                 open(fp, 'w', encoding='utf-8').write(content)
     if check:
         if stale:
-            print('build-pages: לא מעודכנים (הריצו python3 tools/build-pages.py):', ', '.join(stale))
+            print('build-pages: לא מעודכנים מול _src/index.html (ואולי נערכו ידנית) — הריצו: python3 tools/build-pages.py\n  ', ', '.join(stale))
             sys.exit(1)
         print('build-pages: כל העמודים מעודכנים')
     else:

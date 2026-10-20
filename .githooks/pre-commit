@@ -1,0 +1,7 @@
+#!/bin/sh
+# מוודא שעמודי ה-HTML שנוצרו מעודכנים מול _src/index.html (ושלא נערכו ידנית).
+# הפעלה חד-פעמית בכל clone:  git config core.hooksPath .githooks
+python3 tools/build-pages.py --check || {
+  echo "✗ קומיט נחסם: הריצו python3 tools/build-pages.py והוסיפו את הקבצים שנוצרו (או --no-verify אם בטוחים)."
+  exit 1
+}
