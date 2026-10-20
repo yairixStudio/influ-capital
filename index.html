@@ -43,8 +43,9 @@
   <link rel="preload" as="image" type="image/avif" imagesrcset="media/adam/web/cutouts/adam-navy-suit-smiling-400.avif 400w, media/adam/web/cutouts/adam-navy-suit-smiling-800.avif 800w, media/adam/web/cutouts/adam-navy-suit-smiling-1200.avif 1200w" imagesizes="380px" media="(min-width:821px)" fetchpriority="high">
   <link rel="preload" href="brand.css" as="style">
   <link rel="stylesheet" href="brand.css">
-  <link rel="preload" href="fonts/fonts.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="fonts/fonts.css"></noscript>
+  <!-- fonts.css חוסם רינדור בכוונה (‎~0.6KB gzip, נטען במקביל ל-brand.css): ה-@font-face חייבים להיות מוגדרים לפני הציור
+       הראשון — טעינה אסינכרונית גרמה להחלפת פונט אחרי הציור, שבירת שורות שונה בכותרת ההירו ו-CLS. -->
+  <link rel="stylesheet" href="fonts/fonts.css">
 
   <!-- ============ Structured Data (SEO + GEO/AI search) ============ -->
   <script type="application/ld+json">
@@ -1878,16 +1879,25 @@
     const pagePath = regDoc ? '/רגולציה' : path;
     let target = null;
     pages.forEach(p=>{ if(p.dataset.page === pagePath) target = p; });
+    // missing: העמוד לא נמצא במסמך הזה. בעמודים הסטטיים הרזים (tools/build-pages.py) יש רק עמוד אחד — ניווט אליו = טעינה מלאה
+    const missing = !target;
     if(!target) target = document.querySelector('.page[data-page="/404"]');
-    const src = (regDoc && target.querySelector(`.tab-panel[data-doc="${regDoc}"]`)) || target;
-    const home = target.dataset.page === '/';
-    return { path, regDoc, pagePath, target,
-      title: home ? HOME_META.title : (src.dataset.title || HOME_META.title),
-      desc:  home ? HOME_META.desc  : (src.dataset.desc  || HOME_META.desc) };
+    const src = (target && regDoc && target.querySelector(`.tab-panel[data-doc="${regDoc}"]`)) || target;
+    const home = !!target && target.dataset.page === '/';
+    return { path, regDoc, pagePath, target, missing,
+      title: (home || !src) ? HOME_META.title : (src.dataset.title || HOME_META.title),
+      desc:  (home || !src) ? HOME_META.desc  : (src.dataset.desc  || HOME_META.desc) };
   }
   let firstRoute = true;  // הקריאה הראשונה היא הרינדור ההתחלתי — לא "ניווט לאותו עמוד"
   function route(){
-    const { path, regDoc, pagePath, target, title, desc } = resolve(currentPath());
+    const { path, regDoc, pagePath, target, missing, title, desc } = resolve(currentPath());
+    if(missing){
+      // "אחורה"/"קדימה" לעמוד שלא במסמך הזה — טוענים את הקובץ הסטטי שלו
+      if(!firstRoute){ location.reload(); return; }
+      // כניסה ישירה לצורה לא-קנונית (‎/קורס/ מוגש כ-404.html) — מעבר לנתיב הנקי
+      if(location.pathname !== encodeURI(path)){ location.replace(encodeURI(path) + location.search); return; }
+    }
+    if(!target) return;
     const prevActive = document.querySelector('.page.active');
     const samePage = target === prevActive && !firstRoute;
     firstRoute = false;
@@ -1913,8 +1923,10 @@
     const a = e.target.closest('a[href^="/"]');
     if(!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target || a.hasAttribute('download')) return;
     if(a.origin !== location.origin || /\.[a-z0-9]+$/i.test(a.pathname)) return;   // קבצים (pdf/תמונות) — טעינה רגילה
+    const next = resolve(decodeURIComponent(a.pathname).replace(/\/+$/, '') || '/');
+    if(next.missing) return;   // העמוד לא במסמך הזה (עמוד סטטי רזה) — טעינה רגילה של הקובץ שלו
     e.preventDefault();
-    document.title = resolve(decodeURIComponent(a.pathname).replace(/\/+$/, '') || '/').title;   // לפני pushState — GA4 קורא את הכותרת באירוע ה-history
+    document.title = next.title;   // לפני pushState — GA4 קורא את הכותרת באירוע ה-history
     if(a.pathname !== location.pathname || location.hash) history.pushState(null, '', a.pathname);
     revealHeader();   // אם המשתמש מנווט לפני שכניסת הבית הסתיימה — לחשוף את ההידר בכל מקרה
     route();

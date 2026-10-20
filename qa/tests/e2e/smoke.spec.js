@@ -42,6 +42,22 @@ test.describe('SEO — כל עמוד הוא URL נפרד', () => {
     await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/קורס');
   });
 
+  test('עמוד סטטי רזה: רק התוכן שלו, וניווט לעמוד אחר בטעינה מלאה', async ({ page, isMobile }) => {
+    await page.goto('/קורס');
+    await expect(page.locator('article.page')).toHaveCount(1);
+    if (isMobile) await page.locator('#hamburger').click();
+    await page.locator('#nav-links a[href="/אודות"]').click();
+    await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/אודות');
+    await page.goBack();
+    await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/קורס');
+  });
+
+  test('לוכסן בסוף (‎/קורס/) מועבר לנתיב הנקי', async ({ page }) => {
+    await page.goto('/קורס/');
+    await expect(page).toHaveURL(/%D7%A7%D7%95%D7%A8%D7%A1$/);
+    await expect(page.locator('article.page.active')).toHaveAttribute('data-page', '/קורס');
+  });
+
   test('נתיב לא קיים → 404 עם noindex', async ({ page }) => {
     const res = await page.goto('/no-such-page/deep');
     expect(res?.status()).toBe(404);

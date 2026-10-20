@@ -5,6 +5,7 @@
 קובץ <slug>.html בשורש (GitHub Pages מגיש ‎/קורס מתוך ‎קורס.html), עם:
   - <title>, description, canonical, og/twitter משל העמוד (מ-data-title / data-desc ב-index.html)
   - העמוד הנכון מסומן active כבר ב-HTML (גם בלי JS), ניווט aria-current, טאב רגולציה פעיל
+  - רק התוכן של העמוד עצמו (שאר ה-<article class="page"> מוסרים) — בלי כפילות תוכן בין URL-ים, HTML קטן יותר
 וכן 404.html (noindex) ו-sitemap.xml.
 
 אסור לערוך את הקבצים שנוצרים — עורכים את index.html ומריצים שוב:
@@ -75,6 +76,34 @@ def activate(s, page_path, nav_path, reg_doc=None):
     return s
 
 
+def keep_only(s, page_path):
+    """עמוד רזה: מסיר מ-<main> את כל ה-<article class="page"> חוץ מ-page_path (ספירת עומק — יש article מקוננים).
+    ניווט לעמוד שלא נמצא ב-DOM נעשה בטעינה מלאה (ראה route/resolve ב-index.html)."""
+    m0, m1 = s.index('<main'), s.index('</main>')
+    main = s[m0:m1]
+    out, i = [], 0
+    for m in re.finditer(r'<article class="page(?: active)?" data-page="([^"]+)"', main):
+        if m.start() < i:
+            continue  # מקונן בתוך עמוד שכבר טופל
+        depth, j = 0, m.start()
+        for t in re.finditer(r'<article\b|</article>', main[m.start():]):
+            depth += 1 if t.group(0) != '</article>' else -1
+            if depth == 0:
+                j = m.start() + t.end()
+                break
+        if m.group(1) == page_path:
+            out.append(main[i:j])
+        else:
+            out.append(main[i:m.start()])
+            # שורה ריקה שנשארת אחרי הסרה — מצמצמים
+            while j < len(main) and main[j] in ' \n':
+                j += 1
+            out.append('    ')
+        i = j
+    out.append(main[i:])
+    return s[:m0] + ''.join(out) + s[m1:]
+
+
 def build():
     src = open(SRC, encoding='utf-8').read()
     out = {}
@@ -92,6 +121,7 @@ def build():
         s = set_meta(src, path, title, desc)
         s = strip_faq(s)
         s = activate(s, page_path, path if not reg_doc else None, reg_doc)
+        s = keep_only(s, page_path)
         s = s.replace('<html lang="he" dir="rtl">', MARK + '<html lang="he" dir="rtl">', 1)
         out[path.lstrip('/') + '.html'] = s
 
@@ -100,6 +130,7 @@ def build():
     s = set_meta(src, '/404', html.unescape(nf.group(1)), html.unescape(nf.group(2)), canonical=False)
     s = strip_faq(s)
     s = activate(s, '/404', None)
+    s = keep_only(s, '/404')
     s = s.replace('<meta charset="UTF-8">', '<meta charset="UTF-8">\n  <base href="/">', 1)
     s = s.replace('<html lang="he" dir="rtl">', MARK + '<html lang="he" dir="rtl">', 1)
     out['404.html'] = s

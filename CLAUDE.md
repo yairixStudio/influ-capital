@@ -58,7 +58,7 @@
 - כשהמשתמש עורך בכלי ומייצא `JSON` — לקלוט אותו ולעדכן בהתאם את `BLUEPRINT.md`.
 
 ### ניתוב ועמודים סטטיים (SEO)
-האתר הוא SPA ב‑`index.html` עם ניתוב נתיבים (History API, לא `#`). כדי שגוגל יראה כל עמוד כ‑URL נפרד, לכל נתיב יש קובץ סטטי בשורש (`קורס.html` ← ‎`/קורס` ב‑GitHub Pages) + `404.html` + `sitemap.xml` — **כולם נוצרים** ע״י `tools/build-pages.py` מתוך `index.html`.
+האתר הוא SPA ב‑`index.html` עם ניתוב נתיבים (History API, לא `#`). כדי שגוגל יראה כל עמוד כ‑URL נפרד, לכל נתיב יש קובץ סטטי **רזה** בשורש (`קורס.html` ← ‎`/קורס` ב‑GitHub Pages) שמכיל רק את ה‑`<article>` של העמוד עצמו + `404.html` + `sitemap.xml` — **כולם נוצרים** ע״י `tools/build-pages.py` מתוך `index.html`. ניווט מעמוד רזה לעמוד שאינו בו = טעינה מלאה; מדף הבית (index.html המלא) = SPA.
 - **אסור לערוך** את הקבצים שנוצרו. עורכים את `index.html` ואז מריצים `python3 tools/build-pages.py`; לפני קומיט — `python3 tools/build-pages.py --check` (נכשל אם משהו לא מעודכן).
 - title/description לכל עמוד: `data-title` / `data-desc` ב‑`index.html` (קודי T ב‑`COPY.md`). הדומיין נלקח מ‑`CNAME`.
 - הרצה מקומית: `python3 tools/serve.py` (מחקה את GitHub Pages — נתיבים בלי `.html` ו‑404).

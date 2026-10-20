@@ -21,8 +21,8 @@ class PagesHandler(http.server.SimpleHTTPRequestHandler):
     def send_head(self):
         path = urllib.parse.unquote(urllib.parse.urlsplit(self.path).path)
         fs = os.path.join(ROOT, path.lstrip('/'))
-        if not os.path.exists(fs) and os.path.isfile(fs.rstrip('/') + '.html'):
-            self.path = urllib.parse.quote(path.rstrip('/') + '.html')
+        if not os.path.exists(fs) and not path.endswith('/') and os.path.isfile(fs + '.html'):   # כמו GitHub Pages: ‎/קורס/ (עם לוכסן) → 404
+            self.path = urllib.parse.quote(path + '.html')
         elif not os.path.exists(fs):
             try:
                 f = open(os.path.join(ROOT, '404.html'), 'rb')
