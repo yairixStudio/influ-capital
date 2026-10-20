@@ -10,15 +10,15 @@
 cd בדיקות
 npm install            # פעם ראשונה (כולל lighthouse)
 # הרם שרת מקומי בטרמינל נפרד:
-python3 -m http.server 4173   # מהשורש של הפרויקט (התיקייה שמכילה את index.html)
+python3 tools/serve.py 4173   # מהשורש של הפרויקט — מחקה את GitHub Pages (נתיבים בלי .html, 404). ללא דחיסה → Performance נמוך ב~10 מהאתר החי
 
 # מובייל (ברירת מחדל ב-Lighthouse):
-npx lighthouse "http://localhost:4173/index.html#/"            --form-factor=mobile  --output=html --output-path=./results/lh-home-mobile.html
-npx lighthouse "http://localhost:4173/index.html#/ליווי-אישי"  --form-factor=mobile  --output=html --output-path=./results/lh-livui-mobile.html
-npx lighthouse "http://localhost:4173/index.html#/קורס"        --form-factor=mobile  --output=html --output-path=./results/lh-course-mobile.html
-npx lighthouse "http://localhost:4173/index.html#/הרצאות"      --form-factor=mobile  --output=html --output-path=./results/lh-talks-mobile.html
-npx lighthouse "http://localhost:4173/index.html#/אודות"       --form-factor=mobile  --output=html --output-path=./results/lh-about-mobile.html
-npx lighthouse "http://localhost:4173/index.html#/צור-קשר"     --form-factor=mobile  --output=html --output-path=./results/lh-contact-mobile.html
+npx lighthouse "http://localhost:4173/"            --form-factor=mobile  --output=html --output-path=./results/lh-home-mobile.html
+npx lighthouse "http://localhost:4173/ליווי-אישי"  --form-factor=mobile  --output=html --output-path=./results/lh-livui-mobile.html
+npx lighthouse "http://localhost:4173/קורס"        --form-factor=mobile  --output=html --output-path=./results/lh-course-mobile.html
+npx lighthouse "http://localhost:4173/הרצאות"      --form-factor=mobile  --output=html --output-path=./results/lh-talks-mobile.html
+npx lighthouse "http://localhost:4173/אודות"       --form-factor=mobile  --output=html --output-path=./results/lh-about-mobile.html
+npx lighthouse "http://localhost:4173/צור-קשר"     --form-factor=mobile  --output=html --output-path=./results/lh-contact-mobile.html
 
 # דסקטופ — הוסף:  --preset=desktop  ושנה את שם הקובץ ל-...-desktop.html
 ```
@@ -35,7 +35,7 @@ npx lighthouse "http://localhost:4173/index.html#/צור-קשר"     --form-fact
 
 ```bash
 for r in "/" "ליווי-אישי" "קורס" "הרצאות" "אודות" "צור-קשר"; do
-  npx lighthouse "http://localhost:4173/index.html#/$r" --quiet --chrome-flags="--headless" \
+  npx lighthouse "http://localhost:4173/${r#/}" --quiet --chrome-flags="--headless" \
     --output=json --output-path="./results/lh-${r//\//_}.json"
 done
 ```

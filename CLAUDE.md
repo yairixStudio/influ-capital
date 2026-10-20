@@ -57,6 +57,12 @@
 - עמוד/סקשן/טמפלט חדש שהמשתמש מאשר → **לעדכן קודם את `BLUEPRINT.md`**, ורק אז לבנות.
 - כשהמשתמש עורך בכלי ומייצא `JSON` — לקלוט אותו ולעדכן בהתאם את `BLUEPRINT.md`.
 
+### ניתוב ועמודים סטטיים (SEO)
+האתר הוא SPA ב‑`index.html` עם ניתוב נתיבים (History API, לא `#`). כדי שגוגל יראה כל עמוד כ‑URL נפרד, לכל נתיב יש קובץ סטטי בשורש (`קורס.html` ← ‎`/קורס` ב‑GitHub Pages) + `404.html` + `sitemap.xml` — **כולם נוצרים** ע״י `tools/build-pages.py` מתוך `index.html`.
+- **אסור לערוך** את הקבצים שנוצרו. עורכים את `index.html` ואז מריצים `python3 tools/build-pages.py`; לפני קומיט — `python3 tools/build-pages.py --check` (נכשל אם משהו לא מעודכן).
+- title/description לכל עמוד: `data-title` / `data-desc` ב‑`index.html` (קודי T ב‑`COPY.md`). הדומיין נלקח מ‑`CNAME`.
+- הרצה מקומית: `python3 tools/serve.py` (מחקה את GitHub Pages — נתיבים בלי `.html` ו‑404).
+
 ## ספריית אייקונים
 
 ספריית האייקונים של האתר היא **Lucide** (רישיון ISC, קוד פתוח וחינמי לשימוש מסחרי). ב‑`index.html` האייקונים **מוטמעים inline כ‑SVG** (pre-rendered מ‑Lucide v1.20) — ללא תלות CDN וללא JS בזמן ריצה, לטובת ביצועים/פרטיות/CLS. כל אייקון חדש חייב להיות מ‑Lucide, ולהיות מוטמע באותו פורמט (`<svg class="lucide icon" …>`). חריג: אייקוני מותג שאינם ב‑Lucide (וואטסאפ, וגם YouTube/Instagram/Facebook שהוסרו מ‑Lucide) — SVG ייעודי. עמודי הראווה עדיין יכולים להשתמש ב‑`<i data-lucide>` עם הסקריפט. ההשוואה שמורה ב‑`icon-options/`.

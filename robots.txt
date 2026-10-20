@@ -1,0 +1,10 @@
+# influ-capital.com
+# עמודי הראווה הפנימיים (brand-book, heroes, sections, design-verticals) לא חסומים כאן בכוונה —
+# הם מסומנים <meta name="robots" content="noindex"> וגוגל חייב לסרוק אותם כדי לראות את זה.
+User-agent: *
+Disallow: /archive/
+Disallow: /qa/
+Disallow: /tools/
+Disallow: /icon-options/
+
+Sitemap: https://influ-capital.com/sitemap.xml

@@ -2,8 +2,8 @@
 const { defineConfig, devices } = require('@playwright/test');
 
 /**
- * האתר הוא קובץ סטטי יחיד (../index.html) עם ניתוב hash.
- * מרימים שרת סטטי מקומי מתיקיית השורש של הפרויקט.
+ * האתר הוא SPA (../index.html) עם ניתוב נתיבים (History API); לכל נתיב יש גם קובץ סטטי
+ * (tools/build-pages.py). השרת המקומי tools/serve.py מחקה את GitHub Pages: ‎/קורס → קורס.html, ו-404.html.
  */
 const PORT = 4173;
 
@@ -14,15 +14,15 @@ module.exports = defineConfig({
   reporter: [['html', { open: 'never' }], ['list']],
 
   use: {
-    baseURL: `http://localhost:${PORT}/index.html`,
+    baseURL: `http://localhost:${PORT}`,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
 
-  // מרים שרת סטטי על תיקיית השורש (ההורה של תיקיית הבדיקות)
+  // מרים שרת מקומי שמחקה את GitHub Pages על תיקיית השורש
   webServer: {
-    command: `python3 -m http.server ${PORT} --directory ..`,
-    url: `http://localhost:${PORT}/index.html`,
+    command: `python3 ../tools/serve.py ${PORT}`,
+    url: `http://localhost:${PORT}/`,
     reuseExistingServer: true,
     timeout: 20000,
   },

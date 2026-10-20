@@ -36,6 +36,11 @@ class PagesHandler(http.server.SimpleHTTPRequestHandler):
         return super().send_head()
 
 
+class Server(http.server.ThreadingHTTPServer):
+    request_queue_size = 256   # ברירת המחדל (5) מפילה חיבורים כש-Playwright מריץ כמה מכשירים במקביל
+    daemon_threads = True
+
+
 if __name__ == '__main__':
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 4173
-    http.server.ThreadingHTTPServer(('127.0.0.1', port), PagesHandler).serve_forever()
+    Server(('127.0.0.1', port), PagesHandler).serve_forever()

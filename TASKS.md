@@ -9,9 +9,12 @@
 - [ ] לוודא שהאתר נפתח ומתפקד טוב גם בדפדפנים המובנים של פייסבוק/אינסטגרם (in-app browsers) שלעיתים משבשים אתרים
 - [ ] **ביצועי מובייל ≥90**: עם gzip/brotli בהוסטינג = **92** (אומת 2026-06-21 אחרי תיקון רגרסיית הלוגו). לוודא שהדחיסה מופעלת בהוסטינג. בשרת הבדיקה הלא-דחוס = 82 (הפער = דחיסת ה-HTML 230KB→42KB). הזרקת עמודים עצלה — אופציונלי בלבד, כבר לא חוסם. ראה qa/results/2026-06-21.md
 - [ ] (אופציונלי) לחבר נתוני מניות אמת לטיקר: להעמיד proxy/Edge-Function (Cloudflare Worker / Vercel) שמחזיק מפתח API (Finnhub/Twelve Data) ומחזיר `{SYMBOL: changePercent}`, ולהזין את כתובתו ל-`SITE_CONFIG.quotesUrl`. אסור מפתח API בצד-לקוח.
+- [ ] לחבר את האתר ל-Google Search Console (נכס Domain, אימות TXT ב-JetDNS) ולהגיש את `sitemap.xml`
 - [ ] לחלץ את הלוגיקה ה-inline שב-`index.html` למודול `js/site-utils.js` כדי לאפשר בדיקות יחידה אמיתיות (ראה `qa/tests/unit/README.md`)
 
 ## הושלמו
+- [x] SEO: ניתוב נתיבים אמיתיים במקום `#` (History API) + עמוד סטטי לכל נתיב עם title/canonical משלו (`tools/build-pages.py`), `404.html`, `sitemap.xml`, `robots.txt`, noindex לעמודי הראווה; canonical → influ-capital.com (שני האתרים מתקיימים במקביל) (2026-10-20)
+- [x] GA4 (G-ZWL0NJ7276) עם Consent Mode v2 — מדידה בסיסית ללא עוגיות לכולם, מלאה בהסכמה; מדיניות פרטיות/עוגיות עודכנה (2026-10-20)
 - [x] Meta Pixel (3682923041866819) הוזן ב-`SITE_CONFIG.fbPixelId` — פעיל מאחורי הסכמת שיווק v2; PageView לכל ניווט, Lead בקליטת טופס מאומתת-שרת, Contact בלחיצות קשר, ModalOpen (2026-08-02)
 - [x] סשן QA 2026-06-21: תיקון רגרסיית לוגו 850KB→16KB (WebP `web/`, מובייל Perf 68→92), `inert` ל-sticky-header (a11y aria-hidden-focus, 97→100), עימעום `--whatsapp-btn` ל-AA #15873f (4.6:1). כל ה-KPI ירוקים בשני המכשירים. ראה qa/results/2026-06-21.md
 - [x] סקשן "מניות מובילות" — טיקר נע (`.ticker`) עם לוגואי 10 חברות מובילות (`media/stock-company/monochrome`) + שינויי אחוז אדום/ירוק חיים (להמחשה, עם דיסקליימר). דף הבית

@@ -13,7 +13,7 @@
 ```js
 export const waLink = (intl, msg) => `https://wa.me/${intl}?text=${encodeURIComponent(msg)}`;
 export const telLink = (phone) => `tel:${phone}`;
-export const routeFromHash = (hash) => hash.replace(/^#/, '') || '/';
+export const routeFromPath = (pathname) => decodeURIComponent(pathname).replace(/\.html$/, '').replace(/\/+$/, '') || '/';
 ```
 
 ואז `index.html` ייבא אותן, וכאן תיכתב `links.test.js`:
