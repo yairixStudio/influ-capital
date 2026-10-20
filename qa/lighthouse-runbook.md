@@ -39,3 +39,14 @@ for r in "/" "ליווי-אישי" "קורס" "הרצאות" "אודות" "צו�
     --output=json --output-path="./results/lh-${r//\//_}.json"
 done
 ```
+
+## מול האתר החי — בלי לזהם את GA4/Meta
+
+האתר שולח מדידה בסיסית (Consent Mode) גם בלי הסכמה, ולכן כל ריצת Lighthouse / Playwright מול `influ-capital.com` נספרת ב-GA. לחסום תמיד:
+
+```bash
+npx lighthouse "https://influ-capital.com/" --form-factor=mobile \
+  --blocked-url-patterns='*googletagmanager*' --blocked-url-patterns='*google-analytics*' \
+  --blocked-url-patterns='*facebook*'
+```
+ב-Playwright: `context.route(/googletagmanager|google-analytics|facebook/, r => r.fulfill({ status: 204, body: '' }))` (לא `abort` — מדפיס שגיאות console).
